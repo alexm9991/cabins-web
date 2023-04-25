@@ -21,11 +21,11 @@
                     <thead>
                         <tr>
 
-                            <th scope="col">{{ __('Tittle') }}</th>
-                            <th scope="col">{{ __('Description') }}</th>
-                            <th scope="col">{{ __('Max individuals') }}</th>
-                            <th scope="col">{{ __('Create_time') }}</th>
-                            <th scope="col">{{ __('Price') }}</th>
+                            <th scope="col">{{ __('TITTLE') }}</th>
+                            <th scope="col">{{ __('DESCRIPTION') }}</th>
+                            <th scope="col">{{ __('MAX INDIVIDUALS') }}</th>
+                            <th scope="col">{{ __('CREATION TIME') }}</th>
+                            <th scope="col">{{ __('PRICE') }}</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -39,24 +39,24 @@
                         @foreach ($services as $S)
                         <tr>
 
-                            <td>{{ $S->tittle }}</td>
-                            <td>{{ $S->description }}</td>
-                            <td>{{ $S->max_individuals }}</td>
-                            <td>{{ $S->create_time }}</td>
+                            <td class="text-center">{{ $S->tittle }}</td>
+                            <td class="text-center">{{ $S->description }}</td>
+                            <td class="text-center">{{ $S->max_individuals }}</td>
+                            <td class="text-center">{{ date('d/m/Y', strtotime($S->create_time)) }}</td>
                             @foreach ($S->people_for_prices as $pe)
-                            <td>{{ $pe->price }}</td>
+                            <td class="text-center">{{ $pe->price }}</td>
 
                             @endforeach
 
                             <td class="text-center">
                                 <div class="row">
-                                    <a class="btn btn-info rounded-pill" href="{{ route('services.show', $S->id) }}"><i class="fas fa-folder-open"></i> {{ __('See More') }}</a>
+                                    <a class="btn btn-info btn-sm rounded-pill" href="{{ route('services.show', $S->id) }}"><i class="fas fa-eye"></i> {{ __('See More') }}</a>
                                 </div>
                             </td>
 
                             <td class="text-center">
                                 <div class="row">
-                                    <a class="btn btn-success rounded-pill" href="{{ route('services.edit', $S->id) }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
+                                    <a class="btn btn-success btn-sm rounded-pill" href="{{ route('services.edit', $S->id) }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
                                 </div>
                             </td>
 
@@ -66,7 +66,7 @@
                                     if ($S->state_record == 'ACTIVAR') {
                                     ?>
                                         <form action="{{route('services.disableServices', $S->id) }}" class="desactivar" method="get">
-                                            <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
+                                            <button class="btn btn-danger btn-sm rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
                                         </form>
                                     <?php
                                     }
@@ -76,7 +76,7 @@
                                     if ($S->state_record == 'DESACTIVAR') {
                                     ?>
                                         <form action="{{route('services.activeServices', $S->id) }}" class="activar" method="get">
-                                            <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
+                                            <button class="btn btn-warning text-white btn-sm rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
                                         </form>
                                     <?php
                                     }

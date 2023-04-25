@@ -2,6 +2,7 @@ $("#tabla").DataTable({
     language: {
         lengthMenu: "Mostrar " +
                     `<select class="custom-select custom-select-sm form-control form-control-sm" >
+                    <option value='5'>5</option>
                     <option value='10'>10</option>
                     <option value='25'>25</option>
                     <option value='50'>50</option>

@@ -40,7 +40,7 @@
                     <select id="identification_type" class="form-control @error('identification_type') is-invalid @enderror" name="identification_type" required autofocus>
                         <option value="">Seleccione un tipo de identificación</option>
                         <option value="cedula de ciudadania" {{ $user->identification_type == 'cedula de ciudadania' ? 'selected' : '' }}>Cédula de ciudadanía</option>
-                        <option value="cedula de extrangeria" {{ $user->identification_type == 'cedula de extrangeria' ? 'selected' : '' }}>Cédula de extranjería</option>
+                        <option value="cedula de extranjeria" {{ $user->identification_type == 'cedula de extranjeria' ? 'selected' : '' }}>Cédula de extranjería</option>
                         <option value="pasaporte" {{ $user->identification_type == 'pasaporte' ? 'selected' : '' }}>Pasaporte</option>
                         <option value="tarjeta de identidad" {{ $user->identification_type == 'tarjeta de identidad' ? 'selected' : '' }}>Tarjeta de identidad</option>
                     </select>
@@ -88,10 +88,30 @@
                     <input type="number" class="form-control" id="age" name="age" value="{{ $user->age }}">
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role User') }}:</label>
+                <div class="col-md-6">
+                    <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required autofocus>
+                        <option value="">Seleccione un rol</option>
+                        <option value="Administrador" {{ $user->role == 'admin' ? 'selected' : '' }}>Administrador</option>
+                        <option value="Cliente" {{ $user->role == 'cliente' ? 'selected' : '' }}>Cliente</option>
+                  </select>
+                    @error('role')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+
+
+
+
             <div class="form-group row">
                 <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-success rounded-pill" form="edit-user-form"><i class="fas fa-save "> </i> {{ __('Update') }}</button>
-                    <a href="{{ route('users.index') }}" class="btn btn-danger rounded-pill" onclick="return confirm('Are you sure you want to cancel?')">{{ __('Cancel') }}</a>
+                    <button type="submit" class="btn btn-success btn-sm rounded-pill" form="edit-user-form"><i class="fas fa-save "> </i> {{ __('Update') }}</button>
+                    <a href="{{ route('users.index') }}" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm('Are you sure you want to cancel?')"><i class="fas fa-window-close"></i> {{ __('Cancel') }}</a>
                 </div>
             </div>
         </form>

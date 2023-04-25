@@ -84,7 +84,12 @@ Route::get('services/{id}/activedetail', [App\Http\Controllers\ServicesControlle
 //Rutas tabla Resources Imagenes
 Route::get('services/addImage/{id}/{de}',[App\Http\Controllers\ServicesController::class,'addImage']) ->name("services.addImage");
 Route::post('services/storeImage/{id}/{de}',[App\Http\Controllers\ServicesController::class,'storeImage']) ->name("services.storeImage");
-Route::get('services/{services}/editImg}',[App\Http\Controllers\ServicesController::class,'editImg']) ->name("services.editImg");
-Route::post('/services/{services}', [App\Http\Controllers\ServicesController::class, 'updateImg'])->name('services.updateImg');
+Route::get('services/editImg/{id}/{im}/{de}',[App\Http\Controllers\ServicesController::class,'editImg']) ->name("services.editImg");
+Route::post('/services/updateImg/{id}/{im}/{de}', [App\Http\Controllers\ServicesController::class, 'updateImg'])->name('services.updateImg');
+
+//RUTAS RESERVAS
+Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'])->name('bookings.index');
+Route::get('/bookings/{book}', [App\Http\Controllers\BookingsController::class, 'show'])->name('bookings.show');
+Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsController::class, 'destroy'])->name('bookings.delete');
 
 ?>

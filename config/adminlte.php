@@ -330,7 +330,7 @@ return [
         ],
         [
             'text' => 'Reservas',
-            'url'  => 'admin/settings',
+            'url'  => 'bookings',
             'icon' => 'fas fa-star',
         ],
         [

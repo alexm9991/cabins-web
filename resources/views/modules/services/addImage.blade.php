@@ -17,13 +17,13 @@
                 <br>
 
                 <label class="form-label">{{ __('Add image') }}</label>
-                <input type="file" name="picture" accept="image/*" multiple="false" class="form-control" readonly>
+                <input type="file" name="picture" accept="image/*" multiple="false" class="form-control" readonly required>
                 </div>
 
 
             <br>
             <input type="submit" value="Enviar Formulario" class="btn btn-success" />
-            <a href="{{ Route('services.showDetails',$services->id) }}" type="submit" class="btn btn-primary">{{ __('Cancel') }}</a>
+            <a href="{{ Route('services.showDetails',$services->id) }}" type="submit" class="btn btn-danger">{{ __('Cancel') }}</a>
 
             </form>
     </tbody>

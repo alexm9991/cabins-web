@@ -14,7 +14,7 @@
 
     <div class="content container">
         <div class="col-sm-12">
-                <div class="card px-3" style="border-radius:15px;padding: 20px">
+                <div class="card px-3 p-3 rounded">
 
                     <br>
                     <div class="dataTables_length">
@@ -39,13 +39,13 @@
 
                                     <td class="text-center">
                                         <div class="row">
-                                            <a class="btn btn-info rounded-pill" href="{{ route('products.show', $P->id) }}"><i class="fas fa-folder-open"></i> {{ __('See More') }}</a>
+                                            <a class="btn btn-info btn-sm rounded-pill" href="{{ route('products.show', $P->id) }}"><i class="fas fa-eye"></i> {{ __('See More') }}</a>
                                         </div>
                                     </td>
 
                                     <td class="text-center">
                                         <div class="row">
-                                            <a class="btn btn-success rounded-pill" href="{{ route('products.edit', $P->id) }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
+                                            <a class="btn btn-success btn-sm rounded-pill" href="{{ route('products.edit', $P->id) }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
                                         </div>
                                     </td>
 
@@ -55,7 +55,7 @@
                                             if ($P->state_record == 'ACTIVAR') {
                                             ?>
                                                 <form action="{{route('products.disableProducts', $P->id) }}" class="desactivar" method="get">
-                                                    <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
+                                                    <button class="btn btn-danger btn-sm rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
                                                 </form>
                                             <?php
                                             }
@@ -65,7 +65,7 @@
                                             if ($P->state_record == 'DESACTIVAR') {
                                             ?>
                                                 <form action="{{route('products.activeProducts', $P->id) }}" class="activar" method="get">
-                                                    <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
+                                                    <button class="btn btn-warning text-white btn-sm rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
                                                 </form>
                                             <?php
                                             }

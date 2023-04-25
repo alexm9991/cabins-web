@@ -10,7 +10,7 @@
 
 <div class="content container ">
     <div class="col-sm-12">
-        <div style="margin-bottom: 30px">
+        <div class="mb-4">
             <form class="container-fluid justify-content-start">
                 <a href="{{ route('users.showCreate')}}" class="btn btn-success rounded-pill">
                     <i class="fas fa-plus-square"></i> {{ __('Create New') }}</a>
@@ -41,14 +41,14 @@
 
                             <td class="text-center">
                                 <div class="text-center">
-                                    <a class="btn btn-info rounded-pill" href="{{ route('users.show', $user->id) }}">
-                                        <i class="fas fa-folder-open"></i> {{ __('See More') }}
+                                    <a class="btn btn-info btn-sm rounded-pill" href="{{ route('users.show', $user->id) }}">
+                                        <i class="fas fa-eye"></i> {{ __('See More') }}
                                     </a>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="text-center">
-                                    <a class="btn btn-success rounded-pill" href="{{ route('users.edit', $user->id) }}"">
+                                    <a class="btn btn-success btn-sm rounded-pill" href="{{ route('users.edit', $user->id) }}"">
                                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                                     </a>
                                 </div>
@@ -60,7 +60,7 @@
                                     if ($user->state_record == 'ACTIVAR') {
                                     ?>
                                         <form action="{{route('user.delete', $user->id) }}" class="desactivar" method="get" >
-                                            <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
+                                            <button class="btn btn-danger btn-sm rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
                                         </form>
                                     <?php
                                     }
@@ -70,7 +70,7 @@
                                     if ($user->state_record == 'DESACTIVAR') {
                                     ?>
                                         <form action="{{route('user.delete', $user->id) }}" class="activar" method="get">
-                                            <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
+                                            <button class="btn btn-warning btn-sm text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
                                         </form>
                                     <?php
                                     }

@@ -55,8 +55,8 @@
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success rounded-pill">{{ __('Edit') }}</a>
-                                <a href="{{ route('users.index') }}" class="btn btn-primary rounded-pill" onclick="return confirm('Are you sure you want to cancel?')"> {{ __('Return') }}</a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success rounded-pill"><i class="fas fa-edit"></i>{{ __('Edit') }}</a>
+                                <a href="{{ route('users.index') }}" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i>  {{ __('Return') }}</a>
                             </div>
                         </div>
                     </div>

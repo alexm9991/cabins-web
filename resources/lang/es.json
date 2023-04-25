@@ -18,6 +18,10 @@
     "MAX INDIVIDUALS":"MAXIMO DE INDIVIDUOS",
     "RULES":"REGLAS",
     "TITTLE":"TITULO",
+    "PRODUCTS":"PRODUCTOS",
+    "CODE":"CÓDIGO",
+    "APPLICANT":"SOLICITANTE",
+    "MEMBERS":"MIEMBROS",
 
     "Users management": "Gestión de Usuarios",
     "Product management": "Gestión de Productos",
@@ -26,7 +30,7 @@
 
 
     "Create New": "Nuevo Registro",
-    "See More":"Ver Más",
+    "See More":"Ver",
     "Edit": "Editar",
     "Create Product":"Crear Producto",
     "Disable": "Desactivar",
@@ -59,10 +63,7 @@
     "Description":"Descripcion",
     "Details Product":"Detalles del Producto",
     "See service details":"Ver detalles del Servicio",
-
-
-
-
+    "Change" : "Cambiar",
 
 
 
@@ -89,5 +90,28 @@
     "Update detail service":"Actualizar detalle servicio",
     "Add image":"Agregar imagen",
     "Image":"Imagen",
-    "Add image for detail":"Añadir imagen para detalle"
+    "Add image for detail":"Añadir imagen para detalle",
+
+
+
+
+
+    "Bookings management":"Gestión de reservas",
+    "SERVICE":"SERVICIO",
+    "START DATE":"FECHA DE INICIO",
+    "PAYMENT METHOD":"METODO DE PAGO",
+    "CUSTOMER NAME":"NOMBRE DEL CLIENTE",
+    "Bookings Detail": "Detalles de Reserva",
+    "BOOKINGS DETAIL": "DETALLES DE RESERVA",
+    "Initial Date":"Fecha de inicio",
+    "Final Date":"Fecha final",
+    "Deposit":"Depósito",
+    "Total Paid":"Total pagado",
+    "Payment Method":"Metodo de pago",
+    "Service name":"Nombre del servicio",
+    "User name":"Nombre del usuario",
+
+    "Document":"Documento",
+    "Edit Reservation":"Editar Reserva",
+    "Reservation code":"Código de reserva"
 }

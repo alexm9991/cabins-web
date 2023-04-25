@@ -91,7 +91,7 @@ class UserController extends Controller
             'identification_number' => 'required|string|max:255|unique:users',
             'age' => 'required|integer',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|in:cliente,admin'
+            'role' => 'required|string'
         ]);
 
         // Verificar el valor de la opción seleccionada en el formulario

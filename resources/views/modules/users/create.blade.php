@@ -114,11 +114,8 @@
                         <div class="row mb-3">
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
                             <div class="col-md-6">
-                                <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required autofocus>
-                                    <option value="">Seleccione un rol de Usuario</option>
-                                    <option value="cliente">Cliente</option>
-                                    <option value="admin">Administrador</option>
-                                </select>
+
+                            <input id="role" type="text" class="form-control @error('name') is-invalid @enderror" name="role" value="cliente" required autocomplete="role" autofocus readonly>
                                 @error('role')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

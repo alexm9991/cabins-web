@@ -39,63 +39,93 @@
                             <td>{{ $de->tittle }}</td>
                             <td>{{ $de->description }}</td>
                             <td>{{ $de->create_time }}</td>
-                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                                @foreach ($de ->resource as $re)
 
-                                <div class="carousel-inner">
+                            {{-- <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <td> <img class="d-block w-100" src="{{asset('storage/imgServices').'/'.$re->url}}"></td>
-                                    </div>
-                                </div>
-
-                                @endforeach
-                            </div>
-
-                            <td class="text-center">
-                                <div class="row">
-                                    <a class="btn btn-success rounded-pill" href="{{ route('services.detailEdit',['id' => $services->id, 'de' => $de->id]) }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
-                                </div>
+                                       <td> <img class="d-block w-100" src="{{asset('storage/imgServices').'/'.$re->url}}">
+                            <a href="{{route('services.editImg',$services->id)}}">{{ __('Update images')}}</a>
                             </td>
 
-                            <td class="text-center">
-                                <div class="row">
-                                    <a class="btn btn-info rounded-pill" href="{{ route('services.addImage',['id' => $services->id, 'de' => $de->id]) }}"><i class="fas fa-plus-square"></i> {{ __('Add image') }}</a>
-                                </div>
-                            </td>
-
-                            <td class="text-center">
-                                <div class="row"></div>
-                                <?php
-                                if ($de->state_record == 'ACTIVAR') {
-                                ?>
-                                    <form action="{{ route('services.disableDetailServices', $de->id) }}" class="desactivar" method="get">
-                                        <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
-                                    </form>
-                                <?php
-                                }
-                                ?>
-
-                                <?php
-                                if ($de->state_record == 'DESACTIVAR') {
-                                ?>
-                                    <form action="{{ route('services.activeDetailServices', $de->id) }}" class="activar" method="get">
-                                        <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }} </button>
-                                    </form>
-                                <?php
-                                }
-                                ?>
             </div>
-            </td>
-            </tr>
+        </div> --}}
 
-            @endforeach
-            </tbody>
-            </table>
-            <br>
-            <a style="margin: 10px;" href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
-        </div>
+        <td>
+            <div id="carouselExampleControls{{$de->id}}" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach ($de ->resource as $re)
+                    <div class="carousel-item @if ($loop->index==0) active @endif">
+                        <img class="img-thumbnail" width="1900" src="{{asset('storage/imgServices').'/'.$re->url}}">
+                    </div>
+                    @endforeach
+
+                    <a class="carousel-control-prev" href="#carouselExampleControls{{$de->id}}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls{{$de->id}}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+        </td>
+
     </div>
+    <td class="text-center">
+        <div class="row">
+            <a class="btn btn-success rounded-pill" href="{{ route('services.detailEdit',['id' => $services->id, 'de' => $de->id]) }}">
+                <i class="fas fa-edit"></i> {{ __('Edit') }}
+            </a>
+        </div>
+
+        @if ($de->resource->count() <=4) <td class="text-center">
+            <div class="row">
+                <a class="btn btn-info rounded-pill" href="{{ route('services.addImage',['id' => $services->id, 'de' => $de->id]) }}">
+                    <i class="fas fa-plus-square"></i> {{ __('Add image') }}
+                </a>
+            </div>
+    </td>
+    @else
+    <td class="text-center">
+        <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
+            <button class="btn btn-info rounded-pill" style="pointer-events: none;" type="button" disabled><i class="fas fa-plus-square"></i> {{ __('Add image') }}</button>
+        </span>
+    </td>
+    @endif
+
+    <td class="text-center">
+        <div class="row">
+            <?php
+            if ($de->state_record == 'ACTIVAR') {
+            ?>
+                <form action="{{ route('services.disableDetailServices', $de->id) }}" class="desactivar" method="get">
+                    <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
+                </form>
+            <?php
+            }
+            ?>
+            <?php
+            if ($de->state_record == 'DESACTIVAR') {
+            ?>
+                <form action="{{ route('services.activeDetailServices', $de->id) }}" class="activar" method="get">
+                    <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Active') }}</button>
+                </form>
+            <?php
+            }
+            ?>
+        </div>
+    </td>
+
+    </tr>
+
+    @endforeach
+    </tbody>
+    </table>
+    <br>
+    <a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i>{{ __('Return') }}</a>
 </div>
+</div>
+</div>
+
 @stop
 
 @section('css')
@@ -129,6 +159,11 @@
     @endif
 </script>
 
+
+
+
+
+
 <script>
     @if(session('update')) {
         const Toast = Swal.mixin({
@@ -149,6 +184,7 @@
         })
     }
     @endif
+
 
     @if(session('save')) {
         const Toast = Swal.mixin({
@@ -193,6 +229,7 @@
 
     $('.desactivar').submit(function(e) {
         e.preventDefault();
+
 
         Swal.fire({
             title: 'Desea Desactivar El Detalle del Servicio?',
