@@ -10,78 +10,126 @@ use App\Models\Types_individual;
 use App\Models\Resource;
 use DateTime;
 
+
 class ServicesController extends Controller
 {
+
+    
+   
     public function __construct()
     {
         $this->middleware('auth');
+      
     }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-
+            
         $services = Service::with('people_for_prices','type_service_individuals','detail_service','services_resource')->get();
-
+        
 
         return view('modules.services.index', compact('services'));
         // return view('backend.services.home');
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $services = Service::all();
         return view('modules.services.create', compact('services'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $services = new Service();
+        $services = new Service(); 
         $services1 = Types_individual::find(1);
-        $types_id = $services1 ->id;
+        $types_id = $services1 ->id;        
         $services -> tittle =$request ->title;
         $services -> description =$request ->description;
         $services -> max_individuals =$request ->max_individuals;
         $services -> rules = $request -> rules;
         $services -> save();
+        
+        
+        
+         
 
         $people_for_prices = new People_for_price();
         $people_for_prices -> price = $request -> price;
         $people_for_prices -> SERVICES_id = $services -> id;
         $people_for_prices -> TYPES_INDIVIDUALS_id = $types_id;
-
+       
         $people_for_prices -> save();
+        
+       
 
         return redirect(route('services'))->with('ok','ok');
     }
 
+   
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $services = Service::with('people_for_prices','type_service_individuals','detail_service')->find($id);
-
-
+       
+        
         return view('modules.services.show' ,compact('services'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $services = Service::with('people_for_prices','type_service_individuals','detail_service')->find($id);
-
-
+       
+        
         return view('modules.services.edit' ,compact('services'));
     }
-    public function detailEdit($id1,$id2)
+    
+    public function captureImg($id_services,$id_detail){
+
+        $images_old = Resource::where('DETAIL_SERVICES_id',$id_detail)->pluck('url','id');      
+        session(['images_old' => $images_old]);
+
+        return $this->detailEdit($id_services, $id_detail);
+        
+    }
+    
+    public function detailEdit($id_services,$id_detail)
     {
-        $services = Service::find($id1);
-
-        $detail_services = Detail_service::find($id2);
-
-
+        $services = Service::find($id_services);
+       
+        $detail_services = Detail_service::find($id_detail);
+               
         return view('modules.services.detailEdit' ,compact('services','detail_services'));
     }
 
     public function update(Request $request, $id)
     {
-
+        
         $services = Service::findOrFail($id);
         $services -> tittle = $request ->tittle;
         $services -> description = $request ->description;
@@ -90,7 +138,7 @@ class ServicesController extends Controller
         $services -> save();
 
         $people_for_prices = $services -> people_for_prices()->firstOrFail();
-        $people_for_prices -> price = $request ->price;
+        $people_for_prices -> price = $request ->price; 
         $people_for_prices -> save();
 
         return redirect(route('services',$id))->with('update','ok');
@@ -98,7 +146,7 @@ class ServicesController extends Controller
 
     public function detailUpdate(Request $request, $id1,$id2)
     {
-
+        
         $detail_services = Detail_service::findOrFail($id2);
         $detail_services -> tittle = $request ->tittle;
         $detail_services -> description = $request ->description;
@@ -107,17 +155,23 @@ class ServicesController extends Controller
         return redirect(route('services.showDetails',$id1))->with('update','ok');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function addDetail($id)
     {
         $services = Service::with('people_for_prices','type_service_individuals','detail_service')->find($id);
-
-
+       
+        
         return view('modules.services.createDetail' ,compact('services'));
-
+       
     }
     public function createDetail(Request $request, $id)
     {
-
+       
         $services = Service::findOrFail($id);
         $detail_services = new Detail_service();
         $detail_services -> tittle = $request -> tittle;
@@ -129,16 +183,17 @@ class ServicesController extends Controller
     public function showDetails($id)
     {
         $services = Service::with('people_for_prices','type_service_individuals','detail_service')->find($id);
-
-
+        
+        
         return view('modules.services.showDetails' ,compact('services'));
-
+       
     }
+    
 
     public function disableServices($id){
         $services = Service::findOrFail($id);
         $people_for_prices = $services->people_for_prices()->firstOrFail();
-
+        
         if ($services->state_record == 'ACTIVAR') {
             $state_record = 'DESACTIVAR';
         } else {
@@ -149,22 +204,22 @@ class ServicesController extends Controller
 
         $people_for_prices->state_record = $state_record;
         $people_for_prices->save();
-
+  
         return redirect()->back();
     }
  #Desactivar detalles servicios
     public function disableDetailServices($id){
-
+   
         $detail_services = Detail_service::findOrFail($id);
-
+            
         if ($detail_services->state_record == 'ACTIVAR') {
             $state_record = 'DESACTIVAR';
         } else {
             $state_record = 'ACTIVAR';
         }
-
+        
         $detail_services->state_record =$state_record;
-        $detail_services->save();
+        $detail_services->save();      
 
         return redirect()->back();
     }
@@ -173,7 +228,7 @@ class ServicesController extends Controller
         $services = Service::findOrFail($id);
 
         $people_for_prices = $services->people_for_prices()->firstOrFail();
-
+       
         if ($services->state_record = 'DESACTIVAR') {
             $state_record = 'ACTIVAR';
         } else {
@@ -182,16 +237,20 @@ class ServicesController extends Controller
         $services->state_record = $state_record;
         $services->save();
 
+
+
         $people_for_prices->state_record = $state_record;
         $people_for_prices->save();
+    
+       
 
         return redirect()->back();
     }
  #Activar detalles servicios
     public function activeDetailServices($id){
-
+       
         $detail_services = Detail_service::findOrFail($id);
-
+       
         if ($detail_services->state_record = 'DESACTIVAR') {
             $state_record = 'ACTIVAR';
         } else {
@@ -204,19 +263,56 @@ class ServicesController extends Controller
         return redirect()->back();
     }
 
+    public function activeImg($id){
+       
+        $resources = Resource::findOrFail($id);
+       
+        if ($resources->state_record == 'DESACTIVAR') {
+            $state_record = 'ACTIVAR';
+        } else {
+            $state_record = 'DESACTIVAR';
+        }
+
+        $resources->state_record = $state_record;
+        $resources->save();
+
+        return redirect()->back();
+    }
+    
+    public function disableImg($id){
+       
+        $resources = Resource::findOrFail($id);
+       
+        if ($resources->state_record == 'ACTIVAR') {
+            $state_record = 'DESACTIVAR';
+        } else {
+            $state_record = 'ACTIVAR';
+        }
+
+        $resources->state_record = $state_record;
+        $resources->save();
+
+        return redirect()->back();
+    }
+
     //Funciones Imagenes
     public function addImage($service_id,$detail_id)
     {
         $services = Service::findOrFail($service_id);
         $detail_services= Detail_service::findOrFail($detail_id);
-        return view('modules.services.addImage', compact('services','detail_services'));
+        if ($detail_services->resource->count()<=4){
+            return view('modules.services.addImage', compact('services','detail_services'));
+        }else{
+            return redirect()->back()->with('error', 'ok');
+        }
+        
     }
 
     public function storeImage(Request $request,$service_id,$detail_id)
     {
         $detail_services= Detail_service::findOrFail($detail_id);
         $resources = new Resource();
-
+        
         if (isset($_FILES['picture']) && ($_FILES['picture']['name']!=null))  {
             $fecha = new DateTime();
             $Types = array('image/jpeg', 'image/png', 'image/gif', 'image/jpg');
@@ -226,7 +322,7 @@ class ServicesController extends Controller
             $validation = $_FILES['picture']['type'];
 
             if (in_array($validation, $Types)) {
-
+                
                 move_uploaded_file($imagen_temporal, "storage/imgServices/" . $picture); //mover la imagen y guardarla en una carpeta
 
                 $resources->url = $picture;
@@ -234,19 +330,54 @@ class ServicesController extends Controller
                 $resources->save();
                 return redirect(route('services.showDetails',$service_id))->with('save', 'ok');
             } else {
-
+                
                 return redirect()->back()->with('not', 'ok');
             }
         }
-        return redirect()->back()->with('not', 'ok');
+        return redirect()->back()->with('not', 'ok');      
     }
 
     public function editImg($id_ser,$id_re,$id_de)
     {
+        
+        
         $services = Service::findOrFail($id_ser);
         $resources = Resource::findOrFail($id_re);
         $detail_services = Detail_service::findOrFail($id_de);
         return view('modules.services.editImg', compact('services','resources','detail_services'));
+    }
+
+
+    public function oldImg(Request $request,$id_services,$id_detail){
+        
+        $resources = new Resource;
+       
+        $images_old = session('images_old');
+       
+
+       
+
+       $array = $images_old->toArray();
+
+       $Array_old = array_map(function ($url, $id) use ($id_detail) {
+        return ['id' => $id, 'url' => $url, 'DETAIL_SERVICES_id' => $id_detail];
+       }, $array, array_keys($array));
+        
+       foreach ($Array_old as $old) {
+        $id = $old['id'];
+        $url = $old['url'];
+        $DETAIL_SERVICES_id = $old['DETAIL_SERVICES_id'];
+        
+        // $rutaArchivo = public_path('storage/imgServices/') . '/' . $url;
+        // unlink($rutaArchivo);
+
+        Resource::where('id',$id)->update([
+            'url' => $url,
+            'DETAIL_SERVICES_id' => $DETAIL_SERVICES_id
+        ]);
+        
+        }
+        return redirect(route('services.showDetails',$id_services))->with('cancelar','ok');
     }
 
     public function updateImg(Request $request,$id_ser,$id_re,$id_de)
@@ -254,8 +385,9 @@ class ServicesController extends Controller
         $services = Service::findOrFail($id_ser);
         $resources = Resource::findOrFail($id_re);
         $detail_services = Detail_service::findOrFail($id_de);
-
+        
         $rutaArchivo = public_path('storage/imgServices/') . '/' . $resources->url;
+
 
         if (isset($_FILES['picture']) && ($_FILES['picture']['name']!=null))  {
             $fecha = new DateTime();
@@ -267,13 +399,19 @@ class ServicesController extends Controller
 
             if (in_array($validation, $Types)) {
                 if (file_exists($rutaArchivo)) {
-                    unlink($rutaArchivo);
+                    // unlink($rutaArchivo);
                 }
                 move_uploaded_file($imagen_temporal, "storage/imgServices/" . $picture);
 
                 $resources->url = $picture;
                 $resources->save();
-                return redirect(route('services.detailEdit',['id' => $services->id,'de' => $detail_services->id]))->with('update', 'ok');
+
+                
+               
+                
+                
+                return redirect(route('services.detailEdit',['id' => $services->id,'de' => $detail_services->id]));
+                
             } else {
                 $resources->url = $request->pictureOld;
                 $resources->save();
@@ -282,7 +420,8 @@ class ServicesController extends Controller
         } else if (isset($_FILES['picture']) && ($_FILES['picture']['name']==null)){
             $resources->url = $request->pictureOld;
             $resources->save();
-            return redirect(route('services.detailEdit',['id' => $services->id,'de' => $detail_services->id]))->with('update', 'ok');
+            return redirect(route('services.detailEdit',['id' => $services->id,'de' => $detail_services->id]));
+           
         }
     }
 }

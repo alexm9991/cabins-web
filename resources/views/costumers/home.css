@@ -63,6 +63,7 @@ body {
     align-items: center;
     background-color: #cfcece;
     position: relative;
+    padding-top: 100px;
 }
 
 
@@ -77,10 +78,12 @@ body {
 
 
 
+
 .texto h1 {
   font-size: 3em;
   font-weight: bold;
   text-align: left;
+  margin-top: 30px;
   margin-left: 10%;
 
   letter-spacing: -1px;
@@ -91,7 +94,7 @@ body {
   color: grey;
   max-width: 500px;
   margin-left: 11%;
-  margin-top: -35px;
+  margin-top: 30px;
 }
 
 .imagen {
@@ -220,20 +223,17 @@ body {
 .contenido-con{
   background-color: #ececec;
   margin: 0;
-  margin-top: 120px;
+  margin-top: 0px;
   padding-top: 50px;
 }
 .contenido-con h1{
   font-size: 2.7em;
   margin-bottom: 1px;
-  
-
 }
 .contenido-con p{
   font-size: 1em;
-  color: rgb(197, 197, 197);
-  
-  
+  color: rgb(109, 109, 109);
+  padding-top: 30px;
 }
 .square {
   width: 90%;
@@ -281,7 +281,7 @@ body {
   justify-content: center;
   align-items: flex-end;
   margin-right: -50px;
-  margin-top: 70px;
+  margin-top: 150px;
   margin-left: 40px;
 }
 
@@ -290,6 +290,7 @@ body {
   align-items: center;
   margin-bottom: 2px;
   margin-top: 2px;
+  padding-bottom: 50px;
 }
 
 
@@ -353,7 +354,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 70px 20px 200px;
+  margin: 70px 20px 0px;
   background-color: #eeeeee;
 }
 
@@ -433,7 +434,9 @@ body {
   }
   
   @media(min-width:576px) and (max-width:991px){
-
+    .container-img {
+      padding-top: 500px;
+  }
     .container-body{
       position: absolute;
       width: 100%;
@@ -447,8 +450,8 @@ body {
   
     .container-img {
       width: 100%;
-      height: 800px; 
-      padding-bottom: 100px; 
+      height: auto; 
+      padding-bottom: 0px; 
       display: grid;
       align-items: center;
       background-color: #cfcece;
@@ -466,7 +469,6 @@ body {
     font-size: 3em;
     font-weight: bold;
     text-align: center;
-  
     letter-spacing: -1px;
   }
   
@@ -476,7 +478,7 @@ body {
     color: grey;
     padding-left: 5%;
     margin-left: auto;
-    margin-top: -35px;
+    margin-top: 30px;
     margin-right: auto;
     text-align: center;
   }
@@ -500,9 +502,18 @@ body {
       max-width: 200px; 
   }
 
+  .ancho-div{
+    margin-top: 10px;
+  }
+
   .contenedor-exp {
     justify-content: space-around;
   }  
+
+  .square {
+    width: 100%;
+    margin-left: 0px;
+  }
 
   .col-sm-12{width: 100%;}
   .col-sm-11{width: 91.66666666%;}
@@ -524,7 +535,7 @@ body {
       width: 100%;
       left: 0;
       top: 0;
-      margin-top: 120%;
+      margin-top: 450px;
     }
 
     .ancho-div {
@@ -533,8 +544,9 @@ body {
   
     .container-img {
       width: 100%;
-      height: 900px; 
-      padding-bottom: 100px; 
+      height: 800px; 
+      padding-top: 0;
+      padding-bottom: 0; 
       display: grid;
       align-items: center;
       background-color: #cfcece;
@@ -544,7 +556,7 @@ body {
   .texto {
     float: left;
     width: 100%;
-    margin: 30px 0 40px 0;
+    margin: 30px 0 0px 0;
     padding-right: 5%;
   }
 
@@ -552,7 +564,7 @@ body {
     font-size: 2em;
     font-weight: bold;
     text-align: center;
-  
+    margin-top: 30px;
     letter-spacing: -1px;
   }
   
@@ -562,7 +574,7 @@ body {
     color: grey;
     padding-left: 5%;
     margin-left: auto;
-    margin-top: 0px;
+    margin-top: 30px;
     margin-right: auto;
     text-align: center;
   }
@@ -584,6 +596,13 @@ body {
       left: 50%; 
       transform: translate(-50%, -50%); 
       max-width: 200px; 
+  }
+
+  .square {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
 
   .link-map button{
@@ -626,11 +645,11 @@ body {
       display: block;
       background-color: #fff;
       height: 1300px;
-      padding-top: 250px;
+      padding-top: 200px;
     }
 
     .titulo-quien {
-      padding-top: 0;
+      padding-top: 30px;
       height: 0;
     }
 
@@ -643,7 +662,7 @@ body {
       align-items: center;
       padding-left: 0;
       margin-left: 0;
-      margin-top: 0;
+      margin-top: 50px;
       
     }
     
@@ -661,14 +680,8 @@ body {
       align-self: center;
     }
 
-    .contenedor-exp {
-      display: block;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8em;
-      margin: 70px 20px 200px;
-      background-color: #eeeeee;
+    .derecho-divs {
+      margin-top: 50px;
     }
 
     .dos,

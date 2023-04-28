@@ -50,6 +50,8 @@ Route::post('/products/{products}', [ProductsController::class, 'update'])->name
 Route::get('products/{id}/desactivar', [ProductsController::class, 'disableProducts'])->name('products.disableProducts');
 Route::get('products/{id}/activar', [ProductsController::class, 'activeProducts'])->name('products.activeProducts');
 Route::get('products/{product}/show}',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
+Route::get('products/productsviews',[App\Http\Controllers\ProductsController::class,'productsviews']) ->name("products.productsviews");
+Route::get('products/{product}/showviews}',[App\Http\Controllers\ProductsController::class,'showviews']) ->name("products.showviews");
 
 //RUTAS PQRS
 Route::get('/pqrs', [App\Http\Controllers\PqrsController::class, 'index'])->name('pqrs.index');
@@ -60,6 +62,7 @@ Route::put('/pqrs/{id}/delete', [PqrsController::class, 'delete'])->name('pqrs.d
 Route::put('/pqrs/{id}/update', [PqrsController::class, 'update'])->name('pqrs.update');
 
 // RUTAS SERVICIOS
+
 //Rutas Servicios
 Route::get('services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
 Route::get('services/create', [App\Http\Controllers\ServicesController::class, 'create'])->name('services.create');
@@ -85,7 +88,11 @@ Route::get('services/{id}/activedetail', [App\Http\Controllers\ServicesControlle
 Route::get('services/addImage/{id}/{de}',[App\Http\Controllers\ServicesController::class,'addImage']) ->name("services.addImage");
 Route::post('services/storeImage/{id}/{de}',[App\Http\Controllers\ServicesController::class,'storeImage']) ->name("services.storeImage");
 Route::get('services/editImg/{id}/{im}/{de}',[App\Http\Controllers\ServicesController::class,'editImg']) ->name("services.editImg");
+Route::get('services/captureImg/{id}/{de}',[App\Http\Controllers\ServicesController::class,'captureImg']) ->name("services.captureImg");
 Route::post('/services/updateImg/{id}/{im}/{de}', [App\Http\Controllers\ServicesController::class, 'updateImg'])->name('services.updateImg');
+Route::get('/services/oldImg/{id}/{de}', [App\Http\Controllers\ServicesController::class, 'oldImg'])->name('services.oldImg');
+Route::get('services/{id}/activeimg', [App\Http\Controllers\ServicesController::class, 'activeImg'])->name('services.activeImg');
+Route::get('services/{id}/disableimg', [App\Http\Controllers\ServicesController::class, 'disableImg'])->name('services.disableImg');
 
 //RUTAS RESERVAS
 Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'])->name('bookings.index');

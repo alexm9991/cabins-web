@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Servicios')
 
 @section('content_header')
 <h1>{{ __('Services') }}</h1>
@@ -16,8 +16,9 @@
                 </div>
             </nav>
 
-            <div class="card-header">
-                <table id='tableServices' class="table">
+            <!-- <div class="card-header"> -->
+            <div class="dataTables_length">
+                <table id="tabla" class="table table-striped">
                     <thead>
                         <tr>
 
@@ -26,8 +27,6 @@
                             <th scope="col">{{ __('MAX INDIVIDUALS') }}</th>
                             <th scope="col">{{ __('CREATION TIME') }}</th>
                             <th scope="col">{{ __('PRICE') }}</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -100,6 +99,8 @@
 @stop
 
 @section('js')
+<script src="{{asset('js/datatables.js')}}"></script>
+
 <script>
     console.log('Hi!');
 </script>

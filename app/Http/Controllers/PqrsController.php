@@ -51,7 +51,7 @@ class PqrsController extends Controller
         ]);
         $pqrs->condition = $request->input('condition');
         $pqrs->save();
-        return redirect()->route('pqrs.index');
+        return redirect()->route('pqrs.index')->with('update', 'ok');
     }
 
 

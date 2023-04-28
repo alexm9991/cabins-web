@@ -66,9 +66,9 @@
                             @csrf
                             @method('PUT')
                             <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light" aria-label="Default select example" name="condition">
-                                <option value="{{ __('Managed') }}" {{ $pqr->condition == 'GESTIONADO' ? 'selected' : '' }}>{{ __('Managed') }}</option>
-                                <option value="{{ __('In progress') }}" {{ $pqr->condition == 'EN PROCESO' ? 'selected' : '' }}>{{ __('In progress') }}</option>
-                                <option value="{{ __('No managed') }}" {{ $pqr->condition == 'NO GESTIONADO' ? 'selected' : '' }}>{{ __('No managed') }}</option>
+                                <option value="{{ __('Managed') }}" {{ $pqr->condition == 'GESTIONADO' ? 'selected' : '' }}>{{ __('MANAGED') }}</option>
+                                <option value="{{ __('In progress') }}" {{ $pqr->condition == 'EN PROCESO' ? 'selected' : '' }}>{{ __('IN PROGRESS') }}</option>
+                                <option value="{{ __('No managed') }}" {{ $pqr->condition == 'NO GESTIONADO' ? 'selected' : '' }}>{{ __('NO MANAGED') }}</option>
                             </select>
                             <button style="margin: 0% 0% 0% 3%" type="submit" class="btn btn-success rounded-pill"><i class="fas fa-edit"></i>
                                 {{ __('Update') }}
@@ -132,19 +132,18 @@
 
         Swal.fire({
             title: '¿Esta seguro de actualizar la PQRS?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33C',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Aceptar'
+            showDenyButton: true,
+            confirmButtonText: 'Actualizar',
+            denyButtonText: `Cancelar`,
         }).then((result) => {
             if (result.isConfirmed) {
                 this.submit();
+            } else if (result.isDenied) {
+                Swal.fire('No se actualizó la PQRS!!', '', 'info')
             }
         })
+    })
 
-    });
 </script>
 
 @stop

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Details')
+@section('title', 'Detalle del Servicio')
 
 @section('content_header')
 <h1>Detalles del Servicio</h1>
@@ -37,7 +37,7 @@
 
         <div style="text-align: center; ">
             <a style="margin: 10px;" href="{{ Route('services') }}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
-            <a style="margin: 10px;" href="{{ route('services.showDetails', $services->id) }}" type="submit" class="btn btn-success rounded-pill"><i class="fas fa-folder-open"></i> {{ __('See service details') }}</a>
+            <a style="margin: 10px;" href="{{ route('services.showDetails', $services->id) }}" type="submit" class="btn btn-info rounded-pill"><i class="fas fa-eye"></i> {{ __('See details') }}</a>
         </div>
 
     </form>

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle Servicio')
+@section('title', 'Detalle del Servicio')
 
 @section('content_header')
 <h1>{{ __('Detail service of') }} {{$services->tittle}}</h1>
@@ -13,7 +13,7 @@
         <div class="card px-3">
             <nav class="navbar bg-body-tertiary">
                 <form class="container-fluid justify-content-start">
-                    <a style="margin: 10px;" href="{{ route('services.addDetail', $services->id)}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-plus-square"></i> {{ __('Add detail') }}</a>
+                    <a href="{{ route('services.addDetail', $services->id)}}" class="btn btn-success rounded-pill"><i class="fas fa-plus-square"></i> {{ __('Add detail') }}</a>
                 </form>
             </nav>
 
@@ -21,14 +21,13 @@
                 <table id='tableServices' class="table">
                     <thead>
                         <tr>
-
-                            <th scope="col">{{ __('Tittle') }}</th>
-                            <th scope="col">{{ __('Description') }}</th>
-                            <th scope="col">{{ __('Create_time') }}</th>
-                            <th scope="col">{{ __('Image') }}</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th class="text-center">{{ __('TITTLE') }}</th>
+                            <th class="text-center">{{ __('DESCRIPTION') }}</th>
+                            <th class="text-center">{{ __('CREATION TIME') }}</th>
+                            <th class="text-center">{{ __('PICTURE') }}</th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
 
@@ -38,7 +37,7 @@
 
                             <td>{{ $de->tittle }}</td>
                             <td>{{ $de->description }}</td>
-                            <td>{{ $de->create_time }}</td>
+                            <td>{{ date('d/m/Y', strtotime($de->create_time)) }}</td>
 
                             {{-- <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -72,14 +71,14 @@
     </div>
     <td class="text-center">
         <div class="row">
-            <a class="btn btn-success rounded-pill" href="{{ route('services.detailEdit',['id' => $services->id, 'de' => $de->id]) }}">
+            <a class="btn btn-success btn-sm  rounded-pill" href="{{ route('services.captureImg',['id' => $services->id, 'de' => $de->id]) }}">
                 <i class="fas fa-edit"></i> {{ __('Edit') }}
             </a>
         </div>
 
         @if ($de->resource->count() <=4) <td class="text-center">
             <div class="row">
-                <a class="btn btn-info rounded-pill" href="{{ route('services.addImage',['id' => $services->id, 'de' => $de->id]) }}">
+                <a class="btn btn-info btn-sm  rounded-pill" href="{{ route('services.addImage',['id' => $services->id, 'de' => $de->id]) }}">
                     <i class="fas fa-plus-square"></i> {{ __('Add image') }}
                 </a>
             </div>
@@ -87,7 +86,7 @@
     @else
     <td class="text-center">
         <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
-            <button class="btn btn-info rounded-pill" style="pointer-events: none;" type="button" disabled><i class="fas fa-plus-square"></i> {{ __('Add image') }}</button>
+            <button class="btn btn-info btn-sm  rounded-pill" style="pointer-events: none;" type="button" disabled><i class="fas fa-plus-square"></i> {{ __('Add image') }}</button>
         </span>
     </td>
     @endif
@@ -98,7 +97,7 @@
             if ($de->state_record == 'ACTIVAR') {
             ?>
                 <form action="{{ route('services.disableDetailServices', $de->id) }}" class="desactivar" method="get">
-                    <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
+                    <button class="btn btn-danger btn-sm  rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
                 </form>
             <?php
             }
@@ -107,7 +106,7 @@
             if ($de->state_record == 'DESACTIVAR') {
             ?>
                 <form action="{{ route('services.activeDetailServices', $de->id) }}" class="activar" method="get">
-                    <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Active') }}</button>
+                    <button class="btn btn-warning btn-sm  text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Active') }}</button>
                 </form>
             <?php
             }
@@ -121,11 +120,10 @@
     </tbody>
     </table>
     <br>
-    <a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i>{{ __('Return') }}</a>
+    <a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
 </div>
 </div>
 </div>
-
 @stop
 
 @section('css')
@@ -147,12 +145,31 @@
     })
     @endif
 
+    @if(session('error')) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Llegaste al maximo de imagenes permitidas',
+            footer: 'Límite 5 imagenes'
+        })
+    }
+    @endif
 
     @if(session("update"))
     Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Detalle del Servicio Actualizado Correctamente ',
+        showConfirmButton: false,
+        timer: 2500
+    })
+    @endif
+
+    @if(session("cancelar"))
+    Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'No se realizaron cambios ',
         showConfirmButton: false,
         timer: 2500
     })
@@ -201,7 +218,7 @@
 
         Toast.fire({
             icon: 'success',
-            title: 'Servicio guardado'
+            title: 'Imagen guardada'
         })
     }
     @endif

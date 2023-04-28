@@ -176,4 +176,20 @@ class productsController extends Controller
 
         return redirect()->back();
     }
+
+    public function productsviews()
+    {
+        $products = Product::where('state_record', 'ACTIVAR')->get();
+        return view('modules.products.productsviews')->with('products', $products);
+        
+    }
+
+    public function showviews($id)
+    {
+        $products = Product::findOrFail($id);
+        return view('modules.products.showviews', compact('products'));
+    }
+
+
+
 }
