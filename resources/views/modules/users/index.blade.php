@@ -17,8 +17,8 @@
             </form>
         </div>
 
-        <div class="card px-3" style="border-radius:15px">
-            <div class="dataTables_length" style="padding:20px">
+        <div class="card px-3 p-3 rounded">
+            <div class="dataTables_length p-2">
                 <table id="tabla" class="table table-striped">
                     <thead>
                         <tr>

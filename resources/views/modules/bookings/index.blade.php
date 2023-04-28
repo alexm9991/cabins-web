@@ -10,7 +10,7 @@
 
 <div class="content container ">
     <div class="col-sm-12">
-        <div class="card px-3" style="border-radius:15px">
+        <div class="card px-3 p-3 rounded">
 
             <br>
             <div class="dataTables_length">

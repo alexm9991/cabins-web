@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle del Servicio')
+@section('title', 'Detalle Servicio')
 
 @section('content_header')
 <h1>{{ __('Detail service of') }} {{$services->tittle}}</h1>
@@ -28,6 +28,7 @@
                             <th class="text-center"></th>
                             <th class="text-center"></th>
                             <th class="text-center"></th>
+
                         </tr>
                     </thead>
 
@@ -44,16 +45,15 @@
                                        <td> <img class="d-block w-100" src="{{asset('storage/imgServices').'/'.$re->url}}">
                             <a href="{{route('services.editImg',$services->id)}}">{{ __('Update images')}}</a>
                             </td>
-
             </div>
         </div> --}}
 
         <td>
-            <div id="carouselExampleControls{{$de->id}}" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleControls{{$de->id}}" class="carousel" data-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($de ->resource as $re)
-                    <div class="carousel-item @if ($loop->index==0) active @endif">
-                        <img class="img-thumbnail" width="1900" src="{{asset('storage/imgServices').'/'.$re->url}}">
+                    <div class="carousel-item @if ($loop->index==0) active @endif" style="width:150px; height:150px;">
+                        <img class="img-thumbnail" style="  object-fit: cover;width:100%;height:100%;" src="{{asset('storage/imgServices').'/'.$re->url}}">
                     </div>
                     @endforeach
 
@@ -175,10 +175,6 @@
     })
     @endif
 </script>
-
-
-
-
 
 
 <script>

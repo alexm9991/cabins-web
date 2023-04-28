@@ -9,13 +9,12 @@
 @section('content')
 <div class="content container ">
     <div class="col-sm-12">
-        <div class="card px-3">
-            <nav class="navbar bg-body-tertiary">
-                <div style="padding-top: 15px;">
-                    <a class="btn btn-success rounded-pill" href="{{ Route('services.create')}}"><i class="fas fa-plus-square"></i> {{ __('Create New') }} </a>
-                </div>
-            </nav>
 
+        <div class="p-3">
+            <a class="btn btn-success rounded-pill" href="{{ Route('services.create')}}"><i class="fas fa-plus-square"></i> {{ __('Create New') }} </a>
+        </div>
+
+        <div class="card px-3">
             <!-- <div class="card-header"> -->
             <div class="dataTables_length">
                 <table id="tabla" class="table table-striped">
