@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+
 <div class="content container ">
     <div class="col-sm-12">
 
@@ -14,36 +15,33 @@
             <a class="btn btn-success rounded-pill" href="{{ Route('services.create')}}"><i class="fas fa-plus-square"></i> {{ __('Create New') }} </a>
         </div>
 
-        <div class="card px-3">
-            <!-- <div class="card-header"> -->
+        <div class="card p-3 rounded">
+
             <div class="dataTables_length">
+
                 <table id="tabla" class="table table-striped">
                     <thead>
                         <tr>
-
-                            <th scope="col">{{ __('TITTLE') }}</th>
-                            <th scope="col">{{ __('DESCRIPTION') }}</th>
-                            <th scope="col">{{ __('MAX INDIVIDUALS') }}</th>
-                            <th scope="col">{{ __('CREATION TIME') }}</th>
-                            <th scope="col">{{ __('PRICE') }}</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-
+                            <th class="text-center">{{ __('TITTLE') }}</th>
+                            <th class="text-center">{{ __('DESCRIPTION') }}</th>
+                            <th class="text-center">{{ __('MAX INDIVIDUALS') }}</th>
+                            <th class="text-center">{{ __('CREATION TIME') }}</th>
+                            <th class="text-center">{{ __('PRICE') }}</th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach ($services as $S)
                         <tr>
-
                             <td class="text-center">{{ $S->tittle }}</td>
                             <td class="text-center">{{ $S->description }}</td>
                             <td class="text-center">{{ $S->max_individuals }}</td>
                             <td class="text-center">{{ date('d/m/Y', strtotime($S->create_time)) }}</td>
                             @foreach ($S->people_for_prices as $pe)
                             <td class="text-center">{{ $pe->price }}</td>
-
                             @endforeach
 
                             <td class="text-center">
@@ -81,28 +79,30 @@
                                     ?>
                                 </div>
                             </td>
-
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            </td>
-            </tr>
-            @endforeach
-            </tbody>
-            </table>
         </div>
     </div>
 </div>
+
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+
 @stop
 
 @section('js')
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('js/datatables.js')}}"></script>
 
-<script>
-    console.log('Hi!');
-</script>
 <script>
     @if(session('ok') == 'ok')
     Swal.fire({
@@ -114,7 +114,6 @@
     })
     @endif
 
-
     @if(session("update"))
     Swal.fire({
         position: 'center',
@@ -124,9 +123,7 @@
         timer: 2500
     })
     @endif
-</script>
 
-<script>
     @if(session('update')) {
         const Toast = Swal.mixin({
             toast: true,
@@ -146,7 +143,6 @@
         })
     }
     @endif
-
 
     @if(session('save')) {
         const Toast = Swal.mixin({
@@ -171,10 +167,9 @@
     $('.activar').submit(function(e) {
         e.preventDefault();
 
-
         Swal.fire({
             title: 'Desea Activar El Servicio?',
-            text: "El Servicio se cambiara al estado activo, por lo tanto se mostrará en la pagina principal",
+            text: "El Servicio cambiará a activo, se mostrará en la pagina principal",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -185,18 +180,15 @@
             if (result.isConfirmed) {
                 this.submit();
             }
-
         })
-
     });
 
     $('.desactivar').submit(function(e) {
         e.preventDefault();
 
-
         Swal.fire({
             title: 'Desea Desactivar El Servicio?',
-            text: "El Servicio cambiara al estado inactivo, por lo tanto NO se mostrara en la pagina principal",
+            text: "El Servicio cambiara a inactivo, NO se mostrara en la pagina principal",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -207,13 +199,9 @@
             if (result.isConfirmed) {
                 this.submit();
             }
-
         })
-
     });
+
 </script>
 
-<script>
-    $('#tableServices').DataTable();
-</script>
 @stop
