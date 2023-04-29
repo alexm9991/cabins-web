@@ -11,18 +11,14 @@
 <div class="card-body">
     <div class="content container ">
 
-        <nav class="navbar bg-body-tertiary">
-            <form class="container-fluid justify-content-start">
-                <a href="{{ route('services.addDetail', $services->id)}}" class="btn btn-success rounded-pill"><i class="fas fa-plus-square"></i> {{ __('Add detail') }}</a>
-            </form>
-        </nav>
+        <div class="p-3">
+            <a href="{{ route('services.addDetail', $services->id)}}" class="btn btn-success rounded-pill"><i class="fas fa-plus-square"></i> {{ __('Add detail') }}</a>
+        </div>
 
         <div class="col-sm-12">
             <div class="card px-3">
-
-
                 <div class="card-header">
-                    <table id='tableServices' class="table">
+                    <table id='tabla' class="table">
                         <thead>
                             <tr>
                                 <th class="text-center">{{ __('TITTLE') }}</th>
@@ -49,6 +45,8 @@
                                        <td> <img class="d-block w-100" src="{{asset('storage/imgServices').'/'.$re->url}}">
                                 <a href="{{route('services.editImg',$services->id)}}">{{ __('Update images')}}</a>
                                 </td>
+                                </tbody>
+                    </table>
                 </div>
             </div> --}}
 
@@ -70,9 +68,12 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+                </div>
             </td>
 
         </div>
+
+
         <td class="text-center">
             <div class="row">
                 <a class="btn btn-success btn-sm  rounded-pill" href="{{ route('services.captureImg',['id' => $services->id, 'de' => $de->id]) }}">
@@ -123,22 +124,30 @@
         @endforeach
         </tbody>
         </table>
-        <br>
-        <a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
     </div>
 </div>
+
+<br>
+<a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
+
 </div>
 </div>
 @stop
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+
 @stop
 
 @section('js')
-<script>
-    console.log('Hi!');
-</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{asset('js/datatables.js')}}"></script>
+
 <script>
     @if(session('ok') == 'ok')
     Swal.fire({
@@ -179,10 +188,7 @@
         timer: 2500
     })
     @endif
-</script>
 
-
-<script>
     @if(session('update')) {
         const Toast = Swal.mixin({
             toast: true,
@@ -202,7 +208,6 @@
         })
     }
     @endif
-
 
     @if(session('save')) {
         const Toast = Swal.mixin({
@@ -265,9 +270,5 @@
         })
 
     });
-</script>
-
-<script>
-    $('#tableServices').DataTable();
 </script>
 @stop
