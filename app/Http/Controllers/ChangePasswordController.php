@@ -19,7 +19,7 @@ class ChangePasswordController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-
+        
         $request->validate([
             'current_password' => [
                 'required',
@@ -29,6 +29,7 @@ class ChangePasswordController extends Controller
                     }
                 }
             ],
+            
             'new_password' => [
                 'required',
                 'string',

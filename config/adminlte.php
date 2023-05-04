@@ -199,6 +199,11 @@ return [
     'menu' => [
         // Navbar items:
         [
+            'text'         => 'Mi Cuenta',
+            'url'          => 'user-info',
+            'topnav_right' => true,
+        ],
+        [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
@@ -249,7 +254,7 @@ return [
         ],
         [
             'text' => 'Ir A La Tienda',
-            'url'  => '/costumers/home',
+            'url'  => 'welcome',
             'icon' => 'fas fa-store',
         ],
     ],

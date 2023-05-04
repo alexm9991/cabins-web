@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Model_has_role;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -27,9 +29,20 @@ class UserController extends Controller
         return view('modules.users.index', ['users' => $users]);
     }
 
+    public function userInfo(){
+        $user = Auth::user();
+
+        return view('costumers.users.myAccount', compact('user'));
+    }
+
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::select('users.*', 'roles.name as role_name')
+        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->where('model_has_roles.model_type', '=', 'App\Models\User')
+        ->where('users.id', '=', $id)
+        ->first();
         return view('modules.users.edit', compact('user'));
     }
 
@@ -50,7 +63,39 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, $id)
+    public function update1(Request $request, $id)
+    {
+        $rol = Model_has_role::select('model_has_roles.*')
+        ->where('model_id','=',$id)
+        ->first();
+        $user = User::select('users.*', 'roles.name as role_name')
+        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->where('model_has_roles.model_type', '=', 'App\Models\User')
+        ->where('users.id', '=', $id)
+        ->first();
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'identification_number' => 'required|string|max:50|unique:users,identification_number,'.$id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+        ]);
+        $user->name = $request->input('name');
+        $user->last_name = $request->input('last_name');
+        $user->phone_number = $request->input('phone_number');
+        $user->identification_type = $request->input('identification_type');
+        $user->identification_number = $request->input('identification_number');
+        $user->email = $request->input('email');
+        $rol->role_id = $request->input('role');
+        Model_has_role::where('model_id','=',$id)->update(['role_id' => $rol->role_id]);
+        $user->age = $request->input('age');
+        $user->save();
+
+        return redirect()->route('users.index')->with('update','ok');
+    }
+
+    public function upMyacount(Request $request, $id)
     {
         $user = User::find($id);
         $validatedData = $request->validate([
@@ -59,7 +104,6 @@ class UserController extends Controller
             'phone_number' => 'required|string|max:20',
             'identification_number' => 'required|string|max:50|unique:users,identification_number,'.$id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
-
         ]);
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
@@ -67,10 +111,12 @@ class UserController extends Controller
         $user->identification_type = $request->input('identification_type');
         $user->identification_number = $request->input('identification_number');
         $user->email = $request->input('email');
+
         $user->age = $request->input('age');
         $user->save();
-        return redirect()->route('users.index')->with('update','ok');
+        return redirect()->back()->with('update','ok');
     }
+
 
     public function showCreate()
     {
@@ -160,6 +206,14 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back();
+    }
+
+
+
+    public function showPassword()
+    {
+        $user = Auth::user();
+        return view('costumers.users.ChangePassword');
     }
 
 }

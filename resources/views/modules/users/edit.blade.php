@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form method="POST" class="confirmar" action="{{ route('users.update', $user->id) }}" id="edit-user-form">
+        <form method="POST" class="confirmar" action="{{ route('users.update1', $user->id) }}" id="edit-user-form">
             @csrf
             @method('PUT')
 
@@ -30,7 +30,7 @@
             <div class="form-group row">
                 <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}:</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
+                    <input type="number" class="form-control" max="9999999999" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
                 </div>
             </div>
 
@@ -63,6 +63,7 @@
                     <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
                 <div class="col-md-6">
@@ -75,8 +76,9 @@
                 <div class="col-md-6">
                     <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required autofocus>
                         <option value="">Seleccione un rol</option>
-                        <option value="Administrador" {{ $user->role == 'admin' ? 'selected' : '' }}>Administrador</option>
-                        <option value="Cliente" {{ $user->role == 'cliente' ? 'selected' : '' }}>Cliente</option>
+                        <option value="1" {{ $user->role_name == 'admin' ? 'selected' : '' }}>Administrador</option>
+                        <option value="2" {{ $user->role_name == 'cliente' ? 'selected' : '' }}>Cliente</option>
+
                   </select>
                     @error('role')
                     <span class="invalid-feedback" role="alert">
@@ -86,10 +88,13 @@
                 </div>
             </div>
 
+
+
+
             <div class="form-group row">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-success btn-sm rounded-pill" ><i class="fas fa-save "> </i> {{ __('Update') }}</button>
-                    <a href="{{ route('users.index') }}" type="submit" class="btn btn-danger rounded-pill"><i class="fas fa-window-close"></i> {{ __('Cancel') }}</a>
+                    <a href="{{ route('users.index') }}" type="submit" class="btn btn-danger btn-sm rounded-pill"><i class="fas fa-window-close"></i> {{ __('Cancel') }}</a>
                 </div>
             </div>
         </form>
