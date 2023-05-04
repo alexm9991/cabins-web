@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Change Password')
+@section('title', 'Cambiar contraseña')
 
 @section('content_header')
-    <h1>{{ __('Change_Password') }}</h1>
+    <h1>{{ __('Change Password') }}</h1>
 @stop
 @section('content')
     <style>
@@ -130,27 +130,27 @@
                                 <div class="box-body">
 
                                     <div class="form-group row">
-                                        <label for="current_password">{{ __('Current_Password') }}</label>
+                                        <label for="current_password">{{ __('Current Password') }}</label>
                                         <input type="password" name="current_password" class="form-control"
                                             id="current_password" required>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="new_password">{{ __('New_Password') }}</label>
+                                        <label for="new_password">{{ __('New Password') }}</label>
                                         <input type="password"  name="new_password" class="form-control" pattern=".{8,}"  id="new_password"
                                             required>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="new_password_confirmation">{{ __('Confirm') }}
-                                            {{ __('New_Password') }}</label>
+                                        {{ __('New Password') }}</label>
                                         <input type="password"  name="new_password_confirmation" pattern=".{8,}"  class="form-control"
                                             id="new_password_confirmation" required>
                                     </div>
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-success rounded-pill"><i class="fas fa-edit">{{ __('Change_Password') }}</i></button>
+                                    <button type="submit" class="btn btn-success rounded-pill"><i class="fas fa-edit"></i>{{ __('Change Password') }}</button>
                                     <a type="submit" href="{{ route('users.userInfo') }}" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
                                 </div>
 

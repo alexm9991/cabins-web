@@ -99,5 +99,9 @@
     "User name":"Nombre del usuario",
     "Document":"Documento",
     "Edit Reservation":"Editar Reserva",
-    "Reservation code":"Código de reserva"
+    "Reservation code":"Código de reserva",
+    "Change Password":"Cambiar contraseña",
+    "Current Password":"Contraseña actual",
+    "New Password":"Contraseña nueva"
+
 }
