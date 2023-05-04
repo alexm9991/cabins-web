@@ -249,7 +249,7 @@ return [
         ],
         [
             'text' => 'Ir A La Tienda',
-            'url'  => 'costumers/home/home',
+            'url'  => '/costumers/home',
             'icon' => 'fas fa-store',
         ],
     ],

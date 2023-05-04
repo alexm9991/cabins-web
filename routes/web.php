@@ -32,6 +32,8 @@ Route::post('/users/create', [UserController::class, 'create'])->name('users.cre
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class, 'show'])->name('password.change');
 Route::post('change-password',[App\Http\Controllers\ChangePasswordController::class, 'update'])->name('password.update');
+Route::get('users/{id}/activeUser', [UserController::class, 'activeUser'])->name('users.activeUser');
+Route::get('users/{id}/disableUser', [UserController::class, 'disableUser'])->name('users.disableUser');
 
 
 //RUTAS PRODUCTOS
@@ -96,6 +98,6 @@ Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsControlle
 
 //RUTAS IR A LA TIENDA
 
-Route::post('costumers/home/home')->name('costumers.home.home');
+
 
 ?>

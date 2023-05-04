@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form method="POST" action="{{ route('users.update', $user->id) }}" id="edit-user-form">
+        <form method="POST" class="confirmar" action="{{ route('users.update', $user->id) }}" id="edit-user-form">
             @csrf
             @method('PUT')
 
@@ -64,25 +64,6 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
-                </div>
-            </div>
-            <div class="form-group row">
                 <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
                 <div class="col-md-6">
                     <input type="number" class="form-control" id="age" name="age" value="{{ $user->age }}">
@@ -105,13 +86,10 @@
                 </div>
             </div>
 
-
-
-
             <div class="form-group row">
                 <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-success btn-sm rounded-pill" form="edit-user-form"><i class="fas fa-save "> </i> {{ __('Update') }}</button>
-                    <a href="{{ route('users.index') }}" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm('Are you sure you want to cancel?')"><i class="fas fa-window-close"></i> {{ __('Cancel') }}</a>
+                    <button type="submit" class="btn btn-success btn-sm rounded-pill" ><i class="fas fa-save "> </i> {{ __('Update') }}</button>
+                    <a href="{{ route('users.index') }}" type="submit" class="btn btn-danger rounded-pill"><i class="fas fa-window-close"></i> {{ __('Cancel') }}</a>
                 </div>
             </div>
         </form>
@@ -122,7 +100,22 @@
 @section('js')
 
 <script>
+    $('.confirmar').submit(function(e) {
+        e.preventDefault();
 
+        Swal.fire({
+            title: 'Desea Actualizar El Usuario?',
+            showDenyButton: true,
+            confirmButtonText: 'Actualizar',
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            } else if (result.isDenied) {
+                Swal.fire('No Se Actualizo El Usuario', '', 'info')
+            }
+        })
+    })
 </script>
 
 @endsection

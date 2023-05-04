@@ -59,7 +59,7 @@ class UserController extends Controller
             'phone_number' => 'required|string|max:20',
             'identification_number' => 'required|string|max:50|unique:users,identification_number,'.$id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
-            'password' => 'nullable|string|min:8|confirmed',
+
         ]);
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
@@ -67,12 +67,9 @@ class UserController extends Controller
         $user->identification_type = $request->input('identification_type');
         $user->identification_number = $request->input('identification_number');
         $user->email = $request->input('email');
-        if (!is_null($request->input('password'))) {
-            $user->password = Hash::make($request->input('password'));
-        }
         $user->age = $request->input('age');
         $user->save();
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('users.index')->with('update','ok');
     }
 
     public function showCreate()
@@ -117,7 +114,7 @@ class UserController extends Controller
             // 'update_time' => now()
         ])->assignRole($role);
 
-        return redirect()->route('users.index')->with('success', 'User create successfully.');
+        return redirect()->route('users.index')->with('ok','ok');
     }
 
     public function show(User $user)
@@ -130,6 +127,39 @@ class UserController extends Controller
             ->first();
 
         return view('modules.users.show', compact('user'));
+    }
+
+
+    public function activeUser($id){
+
+        $user = User::findOrFail($id);
+
+        if ($user->state_record == 'DESACTIVAR') {
+            $state_record = 'ACTIVAR';
+        } else {
+            $state_record = 'DESACTIVAR';
+        }
+
+        $user->state_record = $state_record;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function disableUser($id){
+
+        $user = User::findOrFail($id);
+
+        if ($user->state_record == 'ACTIVAR') {
+            $state_record = 'DESACTIVAR';
+        } else {
+            $state_record = 'ACTIVAR';
+        }
+
+        $user->state_record = $state_record;
+        $user->save();
+
+        return redirect()->back();
     }
 
 }

@@ -99,4 +99,77 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{asset('js/datatables.js')}}"></script>
 
+    <script>
+
+        @if(session('ok') == 'ok')
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuario Creado Satisfactoriamente',
+            showConfirmButton: false,
+            timer: 2500
+        })
+        @endif
+
+        @if(session('update')) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Usuario actualizado'
+            })
+        }
+        @endif
+
+
+
+
+        $('.activar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Desea Activar El Usuario?',
+                text: "El Usuario cambiará a activo, se mostrará en la pagina principal",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Activar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+
+        $('.desactivar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Desea Desactivar El Usuario?',
+                text: "El Usuario cambiara a inactivo, NO se mostrara en la pagina principal",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Desactivar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
     @stop
