@@ -243,7 +243,7 @@ return [
         ],
         [
             'text' => 'Ir A La Tienda',
-            'url'  => '',
+            'route'  => 'home',
             'icon' => 'fas fa-store',
         ],
     ],
