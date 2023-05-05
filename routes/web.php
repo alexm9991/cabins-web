@@ -100,7 +100,9 @@ Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'
 Route::get('/bookings/{book}', [App\Http\Controllers\BookingsController::class, 'show'])->name('bookings.show');
 Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsController::class, 'destroy'])->name('bookings.delete');
 
-//RUTAS CARRITO DE COMPRAS
+//RUTAS REGISTER
+Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
 
 
 
