@@ -20,6 +20,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('user-info', [UserController::class, 'userInfo'])->name('users.userInfo');
+
+Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
+
 //RUTAS USUARIOS - CAMBIO DE CONTRASEÑA
 
 Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
@@ -32,13 +36,11 @@ Route::get('/users/{id}/delete', [UserController::class, 'delete'])->name('user.
 Route::get('/users/create', [UserController::class, 'showCreate'])->name('users.showCreate');
 Route::post('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('user-info', [UserController::class, 'userInfo'])->name('users.userInfo');
 Route::get('/users/{id}/changePassword', [UserController::class, 'showPassword'])->name('users.showPassword');
 Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class, 'show'])->name('password.change');
 Route::post('change-password',[App\Http\Controllers\ChangePasswordController::class, 'update'])->name('password.update');
 Route::get('users/{id}/activeUser', [UserController::class, 'activeUser'])->name('users.activeUser');
 Route::get('users/{id}/disableUser', [UserController::class, 'disableUser'])->name('users.disableUser');
-
 
 //RUTAS PRODUCTOS
 
@@ -100,11 +102,11 @@ Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'
 Route::get('/bookings/{book}', [App\Http\Controllers\BookingsController::class, 'show'])->name('bookings.show');
 Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsController::class, 'destroy'])->name('bookings.delete');
 
+});
+
 //RUTAS REGISTER
 Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
-
-
 
 
 ?>
