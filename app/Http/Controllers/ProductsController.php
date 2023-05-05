@@ -180,14 +180,14 @@ class productsController extends Controller
     public function productsviews()
     {
         $products = Product::where('state_record', 'ACTIVAR')->get();
-        return view('modules.products.productsviews')->with('products', $products);
-        
+        return view('customers.products.productsviews')->with('products', $products);
+
     }
 
     public function showviews($id)
     {
         $products = Product::findOrFail($id);
-        return view('modules.products.showviews', compact('products'));
+        return view('customers.products.showviews', compact('products'));
     }
 
 

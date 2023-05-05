@@ -13,7 +13,7 @@ use App\Http\Controllers\ProductsController;
 */
 
 Route::get('/', function () {
-    return view('/auth/login');
+    return view('/customers/home/home');
 });
 
 Auth::routes();
@@ -100,7 +100,8 @@ Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'
 Route::get('/bookings/{book}', [App\Http\Controllers\BookingsController::class, 'show'])->name('bookings.show');
 Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsController::class, 'destroy'])->name('bookings.delete');
 
-//RUTAS IR A LA TIENDA
+//RUTAS CARRITO DE COMPRAS
+
 
 
 

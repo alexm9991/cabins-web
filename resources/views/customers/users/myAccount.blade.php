@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Usuario')
+@section('title', 'Mi Perfil')
 
 @section('content_header')
-<h1>Perfil</h1>
+<h1>Mi Perfil</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,6 @@
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
-
 		}
 
 		body {

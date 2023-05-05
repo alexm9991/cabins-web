@@ -56,6 +56,10 @@
 
         .image-container {
             margin-bottom: 20px;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 20px;
         }
 
         img {
@@ -78,7 +82,7 @@
             align-items: center;
         }
 
-        button.estilobtn {
+        a.estilobtn {
             padding: 5px 10px;
             font-size: 24px;
             background-color: #ddd;
@@ -97,58 +101,51 @@
 
         button.color-button {
             padding: 10px 20px;
-            font-size: 24px;
-            color: #fff;
-            background-color: #00684D;
+            font-size: 100%;
+            color: #FF6000;
+            background-color: #FFE6C7;
             border: none;
             cursor: pointer;
 
-            border-radius: 20%;
+            border-radius: 20px;
         }
 
         button.color-button:hover {
-            background-color: #444;
+            background-color: #FF6000;
+            color: #ddd ;
         }
 
-        /* Estilos para el botón de regreso */
 
-        a.btn {
-            padding: 10px 20px;
-            font-size: 24px;
-            color: #fff;
-            background-color: #999;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        a.btn:hover {
-            background-color: #bbb;
-        }
 
 
         /* Estilos para pantallas pequeñas */
 
         @media screen and (max-width: 767px) {
 
-            /* Reducir el tamaño de fuente */
-            h2,
-            h3 {
-                font-size: 1.5rem;
-            }
+
 
             /* Alinear el botón agregar y el botón volver */
             main button,
-            main a {
+            main {
                 display: block;
                 margin: 10px auto;
+
             }
 
-            /* Hacer la imagen más pequeña */
-            .image-container img {
-                max-width: 100%;
-                height: auto;
+            a {
+                display: block;
+                margin: 10px auto;
+                font-size: 10%;
             }
+
+            /* Hacer la imagen más grande */
+            .image-container img {
+                min-width: 40%;
+                min-height: 40%;
+
+            border-radius: 20px;
+            }
+
         }
 
         /* Estilos para pantallas medianas y grandes */
@@ -171,12 +168,16 @@
             /* Establecer un ancho fijo para la imagen */
             .image-container {
                 width: 45%;
+
+            border-radius: 20px;
             }
 
             /* Hacer la imagen más grande */
             .image-container img {
                 max-width: 100%;
                 height: auto;
+
+            border-radius: 20px;
             }
 
             /* Alinear el botón agregar y el botón volver */
@@ -224,13 +225,13 @@
 
         }
 
-
-
         .image-container {
             width: 100%;
             max-width: 800px;
             /* Puedes cambiar este valor según sea necesario */
             margin: auto;
+
+            border-radius: 20px;
 
         }
 
@@ -238,6 +239,10 @@
             width: 100%;
             height: auto;
             display: block;
+
+            margin-left: 10%;
+
+            border-radius: 20px;
         }
 
         .container {
@@ -248,16 +253,33 @@
         .descripcion {
             text-align: justify;
         }
+
+
+        .btnv {
+            background-color: #ffffff;
+            border: 2px solid #ff6600;
+            color: #ff6600;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            border-radius: 50px;
+        }
+
+        .btnv:hover {
+            background-color: #ff6600;
+            color: #ffffff;
+        }
     </style>
 </head>
 
 <body>
-
     <main id="profile" class="profile">
 
-
         <hgroup class="section-title">
-            <h2>{{ $products->name_product }}</h2>
+            <h2 style=" color: #FF6000;">{{ $products->name_product }}</h2>
             <br>
             <h3><i class="fas fa-dollar-sign"></i> {{ $products->price }}</h3>
             <br>
@@ -271,20 +293,19 @@
         </figure>
 
 
-        <form>
-            <div>
-                <button class="estilobtn" id="restar">-</button>
+        <div>
+            <form action="{{Route('products.addproductscar', $products->id)}}" method="GET">
+
+                <a class="estilobtn" id="restar">-</a>
                 <span class="estilovsta" id="numero">1</span>
-                <button class="estilobtn" id="sumar">+</button>
-            </div>
+                <input type="hidden" name="amount_products" value="1" id="amount_products">
+                <a class="estilobtn" id="sumar">+</a>
 
+                <button type="submit" class="color-button" onclick="enviarContenido()"><i class="fas fa-shopping-cart"></i> {{ __('Add') }}</button>
+            </form>
+        </div>
 
-            <button type="sumbit" class="color-button"><i class="fas fa-shopping-cart"></i> agregar</button>
-        </form>
-
-        <a style="background-color: blue;" href="{{ Route('products.productsviews') }}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
-
-
+        <a href="{{ Route('products.productsviews') }}" type="submit" class="btnv"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
 
         <description>
             <br>
@@ -293,39 +314,43 @@
         </description>
 
 
-
-
-
-
     </main>
 
-
-
-
 </body>
+
+<script>
+    // Obtener elementos DOM
+    const restarBtn = document.querySelector("#restar");
+    const sumarBtn = document.querySelector("#sumar");
+    const cantidadSpan = document.querySelector("#numero");
+    const cantidadInput = document.querySelector("#amount_products");
+
+    // Inicializar cantidad
+    let cantidad = parseInt(cantidadSpan.innerText);
+
+    // Función para actualizar cantidad
+    const actualizarCantidad = (nuevaCantidad) => {
+        cantidad = nuevaCantidad;
+        cantidadSpan.innerText = cantidad;
+        cantidadInput.value = cantidad;
+    };
+
+    // Manejar evento de clic en botón "restar"
+    restarBtn.addEventListener("click", () => {
+        if (cantidad > 1) {
+            actualizarCantidad(cantidad - 1);
+        }
+    });
+
+    // Manejar evento de clic en botón "sumar"
+    sumarBtn.addEventListener("click", () => {
+        actualizarCantidad(cantidad + 1);
+    });
+</script>
 
 
 
 <script>
-    const sumarBoton = document.getElementById('sumar');
-    const restarBoton = document.getElementById('restar');
-    const numeroElemento = document.getElementById('numero');
-
-    let numeroActual = 1;
-
-    sumarBoton.addEventListener('click', () => {
-        numeroActual++;
-        numeroElemento.textContent = numeroActual;
-    });
-
-    restarBoton.addEventListener('click', () => {
-        if (numeroActual > 1) {
-            numeroActual--;
-            numeroElemento.textContent = numeroActual;
-        }
-    });
-
-
     const text = document.getElementById("text");
     const chars = text.innerText.split("");
     let output = "";

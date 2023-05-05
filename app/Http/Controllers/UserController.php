@@ -32,7 +32,7 @@ class UserController extends Controller
     public function userInfo(){
         $user = Auth::user();
 
-        return view('costumers.users.myAccount', compact('user'));
+        return view('customers.users.myAccount', compact('user'));
     }
 
     public function edit($id)
@@ -213,7 +213,7 @@ class UserController extends Controller
     public function showPassword()
     {
         $user = Auth::user();
-        return view('costumers.users.ChangePassword');
+        return view('customers.users.ChangePassword');
     }
 
 }
