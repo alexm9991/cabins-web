@@ -16,7 +16,7 @@ footer {
 
   .bg-img {
     padding-top: 40px;
-    background-image: url('imagenes/wave.svg');
+    background-image: url('../imagenes/wave.svg');
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: cover;
@@ -29,7 +29,7 @@ footer {
   .footer-col {
     margin-bottom: 20px;
   }
-  
+
   .footer-col img {
     width: 150px;
     height: 120px;
@@ -37,31 +37,31 @@ footer {
     float: left;
     position: relative;
   }
-  
+
   .footer-col h3 {
     margin-bottom: 10px;
     margin-top: 30%;
   }
-  
+
   .footer-col p {
     margin: 0;
   }
-  
+
   .footer-col ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  
+
   .footer-col ul li {
     margin-bottom: 5px;
   }
-  
+
   .footer-col ul li a {
     color: #333;
     text-decoration: none;
   }
-    
+
   button {
     background-color: #fff;
     color: #000;
@@ -69,12 +69,12 @@ footer {
     padding: 10px 20px;
     cursor: pointer;
   }
-  
+
   .social-icons {
     display: flex;
     justify-content: left;
   }
-  
+
   .social-icons a {
     display: inline-flex;
     justify-content: center;
@@ -85,16 +85,16 @@ footer {
     border-radius: 50%;
     margin-right: 10px;
   }
-  
+
   .social-icons a img {
     width: 30px;
     height: 30px;
-  }  
-  
+  }
+
   .social-icons a:hover img{
     filter: invert(100%);
   }
-  
+
   .social-icons a i {
     font-size: 20px;
   }
@@ -102,15 +102,15 @@ footer {
   .social-icons a:hover:nth-child(1){
     background: linear-gradient(to bottom, #1eacfe, #0268e8);
   }
-  
+
   .social-icons a:hover:nth-child(2){
     background: #00acee;
   }
-  
+
   .social-icons a:hover:nth-child(3){
     background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
   }
-  
+
   .contactButton {
     background: #FF6000;
     color: white;
@@ -131,7 +131,7 @@ footer {
     padding-right: 3em;
     transition: all 0.5s;
   }
-  
+
   .iconButton {
     margin-left: 1em;
     position: absolute;
@@ -144,13 +144,13 @@ footer {
     right: 0.3em;
     transition: all 0.4s;
   }
-  
+
   .contactButton:hover {
     box-shadow: 0.1em 0.1em 0.6em 0.2em #FF6000;
     background: #ffd8b7;
     color: #000;
   }
-  
+
   .footer_copyright{
     display: flex;
     justify-content: space-between;
@@ -191,7 +191,7 @@ footer {
     .col-lg-1-5{width: 12.5%; margin-right: 5%;}
     .col-lg-1{width: 8.33333333%;}
     }
-    
+
     @media(min-width:992px) and (max-width:1199px){
     .font-email{font-size: 11px;}
     .footer-col{margin-right: 10%;}
@@ -208,7 +208,7 @@ footer {
     .col-md-2{width: 16.66666666%;}
     .col-md-1{width: 8.33333333%;}
     }
-    
+
     @media(min-width:576px) and (max-width:991px){
     .logo-col{
       margin-top: 0;
@@ -243,11 +243,11 @@ footer {
     .social-icons a:nth-child(1){
       background: linear-gradient(to bottom, #1eacfe, #0268e8);
     }
-    
+
     .social-icons a:nth-child(2){
       background: #00acee;
     }
-    
+
     .social-icons a:nth-child(3){
       background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
     }
@@ -265,12 +265,12 @@ footer {
     .col-sm-2{width: 16.66666666%;}
     .col-sm-1{width: 8.33333333%;}
     }
-    
+
     @media(max-width:575px){
       .logo-col{
         margin-top: 0;
       }
-  
+
       .footer-col {
         display: flex;
         flex-direction: column;
@@ -279,7 +279,7 @@ footer {
         margin-bottom: 20px;
         margin-top: 10%;
       }
-  
+
       .footer-col img {
         width: 120px;
         height: 100px;
@@ -287,13 +287,13 @@ footer {
         float: left;
         position: relative;
       }
-  
+
       .footer-col h3 {
         margin-bottom: 10px;
         margin-top: 0;
       }
       .font-email{font-size: 14px;}
-      
+
     .col-xs-12{width: 100%;}
     .col-xs-11{width: 91.66666666%;}
     .col-xs-10{width: 83.33333333%;}
