@@ -30,6 +30,12 @@
     "PAYMENT METHOD":"METODO DE PAGO",
     "CUSTOMER NAME":"NOMBRE DEL CLIENTE",
     "BOOKINGS DETAIL": "DETALLES DE RESERVA",
+    "TYPE":"TIPO",
+    "REASON":"RAZÓN",
+    "QUESTION":"PREGUNTA",
+    "COMPLAINT":"QUEJA",
+    "SUGGESTION":"SUGERENCA",
+    "CLAIM":"RECLAMO",
 
     "Users management": "Gestión de Usuarios",
     "Product management": "Gestión de Productos",
@@ -103,6 +109,11 @@
     "Change Password":"Cambiar contraseña",
     "Current Password":"Contraseña actual",
     "New Password":"Contraseña nueva",
-    "Add":"Agregar"
+    "Add":"Agregar",
+    "Type":"Tipo",
+    "Reason":"Razón",
+    "File_number":"Número de radicado",
+    "Bookings_id":"Número de reserva",
+    "Evidence":"Evidencia"
 
 }
