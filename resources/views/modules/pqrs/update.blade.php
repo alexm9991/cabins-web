@@ -29,10 +29,24 @@
                     <br>
                 </div>
                 <div class="">
-                    <h5><b>{{ __('Matter') }}</b></h5>
-                    <input readonly="readonly" type="text" style="width:100%;height: 35px;border:none;border-radius:8px" value="{{ $pqr->title }}">
+                    <h5><b>{{ __('Type') }}</b></h5>
+                    <input readonly="readonly" type="text" style="width:100%;height: 35px;border:none;border-radius:8px" value="{{ $pqr->type }}">
                 </div>
-
+                <br>
+                <div class="">
+                    <h5><b>{{ __('Reason') }}</b></h5>
+                    <input readonly="readonly" type="text" style="width:100%;height: 35px;border:none;border-radius:8px" value="{{ $pqr->reason }}">
+                </div>
+                <br>
+                <div class="">
+                    <h5><b>{{ __('File_number') }}</b></h5>
+                    <input readonly="readonly" type="text" style="width:100%;height: 35px;border:none;border-radius:8px" value="{{ $pqr->file_number }}">
+                </div>
+                <br>
+                <div class="">
+                    <h5><b>{{ __('Bookings_id') }}</b></h5>
+                    <input readonly="readonly" type="text" style="width:100%;height: 35px;border:none;border-radius:8px" value="{{ $pqr->bookings_id }}">
+                </div>
                 <br>
                 <div>
                     <h5><b>{{ __('Description') }}</b></h5>
@@ -44,6 +58,16 @@
                     <textarea readonly="readonly" type="text" style="width: 100%;height:100%;border:none;border-radius:10px" cols="40" rows="10">{{ $pqr->description }}</textarea>
 
                 </div>
+                
+                @if(null != $pqr->evidence) <php { ?>
+                <br>
+                <div class="">
+                    <h5><b>{{ __('Evidence') }}</b></h5>
+                    <img class="card-img-top" src="{{ asset('storage/imgPQRS').'/'.$pqr->evidence}}" alt="" style="border-radius:10px;">
+                </div>
+                <php } ?>
+                @endif
+
                 <br>
                 <div class="row mb-3">
                     <div class="col mb">
@@ -66,9 +90,9 @@
                             @csrf
                             @method('PUT')
                             <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light" aria-label="Default select example" name="condition">
-                                <option value="{{ __('Managed') }}" {{ $pqr->condition == 'GESTIONADO' ? 'selected' : '' }}>{{ __('MANAGED') }}</option>
-                                <option value="{{ __('In progress') }}" {{ $pqr->condition == 'EN PROCESO' ? 'selected' : '' }}>{{ __('IN PROGRESS') }}</option>
-                                <option value="{{ __('No managed') }}" {{ $pqr->condition == 'NO GESTIONADO' ? 'selected' : '' }}>{{ __('NO MANAGED') }}</option>
+                                <option value="{{ __('MANAGED') }}" {{ $pqr->condition == 'GESTIONADO' ? 'selected' : '' }}>{{ __('MANAGED') }}</option>
+                                <option value="{{ __('IN PROGRESS') }}" {{ $pqr->condition == 'EN PROCESO' ? 'selected' : '' }}>{{ __('IN PROGRESS') }}</option>
+                                <option value="{{ __('NO MANAGED') }}" {{ $pqr->condition == 'NO GESTIONADO' ? 'selected' : '' }}>{{ __('NO MANAGED') }}</option>
                             </select>
                             <button style="margin: 0% 0% 0% 3%" type="submit" class="btn btn-success rounded-pill"><i class="fas fa-edit"></i>
                                 {{ __('Update') }}
@@ -143,7 +167,6 @@
             }
         })
     })
-
 </script>
 
 @stop

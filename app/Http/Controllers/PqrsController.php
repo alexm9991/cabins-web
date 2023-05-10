@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookings;
 use App\Models\Pqrs;
 use Illuminate\Http\Request;
+use DateTime;
 
 class PqrsController extends Controller
 {
@@ -63,16 +65,69 @@ class PqrsController extends Controller
 
 
     // Funcion para crear Pqrs
+
     public function create(Request $request)
     {
-        $pqrs = new Pqrs;
-        $pqrs -> title = $request->post('title');
-        $pqrs -> description = $request->post('description');
-        $pqrs -> name_user = $request->post('name_user');
-        $pqrs -> phone_user = $request->post('phone_user');
-        $pqrs -> save();
+        $validar_id = Bookings::select('id')
+            ->where('id', '=', $request->post('bookings_id'))
+            ->get();
 
-        //PONER LA RUTA DE LA PAGINA PQRS VISTA CLIENTE
-        return redirect()->route('pqrs.showCreate')->with('success', 'Pqrs create successfully.');
+        if ($validar_id == "[]") {
+            return redirect()->route('pqrs.showCreate')->with('not', 'ok');
+        } else {
+            $pqrs = new Pqrs;
+
+            $pqrs->name_user = $request->post('name_user');
+            $pqrs->phone_user = $request->post('phone_user');
+            $pqrs->bookings_id = $request->post('bookings_id');
+            $pqrs->type = $request->post('type');
+            $pqrs->reason = $request->post('reason');
+            $pqrs->description = $request->post('description');
+
+
+            $fecha = new DateTime();
+
+            if (isset($_FILES['evidence']) && ($_FILES['evidence']['name'] != null)) {
+                $fecha = new DateTime();
+                $Types = array('image/jpeg', 'image/png', 'image/gif', 'image/jpg');
+
+                $evidence = $fecha->getTimestamp() . "_" .  $_FILES['evidence']['name']; //subir la imagen con tiempo diferente, para diferenciar el mismo nombre pero hora diferente
+                $imagen_temporal = $_FILES['evidence']['tmp_name'];
+                $validation = $_FILES['evidence']['type'];
+
+                if (in_array($validation, $Types)) {
+                    move_uploaded_file($imagen_temporal, "storage/imgPQRS/" . $evidence); //mover la imagen y guardarla en una carpeta
+
+                    $pqrs->evidence = $evidence;
+                }
+            }
+
+            function generarCodigo($longitud)
+            {
+                do {
+                    $caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    $codigo = "";
+                    for ($i = 0; $i < $longitud; $i++) {
+                        $codigo .= $caracteres[rand(0, strlen($caracteres) - 1)];
+                    }
+
+                    $resultado = Pqrs::select('file_number')
+                        ->where('file_number', '=', $codigo)
+                        ->get();
+
+                } while ($resultado != "[]");
+
+                return $codigo;
+            }
+
+            $codigo = generarCodigo(10);
+
+            $pqrs->file_number = $codigo;
+
+            $pqrs->save();
+
+            //PONER LA RUTA DE LA PAGINA PQRS VISTA CLIENTE
+            return redirect()->route('pqrs.showCreate')->with('yes', 'ok');
+        }
     }
 }

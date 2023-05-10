@@ -18,7 +18,8 @@
                 <table id="tabla" class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">{{ __('MATTER') }}</th>
+                            <th class="text-center">{{ __('TYPE') }}</th>
+                            <th class="text-center">{{ __('REASON') }}</th>
                             <th class="text-center">{{ __('CREATION TIME') }}</th>
                             <th class="text-center">{{ __('CONDITION') }}</th>
                             <th class="text-center">{{ __('DETAILS') }}</th>
@@ -28,7 +29,8 @@
 
                         @foreach ($pqrs as $pqr)
                         <tr>
-                            <td class="text-center">{{ $pqr->title }}</td>
+                            <td class="text-center">{{ $pqr->type }}</td>
+                            <td class="text-center">{{ $pqr->reason }}</td>
                             <td class="text-center">{{ date('d/m/Y', strtotime($pqr->create_time)) }}</td>
                             <td class="text-center">{{ $pqr->condition}}</td>
                             <td class="text-center">

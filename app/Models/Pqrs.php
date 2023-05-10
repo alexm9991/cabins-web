@@ -13,6 +13,7 @@ class Pqrs extends Model
     use HasFactory;
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
+    public $timestamps = False;
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +25,8 @@ class Pqrs extends Model
     //     'email',
     //     'password',
     // ];
-    protected $guarded = ['id', 'title', 'description', 'name_user','phone_user','condition', 'create_time', 'update_time', 'state_record'];
+    protected $guarded = ['id', 'type', 'description', 'condition', 'name_user', 'phone_user', 'reason', 'evidence', 'file_number',
+                        'create_time', 'update_time', 'state_record', '	bookings_id'];
 
     /**
      * The attributes that should be hidden for serialization.

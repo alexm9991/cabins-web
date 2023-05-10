@@ -108,5 +108,8 @@ Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsControlle
 Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 ?>
