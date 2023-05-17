@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PqrsController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\SeasonsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('user-info', [UserController::class, 'userInfo'])->name('users.userInfo');
+
+Route::post('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::get('products/{product}/show}',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
+Route::get('products/productsviews',[App\Http\Controllers\ProductsController::class,'productsviews']) ->name("products.productsviews");
+Route::get('services/servicesviews',[App\Http\Controllers\ServicesController::class,'servicesviews']) ->name("services.servicesviews");
+Route::get('products/{product}/showviews}',[App\Http\Controllers\ProductsController::class,'productDetails']) ->name("products.showviews");
 
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
 
@@ -52,9 +61,7 @@ Route::get('products/{product}/edit}',[App\Http\Controllers\ProductsController::
 Route::post('/products/{products}', [ProductsController::class, 'update'])->name('products.update');
 Route::get('products/{id}/desactivar', [ProductsController::class, 'disableProducts'])->name('products.disableProducts');
 Route::get('products/{id}/activar', [ProductsController::class, 'activeProducts'])->name('products.activeProducts');
-Route::get('products/{product}/show}',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
-Route::get('products/productsviews',[App\Http\Controllers\ProductsController::class,'productsviews']) ->name("products.productsviews");
-Route::get('products/{product}/showviews}',[App\Http\Controllers\ProductsController::class,'showviews']) ->name("products.showviews");
+
 
 //RUTAS PQRS
 Route::get('/pqrs', [App\Http\Controllers\PqrsController::class, 'index'])->name('pqrs.index');
@@ -67,15 +74,9 @@ Route::put('/pqrs/{id}/update', [PqrsController::class, 'update'])->name('pqrs.u
 // RUTAS SERVICIOS
 
 //Rutas Servicios
-Route::get('services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
-Route::get('services/create', [App\Http\Controllers\ServicesController::class, 'create'])->name('services.create');
-Route::post('services/store', [App\Http\Controllers\ServicesController::class, 'store'])->name('services.store');
-Route::get('services/home', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
-Route::get('services/{services}/edit}',[App\Http\Controllers\ServicesController::class,'edit']) ->name("services.edit");
-Route::get('/services/{services}', [App\Http\Controllers\ServicesController::class, 'update'])->name('services.update');
-Route::get('services/{services}/show}',[App\Http\Controllers\ServicesController::class,'show']) ->name("services.show");
 Route::get('services/{id}/disable', [App\Http\Controllers\ServicesController::class, 'disableServices'])->name('services.disableServices');
 Route::get('services/{id}/active', [App\Http\Controllers\ServicesController::class, 'activeServices'])->name('services.activeServices');
+Route::resource('/services', ServicesController::class)->names('services');
 
 //Rutas de la tabla detalles servicios
 Route::get('services/{services}/addDetail}',[App\Http\Controllers\ServicesController::class,'addDetail']) ->name("services.addDetail");
@@ -108,8 +109,24 @@ Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsControlle
 Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
 
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-});
+//RUTAS CARRITO DE COMPRAS
+Route::get('showShoppingCart}',[App\Http\Controllers\ProductsController::class,'showShoppingCart']) ->name("showShoppingCart");
+Route::get('products/clearcar}',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
+Route::get('products/{id}/shopingcar/{cantidad}',[ProductsController::class, 'updateShopingcar'])->name('products.updateShopingcar');
+Route::get('products/showcar',[ProductsController::class, 'showcar'])->name('products.showcar');
+Route::get('products/productDetails',[ProductsController::class, 'productDetails'])->name('products.productDetails');
+
+Route::get('products/{product}/show}',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
+Route::get('products/{product}/shopingcar}',[App\Http\Controllers\ProductsController::class,'shopingcar']) ->name("products.shopingcar");
+Route::get('products/clearcar}',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
+Route::get('products/{product}/clearProduct}',[App\Http\Controllers\ProductsController::class,'clearProduct']) ->name("products.clearProduct");
+
+//RUTAS TEMPORADAS
+
+Route::resource('season', SeasonsController::class)->names('seasons');
+Route::get('seasons/{id}/disable', [App\Http\Controllers\SeasonsController::class, 'disableSeasons'])->name('seasons.disableSeasons');
+Route::get('seasons/{id}/active', [App\Http\Controllers\SeasonsController::class, 'activeSeasons'])->name('seasons.activeSeasons');
+Route::get('services/{services}/seasonDetails}',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
+
 
 ?>
