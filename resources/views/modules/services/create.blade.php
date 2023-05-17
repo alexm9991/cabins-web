@@ -35,8 +35,8 @@
         <br>
         <br>
 
-        <a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }} </a>
-        <button type="submit"  class="btn btn-success rounded-pill"> <i class="fas fa-save "> </i>    {{ __('Create Service') }}</button>
+        <a href="{{Route('services.index')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }} </a>
+        <button type="submit" class="btn btn-success rounded-pill"> <i class="fas fa-save "> </i>  {{ __('Create Service') }}</button>
 
     </form>
 

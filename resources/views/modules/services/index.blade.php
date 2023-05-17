@@ -40,9 +40,6 @@
                             <td class="text-center">{{ $S->description }}</td>
                             <td class="text-center">{{ $S->max_individuals }}</td>
                             <td class="text-center">{{ date('d/m/Y', strtotime($S->create_time)) }}</td>
-                            @foreach ($S->people_for_prices as $pe)
-                            <td class="text-center">{{ $pe->price }}</td>
-                            @endforeach
 
                             <td class="text-center">
                                 <div class="row">

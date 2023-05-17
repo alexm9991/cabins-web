@@ -29,15 +29,14 @@
             <label class="form-label">{{ __('RULES') }}</label>
             <input type="text" name="rules"  value="{{$services->rules}}"  class="form-control" placeholder="Rules">
         </div>
-        <!-- {{$price = $services->people_for_prices->first()->price;}}-->
         <div class="mb-3">
             <label class="form-label">{{ __('PRICE') }}</label>
-            <input type="number" min=0 max=99999999999 name="price"  class="form-control" value="{{$price}}" placeholder="Price" >
+            <input type="number" min=0 max=99999999999 name="price"  class="form-control" value="{{$services->price}}" placeholder="Price" >
         </div>
 
 
         <button type="submit"  class="btn btn-success rounded-pill"><i class="fas fa-edit"></i> {{__('Update')}}</button>
-        <a href="{{Route('services')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
+        <a href="{{Route('services.index')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
 
     </form>
 
