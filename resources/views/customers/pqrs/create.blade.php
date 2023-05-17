@@ -1,77 +1,88 @@
-@extends('adminlte::page')
+<!DOCTYPE html>
+<html lang="es">
 
-@section('title', 'Create')
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro PQRS</title>
+  <link rel="stylesheet" href="{{ asset('css/pqrs.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+</head>
 
-@section('content_header')
-<h1>{{ __('Create Product') }}</h1>
-@stop
-
-@section('content')
-
-<div class="container">
-    <div class="card-body">
-        <form action="{{Route('products.store')}}" method="POST" enctype="multipart/form-data">
+<body>
+  <header>
+    @include('layouts.nav')
+  </header>
+  <div class="PQRS-cont">
+    <h1 id="title_1" class="title">PQRS</h1>
+    <h3 class="title">Peticiones - Quejas - Reclamos - Sugerencias</h4>
+      <div class="container">
+        <h2>Registro PQRS</h2>
+        <div class="container_form">
+          <form class="formulario-send_request" action="{{ route('pqrs.create') }}" method="post"
+            enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
-                <label class="form-label">{{ __('NAME PRODUCT') }}</label>
-                <input type="text" id="name_product" name="name_product" class="form-control" placeholder="Nombre" required maxlength="29">
-
+            <div class="form-group">
+              <label for="reserva">{{ __('Name') }}:</label>
+              <input class="p-3 mb-2 bg-white text-dark"
+                style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="45" type="text"
+                id="name_user" name="name_user" placeholder="Digite su nombre"
+                oninput="this.value = this.value.replace(/[^a-zA-Z- -]/,'')" required>
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">{{ __('PRICE') }}</label>
-                <input type="number" name="price" class="form-control" placeholder="precio"  min="1" max="999999" id="numero" required>
+            <div class="form-group">
+              <label for="reserva">{{ __('Phone Number') }}:</label>
+              <input class="p-3 mb-2 bg-white text-dark"
+                style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="10" type="text"
+                id="phone_user" name="phone_user" placeholder="Digite su teléfono"
+                onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
             </div>
-            <br>
-
-            <div class="mb-3">
-
-                <label>{{ __('PICTURE') }}</label>
-                <br>
-                <input type="file" name="picture" accept="image/*" multiple="false" required>
+            <div class="form-group">
+              <label for="asunto">{{ __('Bookings_id') }}:</label>
+              <input class="p-3 mb-2 bg-white text-dark"
+                style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="5" type="text"
+                id="bookings_id" name="bookings_id" placeholder="Digite el número de su reserva"
+                onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
             </div>
-            <br>
-
-            <div class="mb-3">
-                <label class="form-label">{{ __('DESCRIPTION') }}</label>
-
-                <textarea type="text"id="description" name="decripcion" class="form-control" style="width: 100%;height: 150px;border:none;border-radius:15px" required maxlength="255"></textarea>
+            <div class="form-group">
+              <label for="asunto">{{ __('Type') }}:</label>
+              <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light"
+                aria-label="Default select example" name="type" required>
+                <option value="">--Seleccione una opción--</option>
+                <option value="{{ __('ASK') }}">{{ __('ASK') }}</option>
+                <option value="{{ __('COMPLAINT') }}">{{ __('COMPLAINT') }}</option>
+                <option value="{{ __('SUGGESTION') }}">{{ __('SUGGESTION') }}</option>
+                <option value="{{ __('CLAIM') }}">{{ __('CLAIM') }}</option>
+              </select>
             </div>
+            <div class="form-group">
+              <label for="asunto">{{ __('Reason') }}:</label>
+              <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light"
+                aria-label="Default select example" name="reason" required>
+                <option value="">--Seleccione una opción--</option>
+                <option value="{{ __('ASK') }}">{{ __('ASK') }}</option>
+                <option value="{{ __('COMPLAINT') }}">{{ __('COMPLAINT') }}</option>
+                <option value="{{ __('SUGGESTION') }}">{{ __('SUGGESTION') }}</option>
+                <option value="{{ __('CLAIM') }}">{{ __('CLAIM') }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">{{ __('Message') }}:</label>
+              <textarea required type="textarea" id="description" name="description"
+                placeholder="Escriba su petición, queja, reclamo o sugerencia" id="description" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>{{ __('Evidence') }}:</label>
+              <input style="border-radius:10px" , type="file" name="evidence" accept="image/*" multiple="false"
+                class="form-control" readonly>
+            </div>
+            <button type="submit" class="btn btn-success" style="display: block;margin: 0 auto;"><i
+                class="fas fa-save "></i> {{ __('Send request') }}</button>
+          </form>
+        </div>
+      </div>
+  </div>
+  @include('layouts.footer')
+</body>
 
-            <a href="{{Route('products.index')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }} </a>
-            <button type="submit"  class="btn btn-success rounded-pill"> <i class="fas fa-save "> </i>    {{ __('Create') }}  {{ __('Product') }}</button>
-
-        </form>
-    </div>
-</div>
-
-@stop
-
-@section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
-
-@stop
-
-@section('js')
-<script>
-
-
-@if(session('error')) {
-Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Imagen No Valida!',
-  footer: 'Elige una imagen de tipo png,jpg,jpeg o gif'
-})
-}
-@endif
-
-
-var input=  document.getElementById('numero');
-input.addEventListener('input',function(){
-  if (this.value.length > 6)
-     this.value = this.value.slice(0,6);
-})
-</script>
-
-@stop
+</html>
