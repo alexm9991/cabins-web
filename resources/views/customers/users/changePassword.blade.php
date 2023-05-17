@@ -1,119 +1,141 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('title', 'Cambiar contraseña')
 
-@section('content_header')
-    <h1>{{ __('Change Password') }}</h1>
-@stop
+
 @section('content')
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+       * {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+            font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 
-        }
-
+            
+		}
         body {
-            background-color: #f8f8f8;
-        }
-
+			background-color: #FFFFFF;
+		}
+        
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-            margin: 40px auto;
-            max-width: 800px;
-            background-color: #dcdcdc;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
-            padding: 30px;
-            border-radius: 10px;
-        }
-
-        .profile-picture {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
-            margin-bottom: 30px;
-        }
+          max-width: 800px;
+          height: 400px;
+          margin: 0 auto;
+          padding: 20px;
+          background: #FFE1C5 !important;
+          margin-top: 30px;
+          margin-bottom: 30px;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+       }
 
         h1 {
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 10px;
-            color: #333;
-            text-align: center;
+          margin-top: 10px;
+          font-size: 32px;
+          font-weight: 500;
+          margin-bottom: 10px;
+          color: #333;
+          text-align: center;
         }
 
-        h2 {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            color: #666;
-            text-align: center;
+        .card {
+          border: none;
+          box-shadow: 0 0 5px rgba(0,0,0,0.3);
+          border-radius: 10px;
+          background: #FFFFFF;
+          width: 100%;
+          margin-top: 20px;
+          height:500px;
+          margin-bottom: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
-        .info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-            color: #999;
-            font-size: 18px;
-            text-align: left;
+        .card-body {
+          padding: 0 50px;
         }
 
-        .info span {
-            color: #333;
-            font-weight: 500;
-            margin-left: 5px;
+        .form {
+          width: 100%;
+          height: 100%; 
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          
         }
 
-        .social {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
+        .form-group {
+          display: flex;
+          justify-content:  column;
+          margin-bottom: 16px;
+          align-items: center;
+          margin-right: 90px;
         }
 
-        .social a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #333;
-            color: #fff;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin: 0 10px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: background-color .3s;
+        label {
+          width: 40%;
+          text-align: right;
+          font-weight: bold;
+  
         }
 
-        .social a:hover {
-            background-color: #666;
+        input{
+          width: 150%;
+          padding: 7px;
+          font-size: 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          box-shadow: inet 0 2px 2px rgba(0,0,0,0.1);
+          margin-left: 30px;
+        }
+        select {
+          width: 110%;
+          padding: 7px;
+          font-size: 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          box-shadow: inet 0 2px 2px rgba(0,0,0,0.1);
+          margin-left: 43px;
         }
 
-
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 30px;
+        .btn {
+          border-radius: 20px;
+          font-size: 16px;
+          font-weight: bold;
+          padding: 7px 10px;
+          margin-top: 5px;
+          cursor: pointer;
+          margin-left: 160px;
         }
 
-        .skill {
-            display: flex;
-            align-items: center;
-            background-color: #f2f2f2;
-            color: #666;
-            padding: 5px 10px;
-            border-radius
+        .btn-success {
+          background-color: #28a745 ;
+          color: white;
+          border: none;
+          border-color: #28a745;
+        }
+
+        .btn-primary {
+          background-color: #007bff ;
+          color: white;
+          border: none;
+          border-color: #007bff;
+          text-decoration: none;
+        }
+        .btn-success {
+          margin-right: 10px;
+        }
+        .btn-primary{
+          margin-left: 10px;
         }
     </style>
+    <h1>{{ __('Change Password') }}</h1>
+
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -150,8 +172,8 @@
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-success rounded-pill"><i class="fas fa-edit"></i>{{ __('Change Password') }}</button>
-                                    <a type="submit" href="{{ route('users.userInfo') }}" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
+                                    <button type="submit" class="btn btn-success rounded-pill"><i class="fa fa-edit"></i>{{ __('Change Password') }}</button>
+                                    <a type="submit" href="{{ route('users.userInfo') }}" class="btn btn-primary rounded-pill"><i class="fasfa-undo-alt"></i> {{ __('Return') }}</a>
                                 </div>
 
                             </form>
