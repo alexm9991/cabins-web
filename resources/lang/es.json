@@ -36,6 +36,8 @@
     "COMPLAINT":"QUEJA",
     "SUGGESTION":"SUGERENCA",
     "CLAIM":"RECLAMO",
+    "INITIAL DATE":"FECHA INICIAL",
+    "FINAL DATE":"FECHA FINAL",
 
     "Users management": "Gestión de Usuarios",
     "Product management": "Gestión de Productos",
@@ -114,6 +116,12 @@
     "Reason":"Razón",
     "File_number":"Número de radicado",
     "Bookings_id":"Número de reserva",
-    "Evidence":"Evidencia"
+    "Evidence":"Evidencia",
+    "Detail season":"Detalles de Temporadas",
+    "See seasons":"Ver Temporadas",
+    "Add season":"Nueva Temporada",
+    "Initial Time":"Fecha Inicial",
+    "Final Time":"Fecha Final",
+    "Detail season of":"Detalle temporada de"
 
 }
