@@ -220,10 +220,11 @@
         </div>
 
     </main>
-
-
-
 </body>
+
+
+
+
 <!-- esto es para el buscador -->
 <script>
     const buscador = document.getElementById("Buscador");
