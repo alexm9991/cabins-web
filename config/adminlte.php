@@ -233,12 +233,12 @@ return [
         ],
         [
             'text' => 'Servicios',
-            'route'  =>'services',
+            'route'  =>'services.index',
             'icon' => 'fas fa-concierge-bell',
         ],
         [
             'text' => 'PQRS',
-            'url'  => 'pqrs',
+            'url'  => 'pqrs.index',
             'icon' => 'fas fa-question-circle',
         ],
         [
