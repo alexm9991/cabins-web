@@ -20,8 +20,7 @@
       <div class="container">
         <h2>Registro PQRS</h2>
         <div class="container_form">
-          <form class="formulario-send_request" action="{{ route('pqrs.create') }}" method="post"
-            enctype="multipart/form-data">
+          <form class="formulario-send_request" action="{{ Route('pqrs.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
               <label for="reserva">{{ __('Name') }}:</label>
@@ -49,7 +48,7 @@
               <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light"
                 aria-label="Default select example" name="type" required>
                 <option value="">--Seleccione una opción--</option>
-                <option value="{{ __('ASK') }}">{{ __('ASK') }}</option>
+                <option value="{{ __('QUESTION') }}">{{ __('QUESTION') }}</option>
                 <option value="{{ __('COMPLAINT') }}">{{ __('COMPLAINT') }}</option>
                 <option value="{{ __('SUGGESTION') }}">{{ __('SUGGESTION') }}</option>
                 <option value="{{ __('CLAIM') }}">{{ __('CLAIM') }}</option>
@@ -60,10 +59,10 @@
               <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light"
                 aria-label="Default select example" name="reason" required>
                 <option value="">--Seleccione una opción--</option>
-                <option value="{{ __('ASK') }}">{{ __('ASK') }}</option>
-                <option value="{{ __('COMPLAINT') }}">{{ __('COMPLAINT') }}</option>
-                <option value="{{ __('SUGGESTION') }}">{{ __('SUGGESTION') }}</option>
-                <option value="{{ __('CLAIM') }}">{{ __('CLAIM') }}</option>
+                <option value="{{ __('CABINS CLEAN') }}">{{ __('CABINS CLEAN') }}</option>
+                <option value="{{ __('POOL CLEAN') }}">{{ __('POOL CLEAN') }}</option>
+                <option value="{{ __('FEEDING') }}">{{ __('FEEDING') }}</option>
+                <option value="{{ __('NOISE') }}">{{ __('NOISE') }}</option>
               </select>
             </div>
             <div class="form-group">
@@ -76,8 +75,8 @@
               <input style="border-radius:10px" , type="file" name="evidence" accept="image/*" multiple="false"
                 class="form-control" readonly>
             </div>
-            <button type="submit" class="btn btn-success" style="display: block;margin: 0 auto;"><i
-                class="fas fa-save "></i> {{ __('Send request') }}</button>
+
+            <button type="submit" class="btn btn-success" style="display: block;margin: 0 auto;"><i class="fas fa-save "></i> {{ __('Send request') }}</button>
           </form>
         </div>
       </div>
@@ -86,3 +85,31 @@
 </body>
 
 </html>
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+@if(session('error')) {
+Swal.fire({
+  icon: 'error',
+  title: 'Lo siento!',
+  text: 'Número de reserva no válido',
+  footer: 'Intenta nuevamente'
+})
+}
+@endif
+
+@if(session('save')) {
+    Swal.fire({
+    html: `<h2>PQRS creada</h2>
+    <br>
+    <p>Tu numero de radicado es:  <strong> $codigo </strong></p>
+    `,
+});
+    }
+@endif
+
+
+</script>
