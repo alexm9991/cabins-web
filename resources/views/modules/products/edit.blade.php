@@ -9,6 +9,7 @@
 @section('content')
 
 <div class="container">
+
     <form action="{{ Route('products.update', $products->id) }}" method="POST" class="confirmar" enctype="multipart/form-data">
         @csrf
 
@@ -33,8 +34,6 @@
             <input type="file" name="picture" value="{{ $products->picture }}" accept="image/*" multiple="false" class="form-control" readonly>
         </div>
 
-
-
         <div class="mb-3">
             <label class="form-label">{{ __('DESCRIPTION') }}</label>
             <style type="text/css">
@@ -46,11 +45,10 @@
             <textarea type="text" id="description" name="decripcion" class="form-control" style="width: 100%;height: 150px;border:none;border-radius:15px" required maxlength="255">{{ $products->decripcion }}</textarea>
         </div>
 
-
         <div style="text-align: center; ">
 
             <a style="margin: 10px;" href="{{ Route('products.index') }}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
-            <button style="margin: 10px;" type="submit" class="btn btn-success rounded-pill"><i class="fas fa-save "> </i> {{ __('Update') }}</button>
+            <button style="margin: 10px;" type="submit" class="btn btn-success rounded-pill"><i class="fas fa-edit "> </i> {{ __('Update') }}</button>
 
         </div>
     </form>
