@@ -38,6 +38,10 @@
     "CLAIM":"RECLAMO",
     "INITIAL DATE":"FECHA INICIAL",
     "FINAL DATE":"FECHA FINAL",
+    "CABINS CLEAN":"LIMPIEZA DE CABAÑAS",
+    "POOL CLEAN":"LIMPIEZA DE PISCINA",
+    "FEEDING":"ALIMENTACIÓN",
+    "NOISE":"RUIDO",
 
     "Users management": "Gestión de Usuarios",
     "Product management": "Gestión de Productos",
