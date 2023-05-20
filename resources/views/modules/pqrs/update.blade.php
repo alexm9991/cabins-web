@@ -58,7 +58,7 @@
                     <textarea readonly="readonly" type="text" style="width: 100%;height:100%;border:none;border-radius:10px" cols="40" rows="10">{{ $pqr->description }}</textarea>
 
                 </div>
-                
+
                 @if(null != $pqr->evidence) <php { ?>
                 <br>
                 <div class="">
@@ -101,7 +101,7 @@
                         </form>
                     </div>
                     <div class="col mb">
-                        <form class="formulario-delete" action="{{ route('pqrs.delete', $pqr->id) }}" method="POST">
+                        <form class="formulario-delete" action="{{ route('pqrs.disableProducts', $pqr->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button style="float: right;" type="submit" class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i>

@@ -34,7 +34,7 @@
                             <td class="text-center">{{ date('d/m/Y', strtotime($pqr->create_time)) }}</td>
                             <td class="text-center">{{ $pqr->condition}}</td>
                             <td class="text-center">
-                                <a class="btn btn-info btn-sm rounded-pill" href="{{ route('pqrs.update', $pqr->id) }}"><i class="fas fa-eye"></i> {{ __('See More') }} </a>
+                                <a class="btn btn-info btn-sm rounded-pill" href="{{ route('pqrs.show', $pqr->id) }}"><i class="fas fa-eye"></i> {{ __('See More') }} </a>
                             </td>
                         </tr>
                         @endforeach
