@@ -58,13 +58,8 @@ Route::post('/products/{products}', [ProductsController::class, 'update'])->name
 Route::resource('/products', ProductsController::class)->names('products');
 
 //RUTAS PQRS
-Route::get('/pqrs', [App\Http\Controllers\PqrsController::class, 'index'])->name('pqrs.index');
-Route::get('/pqrs/create', [App\Http\Controllers\PqrsController::class, 'showCreate'])->name('pqrs.showCreate');
-Route::get('/pqrs/{pqr}/update', [PqrsController::class, 'view_pqrs'])->name('pqrs.update');
-Route::post('/pqrs/create', [PqrsController::class, 'create'])->name('pqrs.create');
-Route::put('/pqrs/{id}/delete', [PqrsController::class, 'delete'])->name('pqrs.delete');
-Route::put('/pqrs/{id}/update', [PqrsController::class, 'update'])->name('pqrs.update');
-
+Route::put('/pqrs/{id}/disableProducts', [PqrsController::class, 'disableProducts'])->name('pqrs.disableProducts');
+Route::resource('/pqrs', PqrsController::class)->names('pqrs');
 
 // RUTAS SERVICIOS
 
