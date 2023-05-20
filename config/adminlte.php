@@ -228,7 +228,7 @@ return [
         ],
         [
             'text' => 'Productos',
-            'route'  =>'products',
+            'route'  =>'products.index',
             'icon' => 'fas fa-boxes',
         ],
         [
@@ -238,7 +238,7 @@ return [
         ],
         [
             'text' => 'PQRS',
-            'url'  => 'pqrs.index',
+            'route'  => 'pqrs.index',
             'icon' => 'fas fa-question-circle',
         ],
         [
