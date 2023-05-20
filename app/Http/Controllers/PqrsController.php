@@ -14,26 +14,23 @@ class PqrsController extends Controller
         $this->middleware('auth');
     }
 
-
     //Funcion para ver los PQRS activos
     public function index()
     {
         $pqrs = Pqrs::select('*')
             ->where('state_record', '=', 'ACTIVAR')
             ->get();
-        return view('modules.pqrs.index', ['pqrs' => $pqrs]);
+        return view('modules.pqrs.index') ->with('pqrs', $pqrs);
     }
 
-
     //Funcion para ver el PQRS
-    public function view_pqrs(Pqrs $pqr)
+    public function show(Pqrs $pqr)
     {
         return view('modules.pqrs.update', compact('pqr'));
     }
 
-
     // Funcion para eliminar o desactivar el Pqrs
-    public function delete($id)
+    public function disableProducts($id)
     {
         $pqrs = Pqrs::findOrFail($id);
         if ($pqrs->state_record == 'ACTIVAR') {
@@ -42,7 +39,6 @@ class PqrsController extends Controller
         $pqrs->save();
         return redirect()->route('pqrs.index');
     }
-
 
     // Funcion para cambiar la gestion del Pqrs
     public function update(Request $request, $id)
@@ -56,24 +52,22 @@ class PqrsController extends Controller
         return redirect()->route('pqrs.index')->with('update', 'ok');
     }
 
-
     // Funcion para la vista de crear Pqrs
-    public function showCreate()
+    public function create()
     {
-        return view('modules.pqrs.create');
+        return view('customers.pqrs.create');
     }
 
-
     // Funcion para crear Pqrs
-
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $validar_id = Bookings::select('id')
             ->where('id', '=', $request->post('bookings_id'))
             ->get();
 
         if ($validar_id == "[]") {
-            return redirect()->route('pqrs.showCreate')->with('not', 'ok');
+            return redirect()->back()->with('error', 'ok');
+            return redirect()->route('pqrs.create')->with('error', 'ok');
         } else {
             $pqrs = new Pqrs;
 
@@ -84,12 +78,11 @@ class PqrsController extends Controller
             $pqrs->reason = $request->post('reason');
             $pqrs->description = $request->post('description');
 
-
             $fecha = new DateTime();
 
             if (isset($_FILES['evidence']) && ($_FILES['evidence']['name'] != null)) {
                 $fecha = new DateTime();
-                $Types = array('image/jpeg', 'image/png', 'image/gif', 'image/jpg');
+                $Types = array('image/pdf');
 
                 $evidence = $fecha->getTimestamp() . "_" .  $_FILES['evidence']['name']; //subir la imagen con tiempo diferente, para diferenciar el mismo nombre pero hora diferente
                 $imagen_temporal = $_FILES['evidence']['tmp_name'];
@@ -127,7 +120,8 @@ class PqrsController extends Controller
             $pqrs->save();
 
             //PONER LA RUTA DE LA PAGINA PQRS VISTA CLIENTE
-            return redirect()->route('pqrs.showCreate')->with('yes', 'ok');
+            return redirect(route('pqrs.create') )->with('save', 'ok');
+            // return view('customers.pqrs.create', compact('pqrs'))->with('save', 'ok');
         }
     }
 }
