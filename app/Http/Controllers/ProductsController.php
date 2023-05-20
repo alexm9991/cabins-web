@@ -29,7 +29,6 @@ class productsController extends Controller
 
     public function store(Request $request)
     {
-
         $products = new Product();
         $products->name_product = $request->name_product;
         $products->decripcion = $request->decripcion;
@@ -63,7 +62,7 @@ class productsController extends Controller
         return view('modules.products.edit', compact('products'));
     }
 
-    public function details($id)
+    public function show($id)
     {
         $products = Product::findOrFail($id);
         return view('modules.products.show', compact('products'));
@@ -148,7 +147,6 @@ class productsController extends Controller
     public function showviews($id)
     {
         $products = Product::findOrFail($id);
-        dd("jany");
         return view('customers.products.showviews', compact('products'));
     }
 
