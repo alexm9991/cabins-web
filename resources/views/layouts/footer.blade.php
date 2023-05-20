@@ -27,7 +27,8 @@
     </div>
     <div class="footer-col col-lg-1-5 col-md-1 col-sm-6 col-xs-12">
         <h3>Danos tu opinión</h3>
-        <button class="contactButton" onclick="window.location.href='{{ url('pqrs') }}'"> PQRS</button>
+
+        <button class="contactButton" onclick="redirectToCreate()"> PQRS</button>
     </div>
     <div class="footer_copyright">
         <div class="copy">©2023 Todos los derechos reservados</div>
@@ -36,3 +37,12 @@
     </div>
 </footer>
 <div class="bg-ft"></div>
+
+
+<script>
+
+function redirectToCreate(){
+    window.location.href = "{{ Route('pqrs.create') }}";
+}
+
+</script>
