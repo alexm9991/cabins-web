@@ -26,10 +26,10 @@ Route::get('user-info', [UserController::class, 'userInfo'])->name('users.userIn
 
 Route::post('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::get('products/{product}/show}',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
+Route::get('products/{product}/show',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
 Route::get('products/productsviews',[App\Http\Controllers\ProductsController::class,'productsviews']) ->name("products.productsviews");
 Route::get('services/servicesviews',[App\Http\Controllers\ServicesController::class,'servicesviews']) ->name("services.servicesviews");
-Route::get('products/{product}/showviews}',[App\Http\Controllers\ProductsController::class,'productDetails']) ->name("products.showviews");
+Route::get('products/{product}/showviews',[App\Http\Controllers\ProductsController::class,'productDetails']) ->name("products.showviews");
 
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
 
@@ -52,16 +52,10 @@ Route::get('users/{id}/activeUser', [UserController::class, 'activeUser'])->name
 Route::get('users/{id}/disableUser', [UserController::class, 'disableUser'])->name('users.disableUser');
 
 //RUTAS PRODUCTOS
-
-Route::get('products', [App\Http\Controllers\ProductsController::class, 'index'])->name('products');
-Route::get('products/index',[App\Http\Controllers\ProductsController::class,'index']) ->name("products.index");
-Route::get('products/create',[App\Http\Controllers\ProductsController::class,'create']) ->name("products.create");
-Route::post('products/store',[App\Http\Controllers\ProductsController::class,'store']) ->name("products.store");
-Route::get('products/{product}/edit}',[App\Http\Controllers\ProductsController::class,'edit']) ->name("products.edit");
-Route::post('/products/{products}', [ProductsController::class, 'update'])->name('products.update');
 Route::get('products/{id}/desactivar', [ProductsController::class, 'disableProducts'])->name('products.disableProducts');
 Route::get('products/{id}/activar', [ProductsController::class, 'activeProducts'])->name('products.activeProducts');
-
+Route::post('/products/{products}', [ProductsController::class, 'update'])->name('products.update');
+Route::resource('/products', ProductsController::class)->names('products');
 
 //RUTAS PQRS
 Route::get('/pqrs', [App\Http\Controllers\PqrsController::class, 'index'])->name('pqrs.index');
@@ -71,6 +65,7 @@ Route::post('/pqrs/create', [PqrsController::class, 'create'])->name('pqrs.creat
 Route::put('/pqrs/{id}/delete', [PqrsController::class, 'delete'])->name('pqrs.delete');
 Route::put('/pqrs/{id}/update', [PqrsController::class, 'update'])->name('pqrs.update');
 
+
 // RUTAS SERVICIOS
 
 //Rutas Servicios
@@ -79,8 +74,8 @@ Route::get('services/{id}/active', [App\Http\Controllers\ServicesController::cla
 Route::resource('/services', ServicesController::class)->names('services');
 
 //Rutas de la tabla detalles servicios
-Route::get('services/{services}/addDetail}',[App\Http\Controllers\ServicesController::class,'addDetail']) ->name("services.addDetail");
-Route::post('services/{services}/createDetail}',[App\Http\Controllers\ServicesController::class,'createDetail']) ->name("services.createDetail")
+Route::get('services/{services}/addDetail',[App\Http\Controllers\ServicesController::class,'addDetail']) ->name("services.addDetail");
+Route::post('services/{services}/createDetail',[App\Http\Controllers\ServicesController::class,'createDetail']) ->name("services.createDetail")
 ->middleware('auth');
 Route::get('services/{services}/showDetails', [App\Http\Controllers\ServicesController::class, 'showDetails'])->name('services.showDetails');
 Route::get('services/detailEdit/{id}/{de}',[App\Http\Controllers\ServicesController::class,'detailEdit']) ->name("services.detailEdit");
@@ -110,23 +105,23 @@ Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegist
 Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
 
 //RUTAS CARRITO DE COMPRAS
-Route::get('showShoppingCart}',[App\Http\Controllers\ProductsController::class,'showShoppingCart']) ->name("showShoppingCart");
-Route::get('products/clearcar}',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
+Route::get('showShoppingCart',[App\Http\Controllers\ProductsController::class,'showShoppingCart']) ->name("showShoppingCart");
+Route::get('products/clearcar',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
 Route::get('products/{id}/shopingcar/{cantidad}',[ProductsController::class, 'updateShopingcar'])->name('products.updateShopingcar');
 Route::get('products/showcar',[ProductsController::class, 'showcar'])->name('products.showcar');
 Route::get('products/productDetails',[ProductsController::class, 'productDetails'])->name('products.productDetails');
 
-Route::get('products/{product}/show}',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
-Route::get('products/{product}/shopingcar}',[App\Http\Controllers\ProductsController::class,'shopingcar']) ->name("products.shopingcar");
-Route::get('products/clearcar}',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
-Route::get('products/{product}/clearProduct}',[App\Http\Controllers\ProductsController::class,'clearProduct']) ->name("products.clearProduct");
+Route::get('products/{product}/show',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
+Route::get('products/{product}/shopingcar',[App\Http\Controllers\ProductsController::class,'shopingcar']) ->name("products.shopingcar");
+Route::get('products/clearcar',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
+Route::get('products/{product}/clearProduct',[App\Http\Controllers\ProductsController::class,'clearProduct']) ->name("products.clearProduct");
 
 //RUTAS TEMPORADAS
 
 Route::resource('season', SeasonsController::class)->names('seasons');
 Route::get('seasons/{id}/disable', [App\Http\Controllers\SeasonsController::class, 'disableSeasons'])->name('seasons.disableSeasons');
 Route::get('seasons/{id}/active', [App\Http\Controllers\SeasonsController::class, 'activeSeasons'])->name('seasons.activeSeasons');
-Route::get('services/{services}/seasonDetails}',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
+Route::get('services/{services}/seasonDetails',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
 
 
 ?>
