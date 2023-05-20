@@ -146,7 +146,7 @@
 
         Swal.fire({
             title: 'Desea Activar Su Producto?',
-            text: "Su producto se cambiara a el estado activo, por lo tanto SI se mostrara en la pagina principal",
+            text: "Su producto se cambiara a el estado activo, se mostrara en la pagina principal",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -167,7 +167,7 @@
 
         Swal.fire({
             title: 'Desea Desactivar Su Producto?',
-            text: "Su producto se cambiara a el estado inactivo, por lo tanto NO se mostrara en la pagina principal",
+            text: "Su producto se cambiara a el estado inactivo, NO se mostrara en la pagina principal",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
