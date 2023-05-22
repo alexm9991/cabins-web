@@ -8,12 +8,6 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SeasonsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-
 Route::get('/', function () {
     return view('/customers/home/home');
 });
@@ -105,7 +99,6 @@ Route::get('products/clearcar',[App\Http\Controllers\ProductsController::class,'
 Route::get('products/{id}/shopingcar/{cantidad}',[ProductsController::class, 'updateShopingcar'])->name('products.updateShopingcar');
 Route::get('products/showcar',[ProductsController::class, 'showcar'])->name('products.showcar');
 Route::get('products/productDetails',[ProductsController::class, 'productDetails'])->name('products.productDetails');
-
 Route::get('products/{product}/show',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
 Route::get('products/{product}/shopingcar',[App\Http\Controllers\ProductsController::class,'shopingcar']) ->name("products.shopingcar");
 Route::get('products/clearcar',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
@@ -113,10 +106,9 @@ Route::get('products/{product}/clearProduct',[App\Http\Controllers\ProductsContr
 
 //RUTAS TEMPORADAS
 
-Route::resource('season', SeasonsController::class)->names('seasons');
 Route::get('seasons/{id}/disable', [App\Http\Controllers\SeasonsController::class, 'disableSeasons'])->name('seasons.disableSeasons');
 Route::get('seasons/{id}/active', [App\Http\Controllers\SeasonsController::class, 'activeSeasons'])->name('seasons.activeSeasons');
 Route::get('services/{services}/seasonDetails',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
-
+Route::resource('season', SeasonsController::class)->names('seasons');
 
 ?>
