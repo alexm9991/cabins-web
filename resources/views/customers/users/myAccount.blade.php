@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Mi Perfil')
-
+@section('tittle', 'Mi Perfil')
 
 @section('content_header')
 <h1>Mi Perfil</h1>
@@ -9,17 +8,16 @@
 
 @section('content')
 
-
 <h1>Mi Perfil</h1>
 
 	<div class="container">
 		<div class="card">
             <div class="card-body">
-                
+
                 <form method="POST" class="confirmar" action="{{ route('users.upMyacount', $user->id) }}" id="edit-user-form">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}:</label>
                         <div class="col-md-6">
@@ -78,12 +76,15 @@
                         </div>
                     </div>
 
-
-
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-success btn-sm rounded-pill" ><i class="fa fa-save"> </i> {{ __('Update') }}</button>
-                            <a type="submit" href="{{ route('users.showPassword',$user->id) }}" class="btn btn-info btn-sm rounded-pill" ><i class="fa fa-edit"> </i> {{ __('Change Password') }}</a>
+                            <button type="submit" class="btn btn-success btn-sm rounded-pill" ><i class="fa fa-save"></i> {{ __('Update') }}</button>
+                            <a type="submit" href="{{ route('users.showPassword',$user->id) }}" class="btn btn-info btn-sm rounded-pill" >
+                                <i class="fa fa-edit"></i> {{ __('Change Password') }}</a>
+
+                            @if($role == 1)
+                                <a class="btn btn-dashboard" type="submit" href="{{ route('users.index') }}"  ><i class="fa fa-cogs"></i> DASHBOARD</a>
+                            @endif
                         </div>
                     </div>
                 </form>
@@ -141,192 +142,5 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    
-    
-    
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-            font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-
-            
-		}
-        body {
-			background-color: #FFFFFF;
-		}
-        
-        .container {
-          max-width: 800px;
-          height: 590px;
-          margin: 0 auto;
-          padding: 20px;
-          background: #FFE1C5 !important;
-          margin-top: 30px;
-          margin-bottom: 30px;
-          border-radius: 12px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-       }
-
-        h1 {
-          margin-top: 10px;
-          font-size: 32px;
-          font-weight: 500;
-          margin-bottom: 10px;
-          color: #333;
-          text-align: center;
-        }
-
-        .card {
-          border: none;
-          box-shadow: 0 0 5px rgba(0,0,0,0.3);
-          border-radius: 10px;
-          background: #FFFFFF;
-          width: 100%;
-          margin-top: 20px;
-          height:600px;
-          margin-bottom: 30px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .card-body {
-          padding: 0 50px;
-        }
-
-        .form {
-          width: 100%;
-          height: 100%; 
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          
-        }
-
-        .form-group {
-          display: flex;
-          justify-content:  column;
-          margin-bottom: 16px;
-          align-items: center;
-          margin-right: 90px;
-        }
-
-        label {
-          width: 40%;
-          text-align: right;
-          font-weight: bold;
-  
-        }
-
-        input{
-          width: 150%;
-          padding: 7px;
-          font-size: 16px;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          box-shadow: inet 0 2px 2px rgba(0,0,0,0.1);
-          margin-left: 30px;
-        }
-        select {
-          width: 110%;
-          padding: 7px;
-          font-size: 16px;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          box-shadow: inet 0 2px 2px rgba(0,0,0,0.1);
-          margin-left: 43px;
-        }
-
-        .btn {
-          border-radius: 20px;
-          font-size: 16px;
-          font-weight: bold;
-          padding: 7px 10px;
-          margin-top: 5px;
-          cursor: pointer;
-          margin-left: 160px;
-        }
-
-        .btn-success {
-          background-color: #28a745 ;
-          color: white;
-          border: none;
-          border-color: #28a745;
-        }
-
-        .btn-info {
-          background-color: #007bff ;
-          color: white;
-          border: none;
-          border-color: #007bff;
-          text-decoration: none;
-        }
-        .btn-success {
-          margin-right: 10px;
-        }
-        .btn-info{
-            margin-left: 10px;
-        }
-
-       
-
-
-/* Ajustes responsivos */
-/*@media screen and (max-width: 768px) {
-  .container {
-    max-width: 90%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    height: auto;
-  }
-  
-  .card {
-    height: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-right: 0;
-    margin-bottom: 2%;
-    text-align: center;
-  }
-  
-  label {
-    width: 100%;
-    margin-bottom: 2%;
-    text-align: center;
-  }
-  
-  input, .select {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 2%;
-  }
-  
-  .btn {
-    margin-left: 0;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
-  
-  .btn-success, .btn-info {
-    margin: 0;
-    margin-bottom: 2%;
-    width: 100%;
-    margin-top: 4%;
-  }
-}*/
-
-
-</style>
-
+    <link rel="stylesheet" href="{{ asset('css/users/myAccount.css') }}">
 @endsection
