@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Model_has_role;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -29,25 +28,28 @@ class UserController extends Controller
         return view('modules.users.index', ['users' => $users]);
     }
 
-    public function userInfo(){
+    public function userInfo()
+    {
         $user = Auth::user();
-
-        return view('customers.users.myAccount', compact('user'));
+        $rol = Model_has_role::select('model_has_roles.*')
+        ->where('model_id', '=', $user->id)
+        ->first();
+        $role= $rol->role_id;
+        return view('customers.users.myAccount', compact('user','role'));
     }
 
     public function edit($id)
     {
         $user = User::select('users.*', 'roles.name as role_name')
-        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-        ->where('model_has_roles.model_type', '=', 'App\Models\User')
-        ->where('users.id', '=', $id)
-        ->first();
+            ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->where('model_has_roles.model_type', '=', 'App\Models\User')
+            ->where('users.id', '=', $id)
+            ->first();
         return view('modules.users.edit', compact('user'));
     }
 
     // Funcion para desactivar el usuario
-
     public function delete($id)
     {
         $user = User::findOrFail($id);
@@ -66,20 +68,20 @@ class UserController extends Controller
     public function update1(Request $request, $id)
     {
         $rol = Model_has_role::select('model_has_roles.*')
-        ->where('model_id','=',$id)
-        ->first();
+            ->where('model_id', '=', $id)
+            ->first();
         $user = User::select('users.*', 'roles.name as role_name')
-        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-        ->where('model_has_roles.model_type', '=', 'App\Models\User')
-        ->where('users.id', '=', $id)
-        ->first();
+            ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->where('model_has_roles.model_type', '=', 'App\Models\User')
+            ->where('users.id', '=', $id)
+            ->first();
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
-            'identification_number' => 'required|string|max:50|unique:users,identification_number,'.$id,
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'identification_number' => 'required|string|max:50|unique:users,identification_number,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
         ]);
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
@@ -88,11 +90,11 @@ class UserController extends Controller
         $user->identification_number = $request->input('identification_number');
         $user->email = $request->input('email');
         $rol->role_id = $request->input('role');
-        Model_has_role::where('model_id','=',$id)->update(['role_id' => $rol->role_id]);
+        Model_has_role::where('model_id', '=', $id)->update(['role_id' => $rol->role_id]);
         $user->age = $request->input('age');
         $user->save();
 
-        return redirect()->route('users.index')->with('update','ok');
+        return redirect()->route('users.index')->with('update', 'ok');
     }
 
     public function upMyacount(Request $request, $id)
@@ -102,8 +104,8 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
-            'identification_number' => 'required|string|max:50|unique:users,identification_number,'.$id,
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'identification_number' => 'required|string|max:50|unique:users,identification_number,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
         ]);
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
@@ -114,10 +116,8 @@ class UserController extends Controller
 
         $user->age = $request->input('age');
         $user->save();
-        return redirect()->back()->with('update','ok');
+        return redirect()->back()->with('update', 'ok');
     }
-
-
     public function showCreate()
     {
         return view('modules.users.create');
@@ -148,19 +148,19 @@ class UserController extends Controller
             'email' => $data['email'],
             'identification_number' => $data['identification_number']
         ], [
-            'name' => $data['name'],
-            'last_name' => $data['last_name'],
-            'phone_number' => $data['phone_number'],
-            'identification_type' => $data['identification_type'],
-            'age' => $data['age'],
-            'password' => Hash::make($data['password']),
-            'role' => $role,
-            'state_record' => 'ACTIVAR',
-            // 'create_time' => now(),
-            // 'update_time' => now()
-        ])->assignRole($role);
+                'name' => $data['name'],
+                'last_name' => $data['last_name'],
+                'phone_number' => $data['phone_number'],
+                'identification_type' => $data['identification_type'],
+                'age' => $data['age'],
+                'password' => Hash::make($data['password']),
+                'role' => $role,
+                'state_record' => 'ACTIVAR',
+                // 'create_time' => now(),
+                // 'update_time' => now()
+            ])->assignRole($role);
 
-        return redirect()->route('users.index')->with('ok','ok');
+        return redirect()->route('users.index')->with('ok', 'ok');
     }
 
     public function show(User $user)
@@ -176,7 +176,8 @@ class UserController extends Controller
     }
 
 
-    public function activeUser($id){
+    public function activeUser($id)
+    {
 
         $user = User::findOrFail($id);
 
@@ -192,7 +193,8 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function disableUser($id){
+    public function disableUser($id)
+    {
 
         $user = User::findOrFail($id);
 
@@ -207,8 +209,6 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-
-
 
     public function showPassword()
     {

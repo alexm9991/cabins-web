@@ -189,7 +189,9 @@ class productsController extends Controller
         $products = Cache::many($keys);
 
         return view('customers.products.shopingcar', compact('products'));
+
     }
+
     public function clearcar()
     {
         $products = [
