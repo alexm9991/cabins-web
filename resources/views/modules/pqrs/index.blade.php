@@ -61,27 +61,27 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{asset('js/datatables.js')}}"></script>
 
+
+    @if(session('update')) {
     <script>
-        @if(session('update')) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'PQRS actualizada'
-            })
-        }
-        @endif
+        Toast.fire({
+            icon: 'success',
+            title: 'PQRS actualizada'
+        })
     </script>
-
+    }
+    @endif
 
     @stop

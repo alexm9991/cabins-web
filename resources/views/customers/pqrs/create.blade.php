@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro PQRS</title>
-  <link rel="stylesheet" href="{{ asset('css/pqrs.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/pqrs/createpqrs.css') }}">
   <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
   <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 </head>
@@ -24,29 +24,19 @@
             @csrf
             <div class="form-group">
               <label for="reserva">{{ __('Name') }}:</label>
-              <input class="p-3 mb-2 bg-white text-dark"
-                style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="45" type="text"
-                id="name_user" name="name_user" placeholder="Digite su nombre"
-                oninput="this.value = this.value.replace(/[^a-zA-Z- -]/,'')" required>
+              <input class="p-3 mb-2 bg-white text-dark" style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="45" type="text" id="name_user" name="name_user" placeholder="Digite su nombre" oninput="this.value = this.value.replace(/[^a-zA-Z- -]/,'')" required>
             </div>
             <div class="form-group">
               <label for="reserva">{{ __('Phone Number') }}:</label>
-              <input class="p-3 mb-2 bg-white text-dark"
-                style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="10" type="text"
-                id="phone_user" name="phone_user" placeholder="Digite su teléfono"
-                onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+              <input class="p-3 mb-2 bg-white text-dark" style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="10" type="text" id="phone_user" name="phone_user" placeholder="Digite su teléfono" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
             </div>
             <div class="form-group">
-              <label for="asunto">{{ __('Bookings_id') }}:</label>
-              <input class="p-3 mb-2 bg-white text-dark"
-                style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="5" type="text"
-                id="bookings_id" name="bookings_id" placeholder="Digite el número de su reserva"
-                onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+              <label for="asunto">{{ __('Bookings code') }}:</label>
+              <input class="p-3 mb-2 bg-white text-dark" style="border: none;outline: none;border-bottom: 2px solid #FFA559;" required maxlength="10" type="text" id="bookings_code" name="bookings_code" placeholder="Digite el código de su reserva" oninput="this.value = this.value.toUpperCase().replace(/[^A-Z- 0-9]/,'')" required>
             </div>
             <div class="form-group">
               <label for="asunto">{{ __('Type') }}:</label>
-              <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light"
-                aria-label="Default select example" name="type" required>
+              <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light" aria-label="Default select example" name="type" required>
                 <option value="">--Seleccione una opción--</option>
                 <option value="{{ __('QUESTION') }}">{{ __('QUESTION') }}</option>
                 <option value="{{ __('COMPLAINT') }}">{{ __('COMPLAINT') }}</option>
@@ -56,8 +46,7 @@
             </div>
             <div class="form-group">
               <label for="asunto">{{ __('Reason') }}:</label>
-              <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light"
-                aria-label="Default select example" name="reason" required>
+              <select style="border-radius:10px;margin: 0% 0% 0% 1%;" class="btn btn-light" aria-label="Default select example" name="reason" required>
                 <option value="">--Seleccione una opción--</option>
                 <option value="{{ __('CABINS CLEAN') }}">{{ __('CABINS CLEAN') }}</option>
                 <option value="{{ __('POOL CLEAN') }}">{{ __('POOL CLEAN') }}</option>
@@ -67,13 +56,11 @@
             </div>
             <div class="form-group">
               <label for="mensaje">{{ __('Message') }}:</label>
-              <textarea required type="textarea" id="description" name="description"
-                placeholder="Escriba su petición, queja, reclamo o sugerencia" id="description" required></textarea>
+              <textarea required type="textarea" id="description" name="description" placeholder="Escriba su petición, queja, reclamo o sugerencia" id="description" required></textarea>
             </div>
             <div class="form-group">
               <label>{{ __('Evidence') }}:</label>
-              <input style="border-radius:10px" , type="file" name="evidence" accept="image/*" multiple="false"
-                class="form-control" readonly>
+              <input style="border-radius:10px" , type="file" name="evidence" accept="application/pdf" multiple="false" class="form-control" readonly>
             </div>
 
             <button type="submit" class="btn btn-success" style="display: block;margin: 0 auto;"><i class="fas fa-save "></i> {{ __('Send request') }}</button>
@@ -89,27 +76,28 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+@if(session('save')) {
 <script>
-
-@if(session('error')) {
-Swal.fire({
-  icon: 'error',
-  title: 'Lo siento!',
-  text: 'Número de reserva no válido',
-  footer: 'Intenta nuevamente'
-})
+  var codigo = "{{ session('save') }}";
+  Swal.fire({
+    icon: 'success',
+    title: 'PQRS creada!',
+    text: 'Tú número de radicado es: ' + codigo,
+    codigo,
+    footer: 'Gracias por darnos tu opinion!'
+  })
+</script>
 }
 @endif
 
-@if(session('save')) {
-    Swal.fire({
-    html: `<h2>PQRS creada</h2>
-    <br>
-    <p>Tu numero de radicado es:  <strong> $codigo </strong></p>
-    `,
-});
-    }
-@endif
-
-
+@if(session('error')) {
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'Lo siento!',
+    text: 'Número de reserva no válido',
+    footer: 'Intenta nuevamente'
+  })
 </script>
+}
+@endif
