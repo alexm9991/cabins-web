@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\shoppingCarController;
+use App\Http\Controllers\ShoppingCarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('shoppingCar',[shoppingCarController::class,'index']) ->name("shoppingCar.index");
