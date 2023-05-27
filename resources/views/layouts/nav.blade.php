@@ -38,7 +38,7 @@ function redirectUserInfo(){
 }
 
 function redirectShoppingCar(){
-    window.location.href = "{{ url('shoppingcar') }}";
+    window.location.href = "{{ url('shoppingCar') }}";
 }
 
 function register(){
