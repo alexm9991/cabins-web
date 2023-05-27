@@ -12,171 +12,8 @@
     @parent
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
-    <style>
-        .cuerpo {
-            font-family: Arial, sans-serif;
-
-            padding: 0;
-            background-color: #fff;
-        }
-
-        .cabecera {
-            color: #333;
-            padding: auto;
-        }
-
-        .h1titulo {
-            font-size: 50px;
-            margin: 0 auto;
-            text-align: center;
-            margin-bottom: 5%;
-            color: #FFA559;
-
-        }
-
-        .contenedores {
-            display: flex;
-            align-items: center;
-        }
-
-        a.estilobtn {
-
-            border-radius: 10px;
-            padding: 5px 10px;
-            font-size: 20px;
-            background-color: #ddd;
-            border: none;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        span.estilovsta {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th {
-            background-color: #FFA559;
-            text-align: left;
-            height: 50px;
-
-        }
-
-        td {
-            text-align: left;
-        }
-
-
-
-
-        .a-content,
-        .button-content {
-            background-color: #333;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            display: inline-block;
-            margin: 20px 10px;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease-in-out;
-
-            border-radius: 10px;
-        }
-
-        .a-quitar {
-            background-color: #333;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            display: inline-block;
-
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 10px;
-
-            margin-left: 5px;
-            margin-bottom: 30%;
-        }
-
-        .image {
-            max-height: 100%;
-            width: auto;
-            border-radius: 10%;
-        }
-
-
-
-        .bottom-border {
-            border-collapse: collapse;
-        }
-
-        .bottom-border th,
-        .bottom-border td {
-            border-bottom: 3px solid #333;
-        }
-
-        @keyframes animateLine {
-            from {
-                width: 0%;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        .cuadro {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            animation: shadow 1s ease-in-out infinite alternate;
-            width: 80%;
-            text-align: center;
-        }
-
-        .cuadro h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #FFA559;
-        }
-
-        .cuadro p {
-            font-size: 1.2rem;
-            padding: 0;
-        }
-
-        .tabla {
-            display: flex;
-            justify-content: space-between;
-            flex-basis: 80%;
-        }
-
-        .totaldiv {
-            margin-left: 10%;
-            margin-bottom: 25%;
-            display: flex;
-            justify-content: space-between;
-            flex-basis: 40%;
-            max-height: 13em;
-        }
-    </style>
-
-
+    <link rel="stylesheet" href="{{ asset('css/shoppingcar/shoppingcar.css')}}">
 </head>
-
 @endsection
 
 <body style=" background-color:  #FFE6C7;" class="cuerpo">
@@ -196,7 +33,8 @@
                 <tbody>
 
                     <?php $total = 0; ?>
-                    @foreach ($products as $product)
+                    @foreach ($products as $index => $product)
+
                     @if (gettype($product) == 'object')
 
                     <?php $subtotal = $product->cantidad * $product->precio;
@@ -205,7 +43,7 @@
                     <tr>
                         <div style="margin-top: 25%; margin-bottom: 25%;">
                             <td style=" text-align: center;">
-                                <img class="image" height="100px" src="{{ asset('storage/imgProducts').'/'.$product->imagen }}" alt="" />
+                                <img class="image" height="100px" src="{{ asset('storage/imgProducts').'/'.$product->imagen }}"/>
                             </td>
 
                         </div>
@@ -217,11 +55,14 @@
                                 <div style="margin-bottom: 5%;">
                                     <div class="contenedores">
 
-                                        <a class="estilobtn  btnResta" data-idproducto="{{ $product->id }}">-</a>
-                                        <span class="estilovsta spanCantidad{{ $product->id }}">
+                                        <a class="estilobtn  btnResta" data-idproducto="{{ $index }}">-</a>
+                                        {{-- <a class="estilobtn  btnResta" data-idproducto="{{ $product->id }}">-</a> --}}
+                                        {{-- <span class="estilovsta spanCantidad{{ $product->id }}"> --}}
+                                        <span class="estilovsta spanCantidad{{ $index }}">
                                             {{ $product->cantidad }}</span>
                                         <input type="hidden" name="amount_products" value="1">
-                                        <a class="estilobtn btnSuma" data-idproducto="{{ $product->id }}">+</a>
+                                        <a class="estilobtn btnSuma" data-idproducto="{{ $index }}">+</a>
+                                        {{-- <a class="estilobtn btnSuma" data-idproducto="{{ $product->id }}">+</a> --}}
 
                                     </div>
                                 </div>
@@ -230,7 +71,8 @@
                         </form>
                         <td>
                             <div style="margin-bottom: 20%;">{{$format }}</div>
-                            <a class="a-quitar" href="{{Route('products.clearProduct', $product->id )}}"> <i class="fas fa-trash"></i></a>
+                            <a class="a-quitar" href="{{Route('shoppingCar.clearProduct', $index )}}"> <i class="fas fa-trash"></i></a>
+                            {{-- <a class="a-quitar" href="{{Route('shoppingCar.clearProduct', $product->id )}}"> <i class="fas fa-trash"></i></a> --}}
                         </td>
 
                     </tr>
@@ -274,7 +116,7 @@
                 </div>
                 <div style="margin-top: 50%;  margin-right: 20%; display: flex; flex-direction: column;">
                     <a id="addbuy" class="a-content" href="{{ Route('products.productsviews') }}">Seguir comprando</a>
-                    <a class="a-content" href="{{Route('products.clearcar')}}">Vaciar carrito</a>
+                    <a class="a-content" href="{{Route('shoppingCar.delete')}}">Vaciar carrito</a>
                 </div>
 
             </div>
@@ -283,22 +125,18 @@
 
     </main>
 </body>
-
-
 </html>
 
-
 <script>
-    
-
 
     $(document).on('click', '.btnSuma', function() {
         let idproducto = $(this).attr('data-idproducto');
         let cantidad = parseInt($(".spanCantidad" + idproducto).text(), 0);
         cantidad++;
         $(".spanCantidad" + idproducto).text(cantidad);
+        console.log(cantidad);
         actualizar(idproducto, cantidad);
-        location.reload(); //
+        // location.reload(); //
     });
 
     $(document).on('click', '.btnResta', function() {
@@ -308,18 +146,20 @@
         if (cantidad > 0) {
             $(".spanCantidad" + idproducto).text(cantidad);
             actualizar(idproducto, cantidad);
-            location.reload(); //
+            // location.reload(); //
         }
 
     });
 
     const actualizar = (id, cantidad) => {
         $.ajax({
-            url: '/products/' + id + '/shopingcar/' + cantidad, // la URL para la petición
+            url: '/shoppingCar/' + id + '/edit/' + cantidad, // la URL para la petición
+            // url: '/shoppingCar/' + id + '/update/' + cantidad, // la URL para la petición
             type: 'GET', // especifica si será una petición POST o GET
             dataType: 'json', // el tipo de información que se espera de respuesta
             success: function(json) { // código a ejecutar si la petición es satisfactoria; la respuesta es pasada como argumento a la función
                 console.log('Correcto');
+                location.reload(); //
             },
             error: function(xhr, status) { // código a ejecutar si la petición falla; son pasados como argumentos a la función el objeto de la petición en crudo y código de estatus de la petición
                 console.log('Disculpe, existió un problema');
@@ -327,7 +167,7 @@
         });
     }
 
-    
+
 </script>
 
 

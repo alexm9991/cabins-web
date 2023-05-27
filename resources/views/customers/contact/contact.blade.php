@@ -213,7 +213,7 @@
         </div>
         <div class="footer-col col-lg-1-5 col-md-1 col-sm-6 col-xs-12">
             <h3>Danos tu opinión</h3>
-            <button class="contactButton" onclick="window.location.href='{{ url('pqrs.showCreate') }}'"> PQRS</button>
+            <button class="contactButton" onclick="window.location.href='{{ url('pqrs.create') }}'"> PQRS</button>
         </div>
         <div class="footer_copyright">
             <div class="copy">©2023 Todos los derechos reservados</div>

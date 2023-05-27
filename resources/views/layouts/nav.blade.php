@@ -38,7 +38,7 @@ function redirectUserInfo(){
 }
 
 function redirectShoppingCar(){
-    window.location.href = "{{ url('shopingcar') }}";
+    window.location.href = "{{ url('shoppingcar') }}";
 }
 
 function register(){
@@ -50,5 +50,3 @@ function login(){
 }
 
 </script>
-
-

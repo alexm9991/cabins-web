@@ -150,107 +150,13 @@ class productsController extends Controller
         return view('customers.products.showviews', compact('products'));
     }
 
-    public function shopingcar(Request $request, $id) # función para agregar los datos en la cache
-    {
-        $this->guardarCache($id, $request->amount_products);
-        return redirect(route('products.showcar')); # redirecciona a la vista del carrito
-    }
-
-    public function updateShopingcar($id, $cantidad) # función para actualizar los datos en la cache
-    {
-        $this->guardarCache($id, $cantidad);
-        return ['estado' => 'success'];
-    }
-
-    public function guardarCache($id, $cantidad) # función para guardar los datos en la cache
-    {
-        $user = auth()->user();
-        # Consultar el producto
-        $product = Product::findOrFail($id);
-        # En un arreglo guardamos los datos que necesitamos mostrar o traer a la vista del carrito
-        $datos['id'] = $product->id ?? '';
-        $datos['nombre'] = $product->name_product ?? '';
-        $datos['precio'] = $product->price ?? 0;
-        $datos['imagen'] = $product->picture ?? '';
-        $datos['cantidad'] = $cantidad ?? 1;
-        # Se modifica el arreglo como un string en forma de json y despues se pasa el string a un json
-        $datos = json_decode(json_encode($datos));
-        Cache::forever($user?->id . $product?->id, $datos);
-    }
-
-    public function showcar(Request $request) # función para mostrar la vsta del carrito
-    {
-        $user = auth()->user();
-        $keys = Product::all()->pluck('id')->toArray(); # se consultan todos los productos y los convertimos a arreglo
-        foreach ($keys as $index => $key) {
-            $keys[$index] = $user?->id . $key;
-        }
-        # consultamos todos los productos en la cache con los id de los productos (llaves)
-        $products = Cache::many($keys);
-
-        return view('customers.products.shopingcar', compact('products'));
-
-    }
-
-    public function clearcar()
-    {
-        $products = [
-            "id" => "",
-            "name_product" => "",
-            "decripcion" => "",
-            "price" => 0,
-            "picture" => "",
-            "create_time" => "",
-            "update_time" => "",
-            "state_record" => ""
-        ];
-        $user = auth()->user();
-        $userId = $user->id;
-        $keys = Product::all()->pluck('id')->toArray(); # se consultan todos los productos y los convertimos a arreglo
-        foreach ($keys as $index => $key) {
-            $keys[$index] = $userId . $key;
-        }
-        Cache::flush(); # Se elimina todo lo que coincida con las llaves
-
-        return view('customers.products.shopingcar', compact('products'));
-    }
-
     public function productDetails($id)
     {
         $user = auth()->user();
         $products = Product::findOrFail($id);
-        $key = $user?->id . $products?->id;
+        $key = 'product' . $user?->id . $products?->id;
         $product = Cache::get($key);
         $result = $product === null ? false : true;
         return view('customers.products.showviews', compact('result', 'products'));
-    }
-
-    public function clearProduct($id)
-    {
-        $user = auth()->user();
-        $userId = $user->id;
-        $key = $userId . $id; // Construir la llave de caché para el producto a eliminar
-        Cache::forget($key); // Eliminar el elemento de la caché con la llave especificada
-
-        // Obtener los productos restantes en la caché
-        $products = [
-            "id" => "",
-            "name_product" => "",
-            "decripcion" => "",
-            "price" => 0,
-            "picture" => "",
-            "create_time" => "",
-            "update_time" => "",
-            "state_record" => ""
-        ];
-        $user = auth()->user();
-        $keys = Product::all()->pluck('id')->toArray(); # se consultan todos los productos y los convertimos a arreglo
-        foreach ($keys as $index => $key) {
-            $keys[$index] = $user?->id . $key;
-        }
-        # consultamos todos los productos en la cache con los id de los productos (llaves)
-        $products = Cache::many($keys);
-
-        return view('customers.products.shopingcar', compact('products'));
     }
 }

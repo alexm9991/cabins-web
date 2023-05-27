@@ -38,7 +38,6 @@
 </footer>
 <div class="bg-ft"></div>
 
-
 <script>
 
 function redirectToCreate(){

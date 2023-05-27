@@ -7,6 +7,7 @@ use App\Http\Controllers\PqrsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SeasonsController;
+use App\Http\Controllers\ShoppingCarController;
 
 Route::get('/', function () {
     return view('/customers/home/home');
@@ -94,15 +95,9 @@ Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegist
 Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
 
 //RUTAS CARRITO DE COMPRAS
-Route::get('showShoppingCart',[App\Http\Controllers\ProductsController::class,'showShoppingCart']) ->name("showShoppingCart");
-Route::get('products/clearcar',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
-Route::get('products/{id}/shopingcar/{cantidad}',[ProductsController::class, 'updateShopingcar'])->name('products.updateShopingcar');
-Route::get('products/showcar',[ProductsController::class, 'showcar'])->name('products.showcar');
-Route::get('products/productDetails',[ProductsController::class, 'productDetails'])->name('products.productDetails');
-Route::get('products/{product}/show',[App\Http\Controllers\ProductsController::class,'details']) ->name("products.show");
-Route::get('products/{product}/shopingcar',[App\Http\Controllers\ProductsController::class,'shopingcar']) ->name("products.shopingcar");
-Route::get('products/clearcar',[App\Http\Controllers\ProductsController::class,'clearcar']) ->name("products.clearcar");
-Route::get('products/{product}/clearProduct',[App\Http\Controllers\ProductsController::class,'clearProduct']) ->name("products.clearProduct");
+
+include 'shoppingCar.php';
+
 
 //RUTAS TEMPORADAS
 
