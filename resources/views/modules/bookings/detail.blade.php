@@ -11,48 +11,75 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center">
-                    <h4>{{ __('BOOKINGS DETAIL') }}</h4>
-                </div>
                 <div class="card-body">
+                    <div class="text-center">
+                        <h5>{{ __('BOOKING') }}</h5>
+                    </div>
                     <div class="form-group">
                         <label>{{ __('Reservation code') }}:</label>
-                        <span>{{ $booking->id }}</span>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Initial Date') }}:</label>
-                        <span>{{ $booking->initial_date }}</span>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Final Date') }}:</label>
-                        <span>{{ $booking->final_date }}</span>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Deposit') }}:</label>
-                        <span>{{ $booking->deposit }}</span>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Total Paid') }}:</label>
-                        <span>{{ $booking->isPaid }}</span>
-                    </div>
-                    <div class="form-group">
+                        <span>{{ $booking->booking_code }}</span><br>
+
                         <label>{{ __('Payment Method') }}:</label>
-                        <span>{{ $booking->title_payment }}</span>
+                        <span>{{ $booking->title_payment }}</span><br>
+
+                        <label>{{ __('Amount adults') }}:</label>
+                        <span>{{ $booking->amount_adults }}</span><br>
+
+                        <label>{{ __('Amount child') }}:</label>
+                        <span>{{ $booking->amount_child }}</span><br>
+
+                        <label>{{ __('Total Bookings') }}:</label>
+                        <span>{{ $total_booking }}</span><br>
+
+                        <label>{{ __('Initial Date') }}:</label>
+                        <span>{{ $booking->initial_date }}</span><br>
+
+                        <label>{{ __('Final Date') }}:</label>
+                        <span>{{ $booking->final_date }}</span><br>
+
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h5>{{ __('SERVICE') }}</h5>
                     </div>
                     <div class="form-group">
                         <label>{{ __('Service name') }}:</label>
-                        <span>{{ $booking->tittle }}</span>
+                        <span>{{ $booking->tittle }}</span><br>
+
+                        <label>{{ __('Total Services') }}:</label>
+                        <span>{{ $booking->total }}</span><br>
+
                     </div>
                     <hr>
                     <div class="text-center">
                         <h5>{{ __('PRODUCTS') }}</h5>
-                    </div>
+                    </div><br>
                     <div class="form-group">
-                        @foreach ($booking_product as $boop)
+                        <table border="2" style="margin:auto">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio/u</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            @foreach ($booking_product as $boop)
+                            <tbody>
+                                <tr>
+                                    <td>{{ $boop->name_product }}</td>
+                                    <td>${{ $boop->price }}</td>
+                                    <td>{{ $boop->amount_products }}</td>
+                                    <td>{{ $boop->total }}</td>
+                                </tr>
 
-                        <span>- {{ $boop->name_product }} </span><br>
+                            </tbody>
+                            @endforeach
 
-                        @endforeach
+                        </table><br>
+                        <label>{{ __('Total Products') }}:</label>
+                        <span>{{ $suma_product }}</span><br>
+
                     </div>
                     <hr>
                     <div class="text-center">
@@ -61,8 +88,13 @@
                     <div class="form-group">
                         <label>{{ __('User name') }}:</label>
                         <span>{{ $booking->name }} {{ $booking->last_name }}</span><br>
+
                         <label>{{ __('Phone Number') }}:</label>
                         <span>{{ $booking->phone_number }}</span><br>
+
+                        <label>{{ __('Identification number') }}:</label>
+                        <span>{{ $booking->identification_number }}</span><br>
+
                         <label>{{ __('Email') }}:</label>
                         <span>{{ $booking->email }}</span>
                     </div>
@@ -71,25 +103,25 @@
                         <h5>{{ __('MEMBERS') }}</h5>
                     </div>
                     @foreach ($booking_members as $boo)
-                        <div class="form-group">
-                            <label>{{ __('Name') }}:</label>
-                            <span>{{ $boo->first_name_member }} {{ $boo->last_name_member }}</span><br>
-                            <label>{{ __('Age') }}:</label>
-                            <span>{{ $boo->age_member }}</span><br>
-                            <label>{{ __('Document') }}:</label>
-                            <span>{{ $boo->document_member }}</span>
-                        </div>
+                    <div class="form-group">
+                        <label>{{ __('Name') }}:</label>
+                        <span>{{ $boo->first_name_member }} {{ $boo->last_name_member }}</span><br>
+
+                        <label>{{ __('Age') }}:</label>
+                        <span>{{ $boo->age_member }}</span><br>
+
+                        <label>{{ __('Identification number') }}:</label>
+                        <span>{{ $boo->document_member }}</span>
+                    </div>
                     @endforeach
                     <hr>
                     <div class="form-group">
                         <label>{{ __('Create Time') }}:</label>
-                        <span>{{ $booking->create_time }}</span>
-                    </div>
-                    <div class="form-group">
+                        <span>{{ $booking->create_time }}</span><br>
+
                         <label>{{ __('Update Time') }}:</label>
-                        <span>{{ $booking->update_time }}</span>
-                    </div>
-                    <div class="form-group">
+                        <span>{{ $booking->update_time }}</span><br>
+
                         <label>{{ __('State Record') }}:</label>
                         <span>{{ $booking->state_record }}</span>
                     </div>
@@ -123,14 +155,12 @@
         </div>
     </div>
 </div>
-</div>
 @stop
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-
     $('.formulario-disable').submit(function(e) {
         e.preventDefault();
 

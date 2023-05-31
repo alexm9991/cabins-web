@@ -42,6 +42,7 @@
     "POOL CLEAN":"LIMPIEZA DE PISCINA",
     "FEEDING":"ALIMENTACIÓN",
     "NOISE":"RUIDO",
+    "BOOKING":"RESERVA",
 
     "Users management": "Gestión de Usuarios",
     "Product management": "Gestión de Productos",
@@ -128,6 +129,12 @@
     "Final Time":"Fecha Final",
     "Detail season of":"Detalle temporada de",
     "Bookings code":"Código de reserva",
-    "Download PDF":"Descargar PDF"
+    "Download PDF":"Descargar PDF",
+    "Identification number":"N° Identificación",
+    "Amount adults":"Cantidad de adultos",
+    "Amount child":"Cantidad de niños",
+    "Total Services":"Valor total del servicio",
+    "Total Bookings":"Valor total de la reserva",
+    "Total Products":"Total Productos"
 
 }
