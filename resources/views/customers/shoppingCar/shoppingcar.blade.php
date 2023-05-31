@@ -111,10 +111,10 @@
                             <td><?php $formattotal = number_format($total) ?>${{$formattotal}}</td>
                         </tr>
 
-                        <button style=" font-size: 16px;font-weight: bold; text-transform: uppercase;" class="button-content">Realizar compra</button>
+                        <button class="realizar-compra button-content">Realizar compra</button>
                     </div>
                 </div>
-                <div style="margin-top: 50%;  margin-right: 20%; display: flex; flex-direction: column;">
+                <div class="buttons-options">
                     <a id="addbuy" class="a-content" href="{{ Route('products.productsviews') }}">Seguir comprando</a>
                     <a class="a-content" href="{{Route('shoppingCar.delete')}}">Vaciar carrito</a>
                 </div>

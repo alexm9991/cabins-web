@@ -37,8 +37,10 @@
             @foreach ($products as $P)
 
             <div class="thumbnail">
-                <h1>{{ $P->name_product}}</h1>
-                <img height="300px" src="{{ asset('storage/imgProducts').'/'.$P->picture}}" alt="">
+            <h1>{{ $P->name_product}}</h1>
+                <a href="{{ route('products.showviews', $P->id) }}">
+                    <img height="300px" src="{{ asset('storage/imgProducts').'/'.$P->picture}}" alt="" >
+                </a>
 
                 <?php $subtotal = $P->price;
                 $format = number_format($subtotal) ?>
