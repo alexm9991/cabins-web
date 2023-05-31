@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label for="identification_type" class="col-md-4 col-form-label text-md-right">{{ __('Identification Type') }}:</label>
                         <div class="col-md-6">
-                            <select id="identification_type" class="form-control @error('identification_type') is-invalid @enderror" name="identification_type" required autofocus>
+                            <select id="identification_type" class="@error('identification_type') is-invalid @enderror" name="identification_type" required autofocus>
                                 <option value="">Seleccione un tipo de identificación</option>
                                 <option value="cedula de ciudadania" {{ $user->identification_type == 'cedula de ciudadania' ? 'selected' : '' }}>Cédula de ciudadanía</option>
                                 <option value="cedula de extranjeria" {{ $user->identification_type == 'cedula de extranjeria' ? 'selected' : '' }}>Cédula de extranjería</option>
@@ -76,21 +76,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-success btn-sm rounded-pill" ><i class="fa fa-save"></i> {{ __('Update') }}</button>
-                            <a type="submit" href="{{ route('users.showPassword',$user->id) }}" class="btn btn-info btn-sm rounded-pill" >
-                                <i class="fa fa-edit"></i> {{ __('Change Password') }}</a>
+                    <div class="allButtons">
+                        <button type="submit" class="border-radius-20 updatebutton btn btn-success  btn-sm rounded-pill" ><i class="fa fa-save"></i> {{ __('Update') }}</button>
+                        <a type="submit" href="{{ route('users.showPassword',$user->id) }}" class="padding-10 border-radius-20 changebutton btn btn-info btn-sm rounded-pill" >
+                            <i class="fa fa-edit"></i> {{ __('Change Password') }}</a>
 
-                            @if($role == 1)
-                                <a class="btn btn-dashboard" type="submit" href="{{ route('users.index') }}"  ><i class="fa fa-cogs"></i> DASHBOARD</a>
-                            @endif
-                        </div>
+                        @if($role == 1)
+                            <a class="border-radius-20 btn btn-dashboard padding-10 dashboardbutton" type="submit" href="{{ route('users.index') }}"  ><i class="fa fa-cogs"></i> Dashboard</a>
+                        @endif
                     </div>
                 </form>
             </div>
         </div>
-
 	</div>
 </body>
 </html>
@@ -141,6 +138,9 @@
 @endsection
 
 @section('styles')
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/users/myAccount.css') }}">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+
 @endsection
