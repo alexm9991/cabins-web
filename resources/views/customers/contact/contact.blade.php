@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <title>Contactanos</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="stylesheet" href="contact.css">
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 </head>
 
 <body>
@@ -16,10 +16,9 @@
             <div class="nav-logo">
                 <img src="imagenes/WhatsApp Image 2023-04-25 at 19.14.27.jpeg" alt="Logo">
             </div>
-            @if(!auth()->user())
-            @elseif($rol->role_id == 2 or $rol->role_id == 1)
+
             <button id="shopin-car-btn"><img src="imagenes/carrito-de-compras.png" alt="Cesta"></button>
-            @endif
+
             <button id="burger-btn"><img src="imagenes/menu.png" alt="Menú"></button>
             <div class="nav-cont">
                 <div class="nav-links">
@@ -36,11 +35,11 @@
                         </ul>
                     </div>
                 </div>
-                @if(!auth()->user())
+
                 <button id="register-btn"
                     onclick="window.location.href='{{ url('register') }}'">Registrarse</a></button>
                 <button id="login-btn" onclick="window.location.href='{{ url('login') }}'">Iniciar sesión</button>
-                @elseif($rol->role_id == 2 or $rol->role_id == 1)
+
                 <button id="profile-btn" onclick="window.location.href='{{ url('user-info') }}'">Mi cuenta<img
                         class="subM-arrow" src="imagenes/down-arrow.png" alt=""></a></button>
                 <button id="log-out-btn"
@@ -49,7 +48,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                @endif
+
             </div>
         </nav>
     </header>
@@ -119,67 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class="contact-form">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <strong class="let-1">Nombre:</strong>
-                                        <br>
-                                        <br>
-                                        <input type="text" class="form-control p-4" id="name"
-                                            placeholder="Escribe tu nombre" required="required"
-                                            data-validation-required-message="Porfavor ingrese su nombre"
-                                            style="border-radius: 30px;" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <strong class="let-1">Correo electrónico:</strong>
-                                        <br>
-                                        <br>
-                                        <input type="email" class="form-control p-4" id="email"
-                                            placeholder="Escribe tu Correo electronico" required="required"
-                                            data-validation-required-message="Porfavor ingrese su email"
-                                            style="border-radius: 30px;" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <strong class="let-1">Numero de contacto:</strong>
-                                <br>
-                                <br>
-                                <input class="let" type="text" class="form-control p-4" id="number"
-                                    placeholder="Dijite su numero de contacto" required="required"
-                                    data-validation-required-message="Por favor ingrese su numero" pattern="^[0-9]+$"
-                                    style="border-radius: 30px;" />
-                            </div>
-                            <div class="control-group">
-                                <strong class="let-1">Mensaje:</strong>
-                                <br>
-                                <br>
-                                <textarea class="form-control" rows="5" id="message"
-                                    placeholder="Escribe el mensaje que desees enviar" required="required"
-                                    data-validation-required-message="Porfavor ingrese su mensaje"
-                                    style="border-radius: 30px;"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <br>
-                            <br>
-
-                            <div align="right">
-                                <button class="btn btn-primary font-weight-semi-bold px-4" style="border-radius: 10px;"
-                                    type="submit" id="sendMessageButton"> <strong>ENVIAR</strong></button>
-                            </div>
-                        </form>
-                        <br>
-                        <br>
-                        <br>
-
-                    </div>
-                </div>
+                <!--  -->
             </div>
         </div>
     </div>

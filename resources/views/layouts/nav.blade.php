@@ -13,8 +13,9 @@
                     <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="#"><span>Inicio</span></a></li>
                     <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="{{ route('services.servicesviews') }}"><span>Servicios</span></a></li>
                     <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="{{ route('products.productsviews') }}"><span>Productos</span></a></li>
-                    <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="#"><span>Reservar</span></a></li>
-                    <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="../../customers/contactUs/contact.blade.php"><span>Contáctanos</span></a></li>
+
+                    <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="{{ url('/contact') }}"><span>Contáctanos</span></a></li>
+
                 </ul>
             </div>
         </div>

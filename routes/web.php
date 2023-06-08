@@ -52,6 +52,9 @@ Route::get('products/{id}/activar', [ProductsController::class, 'activeProducts'
 Route::post('/products/{products}', [ProductsController::class, 'update'])->name('products.update');
 Route::resource('/products', ProductsController::class)->names('products');
 
+// //RUTAS CONTACTANOS
+Route::view('/contact', '/customers/contact/contact');
+
 //RUTAS PQRS
 Route::put('/pqrs/{id}/disableProducts', [PqrsController::class, 'disableProducts'])->name('pqrs.disableProducts');
 Route::resource('/pqrs', PqrsController::class)->names('pqrs');
