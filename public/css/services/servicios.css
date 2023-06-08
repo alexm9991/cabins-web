@@ -1,12 +1,72 @@
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-body {
+.cuerpo {
   overflow-x: hidden;
   font-family: sans-serif;
   display: grid;
   align-content: center;
+  background-color: #fff;
+
+}
+#titulo-temporadas{
+    width:75%;
+    height: auto;
+    align-items: center;
+    margin-left: 22%;
+  }
+  #titulo-temporadas h1{
+    font-size: 2.6rem;
+  }
+  .informacion{
+    margin-top: 5%;
+    height: auto;
+    width: 100%;
+  }
+
+  .colores-temp{
+    width:100%;
+    display:flex;
+    justify-content: space-evenly;
+    margin-top:4%;
+  }
+
+  .temp{
+    height:40px;
+    justify-content: center;
+    display: flex;
+  }
+
+  #imagen-temporadas{
+    display:flex;
+    width:100%;
+    height:80%;
+  }
+
+/*Texto ubicado a la derecha*/
+
+.texto-right {
+  float: right;
+  width: 45%;
+  margin-top: 3%;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.7em;
+  text-align: justify;
+  margin-left:4%;
+}
+
+#titulo-right {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 6%;
+}
+
+#text-right {
+  width: 100%;
+  font-size: 1em;
 }
 
 .degradado {
@@ -75,7 +135,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   font-size: 1.7em;
-  margin-left: 4%;
+  margin-left: 2%;
   height: 70%;
   text-align: left;
   text-align: justify;
@@ -97,30 +157,6 @@ body {
   width: 80%;
 }
 
-/*Texto ubicado a la derecha*/
-
-.texto-right {
-  float: right;
-  width: 45%;
-  margin-top: 3%;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.7em;
-  text-align: justify;
-  margin-right:4%;
-}
-
-#titulo-right {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 6%;
-}
-
-#text-right {
-  width: 100%;
-  font-size: 1em;
-}
-
 /*Carrusel ubicado a la  derecha(right)*/
 
 .carrusel-right {
@@ -138,6 +174,47 @@ body {
   margin-right:100px;
 }
 
+.carousel-container {
+    position: relative;
+    width: 500px;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    width: 700px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 100%;
+}
+
+.slide img {
+    width: 100%;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
 /*Separador Naranja*/
 
 .orange-separator {
@@ -177,6 +254,23 @@ body {
   margin-bottom: -150px;
 }
 
+.boton-modal{
+  background-color: #fa773a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 60px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.boton-modal label{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
 /*   RESPONSIVE    */
 
 @media (min-width:1200px){
@@ -193,7 +287,7 @@ body {
     margin-top:20px;
 
   }
-  
+
 }
 
 @media (min-width:991px) and (max-width:1199px){
@@ -220,7 +314,7 @@ body {
   .orangered{
     font-size: 1.6rem;
   }
-  
+
   .carrusel-left{
     width:75%;
   }
@@ -232,7 +326,7 @@ body {
 }
 
 @media (min-width:649px) and (max-width: 990px){
-  
+
   .cuadro-centrado{
     height: 304px;
   }
@@ -248,7 +342,7 @@ body {
     margin-top:30px;
   }
 
-  
+
   .element {
     align-items: center;
     font-size: 0.6rem;
@@ -303,7 +397,7 @@ body {
     margin-top:30px;
   }
 
-  
+
   .element {
     align-items: center;
     font-size: 0.6rem;
@@ -359,4 +453,6 @@ body {
   .boton{
     margin-top: 20px;
   }
+
+
 }

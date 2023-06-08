@@ -16,6 +16,9 @@ nav {
   left: 0;
   top: 0;
   border-bottom: 0.1px solid #ffb689;
+  z-index: 999;
+
+
 }
 
 .nav-logo img {
@@ -25,6 +28,7 @@ nav {
   float: left;
   position: relative;
   z-index: 999;
+  border-radius: 20px;
 }
 
 .center {
@@ -301,7 +305,7 @@ ol {
     height: 40px;
     right: 0;
   }
-  
+
   #profile-btn {
     position: absolute;
     padding: 5px;
@@ -324,7 +328,7 @@ ol {
     right: 0;
     margin-right: 17%;
   }
-  
+
   #shopin-car-btn img {
     width: 50px;
     height: 60px;
@@ -389,7 +393,7 @@ ol {
     float: right;
     margin-left: 100%;
   }
-  
+
   .nav li a {
     float: right;
   }
@@ -452,7 +456,7 @@ ol {
     right: 0;
     margin-right: 15%;
   }
-  
+
   #shopin-car-btn img {
     width: 50px;
     height: 60px;
@@ -519,7 +523,7 @@ ol {
     float: right;
     margin-left: 100%;
   }
-  
+
   .nav li a {
     float: right;
   }
@@ -582,7 +586,7 @@ ol {
     right: 0;
     margin-right: 80px;
   }
-  
+
   #shopin-car-btn img {
     width: 50px;
     height: 60px;

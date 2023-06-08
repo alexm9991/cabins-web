@@ -1,0 +1,685 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: sans-serif;
+  display: grid;
+  align-content: center;
+}
+
+.degradado {
+  background-image: linear-gradient(to bottom, #fff1df 60%, #ffffff 100%);
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.cuadro-centrado {
+  width: 850PX;
+  height: 150px;
+  position: relative;
+  top: 33.3%;
+  padding-top: 30px;
+  background-color: #ffffff;
+  text-align: center;
+  font-size: 4em;
+  color: #fa773a;
+  font-weight: bold;
+  text-shadow: rgb(145, 143, 143) 0.1em 0.1em 0.3em;
+  border-radius: 2rem;
+  box-shadow: 0px 5px 20px 1px #eadecf;
+}
+
+
+.element {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/*Texto ubicado a la izquierda*/
+
+.texto-left {
+  float: left;
+  width: 50%;
+  margin-top: 6%;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.7em;
+  margin-left: 4%;
+  height: 50%;
+  text-align: left;
+  
+  
+}
+
+#titulo-left {
+  margin-top: 1%;
+  width: 80%;
+  height: 52px;
+  margin-bottom: 6%;
+  color: #fa773a;
+}
+
+.orangered {
+  color: #ff7c48;
+  text-decoration: none;
+}
+
+#text-left {
+  width: 80%;
+  text-align: justify;
+}
+
+/*Carrusel ubicado a la  derecha(right)*/
+
+.carrusel-right {
+  margin-bottom: 50px;
+  width: 50%;
+
+}
+
+
+/*Separador Naranja*/
+
+.orange-separator {
+  height: 80px;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #ebd5bd 0%, #ffe6c6 15%, #ffe6c6 85%, #ebd5bd 100%);
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+/*:::Boton-Modal:::*/
+
+.boton-modal{
+  background-color: #fa773a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 60px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.boton-modal label{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+/*:::Ventana Modal:::*/
+
+#btn-modal{
+  display: none;
+}
+.container-modal{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  background-color: rgba(144, 148, 150, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+#btn-modal:checked ~ .container-modal{
+  display: flex;
+  
+}
+.content-modal{
+  width: 100%;
+  padding: 5px;
+  max-width: 45%;
+  height: 90%;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.content-modal h2{
+  margin-bottom: 15px;
+  text-align: center;
+}
+.cant_personas{
+  padding: 20px 20px;
+  border-top: 1px solid #dbdbdb;
+  font-size: 85%;
+}
+
+.fecha{
+  padding-top: 6%;
+}
+
+.botons{
+
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  margin-top: 10%;
+
+}
+
+
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left:55%;
+}
+
+  
+
+/* Boton aceptar */
+
+.acept-button{
+  background-color: #69d666;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+/* Tabla de temporadas */
+
+table {
+  width: 100%;
+  height: 20%;
+  margin-top: 35%;
+  text-align: center;
+  border-collapse: collapse;
+  font-size: 1.2rem;
+}
+
+tr, td{
+  border: solid 1px black;
+  padding: 5px 10px;
+}
+  
+
+
+@media (min-width:991px) and (max-width:1199px){
+
+  #titulo-left{
+    margin: 0 0 50px 10px;
+  }
+  #text-left{
+    width: 70%;
+  }
+  #slider{
+    margin:100px 100px 0 5px;
+  }
+  #slider3{
+    margin:100px 100px 0 5px;
+  }
+  #slider5{
+    margin:100px 100px 0 5px;
+  }
+
+  /*VENTANA EMERGENTE*/
+  .content-modal h2{
+    font-size: 2rem;
+  }
+
+ .content-modal{
+  height:auto;
+ }
+
+  .cant_personas{
+    padding: 20px 20px;
+    border-top: 1px solid #dbdbdb;
+    font-size: 1.7rem;
+  }
+
+  .adultos input{
+  
+      margin-left:5%;
+      width:20%;
+      font-size: 1.2rem;
+  }
+
+  .ninos input{
+    margin-left:3%;
+    width:20%;
+    font-size: 1.2rem;
+    margin-top: 5%;
+  }
+  .fecha{
+    font-size: 1.7rem;
+  }
+
+  .botons{
+    height: 10%;
+  }
+
+  .cancel-button{
+    font-size: 1.5rem;
+    margin-left: 30%;
+  }
+  .acept-button{
+    
+    margin-left:4%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width:649px) and (max-width: 990px){
+
+  .degradado{
+    width: 100%;
+    height: 350px;
+  }
+  .cuadro-centrado{
+    width: 70%;
+    height: 120px;
+    font-size: 2.8em;
+  }
+  .element{
+    width: 92%;
+    align-items: center;
+    flex-direction: column;
+  }
+  .texto-left {
+    width: 95%;
+    font-size: 1.5rem;
+  }
+  #text-left{
+    width: 100%;
+  }
+  #titulo-left{
+    margin: 0 0 10px 10px;
+  }
+
+    /*VENTANA EMERGENTE*/
+    .content-modal h2{
+      font-size: 1.6rem;
+    }
+
+    .content-modal{
+      height:auto;
+     }
+   
+    .cant_personas{
+      padding: 20px 20px;
+      border-top: 1px solid #dbdbdb;
+      font-size: 1.2rem;
+    }
+  
+    .adultos input{
+    
+        margin-left:5%;
+        width:20%;
+        font-size: 1.2rem;
+    }
+  
+    .ninos input{
+      margin-left:3%;
+      width:20%;
+      font-size: 1.2rem;
+      margin-top: 5%;
+    }
+    .fecha{
+      font-size: 1.7rem;
+
+    }
+  
+
+  
+    .botons{
+      height: 10%;
+      font-size:1rem;
+    }
+  
+    .cancel-button{
+      font-size: 1rem;
+      margin-left: 24%;
+    }
+    .acept-button{
+      
+      margin-left:4%;
+      font-size: 1rem;
+    }
+}
+
+
+
+@media (min-width:576px) and (max-width:648px){
+ 
+  .degradado{
+    width: 100%;
+    height: 350px;
+  }
+  .cuadro-centrado{
+    width: 70%;
+    height: 130px;
+    font-size: 2.5em;
+  }
+  .element{
+    width: 92%;
+    align-items: center;
+    flex-direction: column;
+  }
+  .texto-left {
+    width: 95%;
+    font-size: 1.2rem;
+  }
+  #text-left{
+    width: 100%;
+  }
+  #titulo-left{
+    margin: 0 0 10px 10px;
+    width: 400px;
+    font-size: 2rem;
+  }
+  .boton-modal{
+    width: 300px;
+    padding: 10px 15x;
+    border-radius: 30px;
+    margin: 30px 0 0 10px;
+  }
+  .no_sub{
+    font-size: 1em;
+  }
+  .carrusel-right {
+    width: 80%;
+    margin: 10px  10px ;
+  }
+  #slider {
+    width: 100%;
+    height: 60vw;
+  }
+  .orange-separator{
+    height:60px;
+  }
+
+    /*VENTANA EMERGENTE*/
+    .content-modal h2{
+      font-size: 1.6rem;
+    }
+
+    .content-modal{
+      height:auto;
+     }
+   
+    .cant_personas{
+      padding: 20px 20px;
+      border-top: 1px solid #dbdbdb;
+      font-size: 1.2rem;
+    }
+  
+    .adultos input{
+    
+        margin-left:5%;
+        width:20%;
+        font-size: 1.2rem;
+    }
+  
+    .ninos input{
+      margin-left:3%;
+      width:20%;
+      font-size: 1.2rem;
+      margin-top: 5%;
+    }
+    .fecha{
+      font-size: 1.7rem;
+
+    }
+    .botons{
+      height: 10%;
+      font-size:1rem;
+    }
+  
+    .cancel-button{
+      font-size: 0.8rem;
+      margin-left: 20%;
+    }
+    .acept-button{
+      
+      margin-left:4%;
+      font-size: 0.8rem;
+    }
+
+}
+
+@media (min-width:433px) and (max-width:575px){ 
+
+  body{
+  width: 100%;
+}
+.degradado{
+  width: 100%;
+  height: 400px;
+}
+.cuadro-centrado{
+  width: 70%;
+  height: 140px;
+  font-size: 2.5em;
+}
+.element{
+  width: 100%;
+  align-items: center;
+  font-size: 0.6rem;
+  flex-direction: column;
+}
+.texto-left {
+  width: 100%;
+  font-size: 1.3rem;
+}
+#text-left{
+  width: 100%;
+  padding: 0 50px 0 10px;
+}
+#titulo-left{
+  width: 85%;
+  margin: 0 0 50px 10px;
+  font-size: 1.7rem;
+}
+.boton-modal{
+  width: 220px;
+  padding: 10px 15x;
+  border-radius: 30px;
+  margin: 30px 0 0 10px;
+}
+.no_sub{
+  font-size: 1.1rem;
+}
+.carrusel-right {
+  width: 80%;
+  margin: 10px  10px ;
+}
+#slider {
+  width: 100%;
+  height: 50vw;
+  margin: 30px 0 20px 50px;
+}
+.orange-separator{
+  height:50px;
+}
+
+/*VENTANA EMERGENTE*/
+.content-modal h2{
+  font-size: 1.6rem;
+}
+
+.content-modal{
+  height:auto;
+ }
+
+.cant_personas{
+  padding: 20px 20px;
+  border-top: 1px solid #dbdbdb;
+  font-size: 1.2rem;
+}
+
+.adultos input{
+
+    margin-left:5%;
+    width:20%;
+    font-size: 1.2rem;
+}
+
+.ninos input{
+  margin-left:3%;
+  width:20%;
+  font-size: 1.2rem;
+  margin-top: 5%;
+}
+.fecha{
+  font-size: 1.7rem;
+}
+
+.table-body td{
+  font-size: 0.7rem;
+}
+.botons{
+  height: 10%;
+  margin-left: 2%;
+}
+
+.cancel-button{
+  font-size: 0.8rem;
+  width:40%;
+  padding:2%;
+  margin-left:1%;
+}
+.acept-button{
+  width:40%;
+  padding:2%;
+  margin-left:1%;
+  font-size: 0.8rem;
+}
+}
+
+@media (max-width:432px){
+  body {
+    width: 100%;
+  }
+  .degradado {
+    width: 100%;
+    height: 300px;
+  }
+  .cuadro-centrado {
+    width: 80%;
+    height: 120px;
+    font-size: 2em;
+  }
+  .element {
+    width: 100%;
+    align-items: center;
+    font-size: 0.6rem;
+    flex-direction: column;
+  }
+  .texto-left {
+    width: 100%;
+    font-size: 1rem;
+  }
+  #text-left{
+    width: 100%;
+    padding: 0 20px 0 10px;
+  }
+  #titulo-left{
+    width: 300px;
+    margin: 10px 10px;
+  }
+  .boton-modal{
+    width: 200px;
+    padding: 10px 10px;
+    border-radius: 30px;
+    margin-top: 30px;
+  }
+  .carrusel-right {
+    width: 90%;
+    margin: 10px 0 10px 0;
+  }
+  #slider {
+    width: 100%;
+    height: 50vw;
+    margin: 20px 0 20px 50px;
+}
+  .orange-separator{
+    height:50px;
+  }
+  .no_sub{
+    font-size: 1.1rem;
+  }
+  
+/*VENTANA EMERGENTE*/
+.content-modal h2{
+  font-size: 1.5rem;
+}
+
+.content-modal{
+  height:auto;
+ }
+
+.cant_personas{
+  padding: 20px 20px;
+  border-top: 1px solid #dbdbdb;
+  font-size: 1rem;
+}
+
+.adultos input{
+
+    margin-left:5%;
+    width:20%;
+    font-size: 1rem;
+}
+
+.ninos input{
+  margin-left:3%;
+  width:20%;
+  font-size: 1rem;
+  margin-top: 5%;
+}
+.fecha{
+  font-size: 1.4rem;
+}
+
+.table-body td{
+  font-size: 0.7rem;
+}
+.botons{
+  height: 10%;
+  margin-left: 2%;
+}
+
+.cancel-button{
+  font-size: 0.8rem;
+  width:40%;
+  padding:2%;
+  margin-left:1%;
+}
+.acept-button{
+  width:40%;
+  padding:2%;
+  margin-left:1%;
+  font-size: 0.8rem;
+}
+}
+
