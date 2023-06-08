@@ -1,12 +1,23 @@
-@extends('layouts.app')
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @section('styles')
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="{{ asset('css/users/myAccount.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/products/productsviews.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
-@section('tittle', 'Mi Perfil')
+    @parent
 
-@section('content_header')
-<h1>Mi Perfil</h1>
-@stop
+</head>
 
-@section('content')
+<html>
+<body>
+<header>
+        @include('layouts.nav')
+    </header>
 
 <h1>Mi Perfil</h1>
 
@@ -89,12 +100,9 @@
             </div>
         </div>
 	</div>
+    @include('layouts.footer')
 </body>
 </html>
-
-@endsection
-
-@section('js')
 
 <script>
     @if(session('update')) {
@@ -133,14 +141,3 @@
         })
     })
 </script>
-
-
-@endsection
-
-@section('styles')
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="{{ asset('css/users/myAccount.css') }}">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-
-@endsection
