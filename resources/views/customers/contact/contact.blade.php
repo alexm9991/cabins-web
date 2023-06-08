@@ -12,45 +12,7 @@
 
 <body>
     <header>
-        <nav>
-            <div class="nav-logo">
-                <img src="imagenes/WhatsApp Image 2023-04-25 at 19.14.27.jpeg" alt="Logo">
-            </div>
-
-            <button id="shopin-car-btn"><img src="imagenes/carrito-de-compras.png" alt="Cesta"></button>
-
-            <button id="burger-btn"><img src="imagenes/menu.png" alt="Menú"></button>
-            <div class="nav-cont">
-                <div class="nav-links">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <ul class="nav center">
-                            <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="#"><span>Inicio</span></a></li>
-                            <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a
-                                    href="../../customers/services"><span>Servicios</span></a></li>
-                            <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a
-                                    href="{{ route('products.productsviews') }}"><span>Productos</span></a></li>
-                            <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="#"><span>Reservar</span></a></li>
-                            <li class="col-lg-1 col-md-1 col-sm-3 col-xs-12"><a href="#"><span>Contáctanos</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <button id="register-btn"
-                    onclick="window.location.href='{{ url('register') }}'">Registrarse</a></button>
-                <button id="login-btn" onclick="window.location.href='{{ url('login') }}'">Iniciar sesión</button>
-
-                <button id="profile-btn" onclick="window.location.href='{{ url('user-info') }}'">Mi cuenta<img
-                        class="subM-arrow" src="imagenes/down-arrow.png" alt=""></a></button>
-                <button id="log-out-btn"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out<img
-                        class="logout-icon" src="imagenes/logout.png" alt="Logout"></button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-
-            </div>
-        </nav>
+        @include('layouts.nav')
     </header>
 
     <div class="container-fluid py-5">
@@ -122,45 +84,8 @@
             </div>
         </div>
     </div>
-    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-up"></i></a>
-    <footer class="bg-img">
-        <div class="footer-col col-lg-1 col-md-1 col-sm-6 col-xs-12">
-            <img id="logo-ft" src="imagenes/WhatsApp Image 2023-04-25 at 19.14.27.jpeg" alt="Logo">
-            <div class="logo-col">
-                <div class="social-icons">
-                    <a href="#"><img src="imagenes/facebook.png" alt="logo FB"></a>
-                    <a href="#"><img src="imagenes/gorjeo.png" alt="logo TW"></a>
-                    <a href="#"><img src="imagenes/instagram.png" alt="Logo IG"></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-col col-lg-1-5 col-md-1 col-sm-6 col-xs-12">
-            <h3>¿Por qué elegirnos?</h3>
-            <p>How it works</p>
-            <br>
-            <p>Featured</p>
-            <br>
-            <p>Partnership</p>
-        </div>
-        <div class="footer-col col-lg-1-5 col-md-1 col-sm-6 col-xs-12">
-            <h3>Contactos</h3>
-            <p class="font-email">Correo: laarboledafincacalarca@gmail.com</p>
-            <br>
-            <p>Teléfono: +57 7383738</p>
-            <br>
-            <p>Celular: 312 526 77 26</p>
-        </div>
-        <div class="footer-col col-lg-1-5 col-md-1 col-sm-6 col-xs-12">
-            <h3>Danos tu opinión</h3>
-            <button class="contactButton" onclick="window.location.href='{{ url('pqrs.create') }}'"> PQRS</button>
-        </div>
-        <div class="footer_copyright">
-            <div class="copy">©2023 Todos los derechos reservados</div>
-            <div class="copy">Diseñado por ADSI - 205 SENA</div>
-            <div class="copy">Terminos y Condiciones</div>
-        </div>
-    </footer>
-    <div class="bg-ft"></div>
+
+    @include('layouts.footer')
 </body>
 
 </html>
