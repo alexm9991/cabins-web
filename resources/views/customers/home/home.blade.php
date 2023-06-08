@@ -221,8 +221,8 @@
             }
         });
     }
-</script>
-<script>
+
+
     if (window.innerWidth < 992) {
         $('.nav-cont').hide();
     }
@@ -236,8 +236,7 @@
         $('.nav-cont').hide();
         }
     });
-</script>
-<script>
+
     function handleWindowSize() {
     if (window.innerWidth < 992) {
         $('#log-out-btn').show();

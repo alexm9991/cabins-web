@@ -1,11 +1,13 @@
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+
 <footer class="bg-img">
     <div class="footer-col col-lg-1 col-md-1 col-sm-6 col-xs-12">
-        <img id="logo-ft" src="imagenes/WhatsApp Image 2023-04-25 at 19.14.27.jpeg" alt="Logo">
+        <img id="logo-ft" src="{{ asset('imagenes/WhatsApp Image 2023-04-25 at 19.14.27.jpeg') }}" alt="Logo">
         <div class="logo-col">
             <div class="social-icons">
-                <a href="#"><img src="imagenes/facebook.png" alt="logo FB"></a>
-                <a href="#"><img src="imagenes/gorjeo.png" alt="logo TW"></a>
-                <a href="#"><img src="imagenes/instagram.png" alt="Logo IG"></a>
+                <a href="#"><img src="{{ asset('imagenes/facebook.png') }}" alt="logo FB"></a>
+                <a href="#"><img src="{{ asset('imagenes/gorjeo.png') }}" alt="logo TW"></a>
+                <a href="#"><img src="{{ asset('imagenes/instagram.png') }}" alt="Logo IG"></a>
             </div>
         </div>
     </div>
@@ -37,6 +39,7 @@
     </div>
 </footer>
 <div class="bg-ft"></div>
+
 
 <script>
 
