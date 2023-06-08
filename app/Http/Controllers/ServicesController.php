@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Detail_service;
-use App\Models\People_for_price;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +43,6 @@ class ServicesController extends Controller
         $services -> description =$request ->description;
         $services -> max_individuals =$request ->max_individuals;
         $services -> rules = $request -> rules;
-        $services -> price = $request ->price;
         $services -> save();
 
 
@@ -86,7 +84,6 @@ class ServicesController extends Controller
         $services -> description = $request ->description;
         $services -> max_individuals = $request ->max_individuals;
         $services -> rules = $request -> rules;
-        $services -> price = $request ->price;
         $services -> save();
 
         return redirect(route('services',$id))->with('update','ok');
@@ -340,4 +337,11 @@ class ServicesController extends Controller
 
       return view('customers.services.servicesviews', compact('services'));
     }
+    public function detailservices($id){
+        $services = Service::findOrFail($id);
+        $details = Detail_service::with('resource')->where('SERVICES_id','=',$id)->where('state_record', 'ACTIVAR')
+        ->get();
+
+      return view('customers.services.servicesdetails', compact('details','services'));
+}
 }

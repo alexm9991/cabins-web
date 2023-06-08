@@ -65,6 +65,9 @@ Route::resource('/pqrs', PqrsController::class)->names('pqrs');
 Route::get('services/{id}/disable', [App\Http\Controllers\ServicesController::class, 'disableServices'])->name('services.disableServices');
 Route::get('services/{id}/active', [App\Http\Controllers\ServicesController::class, 'activeServices'])->name('services.activeServices');
 Route::resource('/services', ServicesController::class)->names('services');
+Route::get('services/servicesviews',[App\Http\Controllers\ServicesController::class,'servicesviews']) ->name("services.servicesviews");
+Route::get('services/{service}/servicesdetails',[App\Http\Controllers\ServicesController::class,'detailservices']) ->name("services.detailservices");
+
 
 //Rutas de la tabla detalles servicios
 Route::get('services/{services}/addDetail',[App\Http\Controllers\ServicesController::class,'addDetail']) ->name("services.addDetail");
@@ -100,7 +103,6 @@ Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register'
 //RUTAS CARRITO DE COMPRAS
 
 include 'shoppingCar.php';
-
 
 //RUTAS TEMPORADAS
 
