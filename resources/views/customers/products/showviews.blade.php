@@ -1,13 +1,26 @@
-@extends('layouts.app')
-
-@section('tittle', 'Detalles')
-
-@section('content')
-
-    <?php $subtotal = $products->price;
+<?php $subtotal = $products->price;
     $format = number_format($subtotal); ?>
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @section('styles')
+    <link rel="stylesheet" href="{{ asset('css/products/productsviews.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/products/showviews.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    @parent
+
+</head>
+
+
     <body class="cuerpo">
+
+    <header>
+        @include('layouts.nav')
+    </header>
+
         <main id="profile" class="profile">
 
             <hgroup class="section-title">
@@ -56,7 +69,7 @@
             <br>
             <br><br>
         </main>
-
+        @include('layouts.footer')
     </body>
 
     <script>
@@ -113,12 +126,3 @@
             text.innerHTML = output;
         }
     </script>
-
-@endsection
-
-@section('styles')
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/products/showviews.css') }}">
-@endsection

@@ -1,20 +1,19 @@
-@extends('layouts.app')
-
-@section('tittle','Productos')
-@section('content')
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @section('styles')
+    <link rel="stylesheet" href="{{ asset('css/products/productsviews.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     @parent
 
 </head>
 
-@endsection
-
 <body class="cuerpo">
+<header>
+        @include('layouts.nav')
+    </header>
     <main>
 
         <div class="cuadro">
@@ -56,7 +55,7 @@
         </div>
 
     </main>
-
+    @include('layouts.footer')
 </body>
 
 <!-- esto es para el buscador -->
@@ -87,9 +86,59 @@
 
         });
     });
-</script>
-@endsection
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('css/products/productsviews.css') }}">
-@endsection
+    const carousel = document.querySelector('.carousel');
+    const slides = carousel.querySelector('.slides');
+    const prevButton = carousel.querySelector('.prev');
+    const nextButton = carousel.querySelector('.next');
+    const slideWidth = carousel.clientWidth;
+
+    let slideIndex = 0;
+
+    function showSlide(index) {
+    slides.style.transform = `translateX(-${index * slideWidth}px)`;
+    }
+
+    showSlide(slideIndex);
+
+    function nextSlide() {
+    slideIndex++;
+    if (slideIndex >= slides.children.length) {
+        slideIndex = 0;
+    }
+    showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+    slideIndex--;
+    if (slideIndex < 0) {
+        slideIndex = slides.children.length - 1;
+    }
+    showSlide(slideIndex);
+    }
+
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+</script>
+
+<script>
+    function confirmarEnvio() {
+        // Mostrar la confirmación de SweetAlert2
+        Swal.fire({
+            title: '¿Estás seguro de que quieres ir al chat de WhatsApp?',
+            text: 'Serás redirigido a WhatsApp Web.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.open('https://web.whatsapp.com/send?phone=+573147723048&text=Hola, quiero pedir información sobre su finca turística 😊', '_blank');
+            }
+        });
+    }
+
+
+
+</script>
