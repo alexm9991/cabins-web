@@ -27,10 +27,6 @@
             <label class="form-label">{{ __('RULES') }}</label>
             <input type="text" name="rules"  class="form-control" placeholder="Reglas" required>
         </div>
-        <div class="mb-3">
-            <label class="form-label">{{ __('PRICE') }}</label>
-            <input type="number" min=0 max=10000000  name="price"  class="form-control" placeholder="Precio" required>
-        </div>
 
         <br>
         <br>
