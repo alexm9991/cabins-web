@@ -20,9 +20,6 @@
             <div class="text-center">
                 <h1 align="center">CONTACTA CON NOSOTROS</h1>
                 <div class="linea-blanca"></div>
-                <br>
-                <br>
-                <br>
             </div>
             <div class="row">
                 <div class="col-md-5">
@@ -34,8 +31,6 @@
                                 sunt nostrud amet. </p>
                         </div>
                     </div>
-                    <br>
-                    <br>
                     <div class="uno">
                         <i class="bi bi-envelope"></i>
                         <div class="d-flex flex-column">
@@ -43,8 +38,6 @@
                             <p class="m-0"> <a class="correo"
                                     href="laarboledafincacalarca@gmail.com">laarboledafincacalarca@gmail.com</a></p>
                         </div>
-                        <br>
-                        <br>
                     </div>
                     <div class="uno">
                         <i class="bi bi-telephone"></i>
@@ -53,8 +46,6 @@
                             <p class="m-0"><a class="telefono" href="tel:305-s8605546">305-8605546</a></p>
                         </div>
                     </div>
-                    <br>
-                    <br>
                     <div class="">
                         <i class="bi bi-geo-alt"></i>
                         <div class="d-flex flex-column">
@@ -62,25 +53,23 @@
                                 <h5 class="font-weight-bold">Sede principal y Oficina:</h5>
                                 <p>Calle 43 #41-15 Br/ Valle del Lili</p>
                             </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <div class="uno">
+                            <div class="ubic">
                                 <p class="m-0"> <strong> UBICACION FINCA:</strong> </p>
                                 <div class="mapa">
-                                    <hr><iframe
+                                    <iframe class="map_frame"
                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.6910492765855!2d-75.68431522610845!3d4.468406543629789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e38f727bf3fda87%3A0xab83da2b03563d2a!2sFinca%20tur%C3%ADstica%20la%20Arboleda!5e0!3m2!1ses!2sco!4v1681500080233!5m2!1ses!2sco"
-                                        width="335" height="260" style="border: 0;" allowfullscreen="" loading="lazy"
+                                        style="border: 0;" allowfullscreen="" loading="lazy"
                                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--  -->
+                <div class="col-md-7">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
