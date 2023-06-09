@@ -5,10 +5,8 @@
     @section('styles')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/users/myAccount.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/products/productsviews.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-
     @parent
 
 </head>
@@ -17,7 +15,7 @@
 <body>
 <header>
         @include('layouts.nav')
-    </header>
+</header>
 
 <h1>Mi Perfil</h1>
 
@@ -88,12 +86,15 @@
                     </div>
 
                     <div class="allButtons">
-                        <button type="submit" class="border-radius-20 updatebutton btn btn-success  btn-sm rounded-pill" ><i class="fa fa-save"></i> {{ __('Update') }}</button>
+
+                       <button type="submit" class="padding-10 border-radius-20 changebutton btn btn-success btn-sm rounded-pill">
+                        <i class="fas fa-save "> </i> {{ __('Update') }}</button>
+
                         <a type="submit" href="{{ route('users.showPassword',$user->id) }}" class="padding-10 border-radius-20 changebutton btn btn-info btn-sm rounded-pill" >
                             <i class="fa fa-edit"></i> {{ __('Change Password') }}</a>
 
                         @if($role == 1)
-                            <a class="border-radius-20 btn btn-dashboard padding-10 dashboardbutton" type="submit" href="{{ route('users.index') }}"  ><i class="fa fa-cogs"></i> Dashboard</a>
+                            <a class="border-radius-20 btn btn-dashboard padding-10 dashboardbutton" type="submit" href="{{ Route('users.index') }}"  ><i class="fa fa-cogs"></i> Dashboard</a>
                         @endif
                     </div>
                 </form>
@@ -104,7 +105,7 @@
 </body>
 </html>
 
-<script>
+<!-- <script>
     @if(session('update')) {
             const Toast = Swal.mixin({
                 toast: true,
@@ -140,4 +141,4 @@
             }
         })
     })
-</script>
+</script> -->

@@ -140,6 +140,10 @@ select {
     margin-left: 20px;
 }
 
+.btn-success{
+    background-color: #28a745;
+}
+
 /* Ajustes responsivos */
 /*@media screen and (max-width: 768px) {
   .container {
