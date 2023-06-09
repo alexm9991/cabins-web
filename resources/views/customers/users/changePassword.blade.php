@@ -1,139 +1,21 @@
-@extends('layouts.app')
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @section('styles')
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="{{ asset('css/users/changePassword.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    @parent
 
-@section('title', 'Cambiar contraseña')
+</head>
 
-
-@section('content')
-    <style>
-       * {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-            font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-
-            
-		}
-        body {
-			background-color: #FFFFFF;
-		}
-        
-        .container {
-          max-width: 800px;
-          height: 400px;
-          margin: 0 auto;
-          padding: 20px;
-          background: #FFE1C5 !important;
-          margin-top: 30px;
-          margin-bottom: 30px;
-          border-radius: 12px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-       }
-
-        h1 {
-          margin-top: 10px;
-          font-size: 32px;
-          font-weight: 500;
-          margin-bottom: 10px;
-          color: #333;
-          text-align: center;
-        }
-
-        .card {
-          border: none;
-          box-shadow: 0 0 5px rgba(0,0,0,0.3);
-          border-radius: 10px;
-          background: #FFFFFF;
-          width: 100%;
-          margin-top: 20px;
-          height:500px;
-          margin-bottom: 30px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .card-body {
-          padding: 0 50px;
-        }
-
-        .form {
-          width: 100%;
-          height: 100%; 
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          
-        }
-
-        .form-group {
-          display: flex;
-          justify-content:  column;
-          margin-bottom: 16px;
-          align-items: center;
-          margin-right: 90px;
-        }
-
-        label {
-          width: 40%;
-          text-align: right;
-          font-weight: bold;
-  
-        }
-
-        input{
-          width: 150%;
-          padding: 7px;
-          font-size: 16px;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          box-shadow: inet 0 2px 2px rgba(0,0,0,0.1);
-          margin-left: 30px;
-        }
-        select {
-          width: 110%;
-          padding: 7px;
-          font-size: 16px;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          box-shadow: inet 0 2px 2px rgba(0,0,0,0.1);
-          margin-left: 43px;
-        }
-
-        .btn {
-          border-radius: 20px;
-          font-size: 16px;
-          font-weight: bold;
-          padding: 7px 10px;
-          margin-top: 5px;
-          cursor: pointer;
-          margin-left: 160px;
-        }
-
-        .btn-success {
-          background-color: #28a745 ;
-          color: white;
-          border: none;
-          border-color: #28a745;
-        }
-
-        .btn-primary {
-          background-color: #007bff ;
-          color: white;
-          border: none;
-          border-color: #007bff;
-          text-decoration: none;
-        }
-        .btn-success {
-          margin-right: 10px;
-        }
-        .btn-primary{
-          margin-left: 10px;
-        }
-    </style>
+<html>
+<body>
+<header>
+        @include('layouts.nav')
+</header>
     <h1>{{ __('Change Password') }}</h1>
 
     <div class="container">
@@ -173,7 +55,7 @@
 
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-success rounded-pill"><i class="fa fa-edit"></i>{{ __('Change Password') }}</button>
-                                    <a type="submit" href="{{ route('users.userInfo') }}" class="btn btn-primary rounded-pill"><i class="fasfa-undo-alt"></i> {{ __('Return') }}</a>
+                                    <a type="submit" href="{{ route('users.userInfo') }}" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
                                 </div>
 
                             </form>
@@ -183,9 +65,11 @@
             </div>
         </div>
     </div>
-@stop
+    @include('layouts.footer')
+</body>
+</html>
 
-@section('js')
+
 <script>
 function validar() {
     var campo = document.getElementById("new_password").value;
@@ -195,9 +79,7 @@ function validar() {
     }
     return true;
   }
-</script>
 
-<script>
 @if(session('success')) {
             const Toast = Swal.mixin({
                 toast: true,
@@ -218,4 +100,3 @@ function validar() {
         }
         @endif
 </script>
-@endsection
