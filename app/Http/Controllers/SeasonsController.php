@@ -17,7 +17,7 @@ class SeasonsController extends Controller
 
     public function index()
     {
-
+        $servi = Service::all();
         $season = Season::all();
         return view('modules.seasons.index', compact('season'));
     }
@@ -25,7 +25,8 @@ class SeasonsController extends Controller
     public function create()
     {
         $season = Season::all();
-        return view('modules.seasons.create', compact('season'));
+        $servi = Service::all();
+        return view('modules.seasons.create', compact('season','servi'));
     }
 
     public function store(Request $request)
@@ -40,12 +41,18 @@ class SeasonsController extends Controller
         $seasons -> price = $request ->price;
         $seasons-> save();
 
+        $servId = $request->input('tittleServi');
+        $seasons->services()->attach($servId);
+
         return redirect(route('seasons.index'))->with('ok','ok');
     }
 
     public function show($id)
     {
         $season = Season::findOrFail($id);
+
+        // $service = Service::find($id);
+        // $servi = $service->seasons;
         return view('modules.seasons.show', compact('season'));
 
     }
@@ -74,7 +81,7 @@ class SeasonsController extends Controller
     {
         $seasonId = 1;
 
-        $seasons = Seasons::table('seasons')
+        $seasons = Season::table('seasons')
                 ->join('services_for_season', 'seasons.id', '=', 'services_for_season.SEASONS_id')
                 ->join('detail_services', 'services_for_season.id', '=', 'detail_services.SERVICES_id')
                 ->join('services', 'detail_services.SERVICES_id', '=', 'services.id')
@@ -110,4 +117,12 @@ class SeasonsController extends Controller
         return redirect()->back();
     }
 
+    public function showDetail($id)
+    {
+        $service = Service::find($id);
+        $season = $service->seasons;
+
+        return view('modules.seasons.showDetail', compact('season','service'));
+
+    }
 }
