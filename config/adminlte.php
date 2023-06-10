@@ -242,6 +242,11 @@ return [
             'icon' => 'fas fa-question-circle',
         ],
         [
+            'text' => 'Temporadas',
+            'route'  =>'seasons.index',
+            'icon' => 'fas fa-leaf',
+        ],
+        [
             'text' => 'Ir A La Tienda',
             'route'  => 'home',
             'icon' => 'fas fa-store',
