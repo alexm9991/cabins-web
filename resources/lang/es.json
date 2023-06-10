@@ -122,11 +122,6 @@
     "File_number":"Número de radicado",
     "Bookings_id":"Número de reserva",
     "Evidence":"Evidencia",
-    "Detail season":"Detalles de Temporadas",
-    "See seasons":"Ver Temporadas",
-    "Add season":"Nueva Temporada",
-    "Initial Time":"Fecha Inicial",
-    "Final Time":"Fecha Final",
     "Detail season of":"Detalle temporada de",
     "Bookings code":"Código de reserva",
     "Download PDF":"Descargar PDF",
@@ -135,6 +130,15 @@
     "Amount child":"Cantidad de niños",
     "Total Services":"Valor total del servicio",
     "Total Bookings":"Valor total de la reserva",
-    "Total Products":"Total Productos"
+    "Total Products":"Total Productos",
+    "Detail season":"Detalles de Temporadas",
+    "See seasons":"Ver Temporadas",
+    "Add season":"Nueva Temporada",
+    "Initial Time":"Fecha Inicial",
+    "Final Time":"Fecha Final",
+    "Create season":"Crear Temporada",
+    "Update seasons":"Actualizar Temporada",
+    "Detail season ":"Detalle temporada ",
+    "Detail season for services":"Detalles temporada por servicio"
 
 }
