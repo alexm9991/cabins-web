@@ -6,8 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PqrsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ServicesController;
-use App\Http\Controllers\SeasonsController;
-use App\Http\Controllers\ShoppingCarController;
 
 Route::get('/', function () {
     return view('/customers/home/home');
@@ -32,7 +30,6 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
 
 //RUTAS USUARIOS - CAMBIO DE CONTRASEÑA
 
-// include 'users.php';
 
 //RUTAS PRODUCTOS
 Route::get('products/{id}/desactivar', [ProductsController::class, 'disableProducts'])->name('products.disableProducts');
@@ -94,8 +91,10 @@ include 'shoppingCar.php';
 
 //RUTAS TEMPORADAS
 
-Route::get('seasons/{id}/disable', [App\Http\Controllers\SeasonsController::class, 'disableSeasons'])->name('seasons.disableSeasons');
-Route::get('seasons/{id}/active', [App\Http\Controllers\SeasonsController::class, 'activeSeasons'])->name('seasons.activeSeasons');
-Route::get('services/{services}/seasonDetails',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
-Route::resource('season', SeasonsController::class)->names('seasons');
+include 'season.php';
+
+// Route::get('seasons/{id}/disable', [App\Http\Controllers\SeasonsController::class, 'disableSeasons'])->name('seasons.disableSeasons');
+// Route::get('seasons/{id}/active', [App\Http\Controllers\SeasonsController::class, 'activeSeasons'])->name('seasons.activeSeasons');
+// Route::get('services/{services}/seasonDetails',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
+// Route::resource('season', SeasonsController::class)->names('seasons');
 
