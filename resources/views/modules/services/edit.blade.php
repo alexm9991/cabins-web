@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="container">
-    <form class="confirmar" action="{{Route('services.update', $services->id)}}" method="GET"><!--Aqui va el POST-->
+    <form class="confirmar" action="{{Route('services.update', $services->id)}}" method="POST">
      @csrf
      @method('PUT')
         <div class="mb-3">
