@@ -5,7 +5,6 @@ use App\Models\Detail_service;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Types_individual;
 use App\Models\Resource;
 use DateTime;
 

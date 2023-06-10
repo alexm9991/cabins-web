@@ -2,13 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  overflow-x: hidden;
   font-family: sans-serif;
-  display: grid;
-  align-content: center;
 }
 
 .degradado {
@@ -125,7 +119,7 @@ body {
 }
 .container-modal{
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   top: 0; left: 0;
   background-color: rgba(144, 148, 150, 0.8);
@@ -134,16 +128,13 @@ body {
   align-items: center;
   z-index: 100;
 }
-#btn-modal:checked ~ .container-modal{
-  display: flex;
-  
-}
+
 .content-modal{
+  background-color: #fff;
   width: 100%;
-  padding: 5px;
+  padding: 100px;
   max-width: 45%;
   height: 90%;
-  background-color: #fff;
   border-radius: 4px;
 }
 .content-modal h2{
