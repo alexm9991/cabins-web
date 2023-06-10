@@ -3,23 +3,38 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ __('Create season of') }}</h1>
+    <h1>{{ __('Create season') }}</h1>
 @stop
 
 @section('content')
 <div class="container">
-    <form action="{{Route('seasons.store')}}" method="POST" enctype="multipart/form-data">
+    <form class="confirmar" action="{{Route('seasons.store' )}}" method="POST" enctype="multipart/form-data">
      @csrf
         <div class="mb-3">
             <label class="form-label">{{ __('TITTLE') }}</label>
             <select type="form-select" name="tittle" maxlength="255" class="form-control" placeholder="Titulo" required>
             <option selected >Seleccione una Opcion</option>
-            <option value="Temporada baja">Temporada Baja</option>
-            <option value="Temporada media">Temporada Media</option>
-            <option value="Temporada alta">Temporada Alta</option>
+                <option value="Precio Normal">Precio Normal</option>
+                <option value="Temporada baja">Temporada Baja</option>
+                <option value="Temporada media">Temporada Media</option>
+                <option value="Temporada alta">Temporada Alta</option>
             </select>
         </div>
-
+        
+        <div class="mb-3">
+        
+            <label class="form-label">{{ __('SERVICE') }}</label>
+            <select type="form-select" name="tittleServi" maxlength="255" class="form-control" placeholder="Titulo" required>
+            <option selected >Seleccione una Opcion</option>
+            @foreach($servi as $service)            
+            <option value="{{$service->id}}">{{$service->tittle}} </option>
+            @endforeach 
+            
+            </select>
+        
+        </div>
+        
+    
         <div class="mb-3">
             <label class="form-label">{{ __('DESCRIPTION') }}</label>
             <input type="text"  name="description" maxlength="255"  class="form-control" placeholder="Descripcion" required>
@@ -41,12 +56,6 @@
             <input type="number"  name="price" maxlength="255"  class="form-control" placeholder="Precio" required>
         </div>
 
-            <!-- <div class="mb-3">
-                <label class="form-label">{{ __('PRICE') }}</label>
-                <input type="number"  name="price" maxlength="255"  class="form-control" placeholder="Precio" required>
-            </div> -->
-
-
         <br>
         <br>
 
@@ -66,4 +75,24 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
+
+        
+    <script>
+       $('.confirmar').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Desea Crear La Temporada?',
+            showDenyButton: true,
+            confirmButtonText: 'Crear',
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            } else if (result.isDenied) {
+                Swal.fire('No Se Creo La Temporada', '', 'info')
+            }
+        })
+    })
+    </script>
 @stop

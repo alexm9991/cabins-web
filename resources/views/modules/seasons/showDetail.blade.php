@@ -3,7 +3,7 @@
 @section('title', 'Detalle Temporada')
 
 @section('content_header')
-<h1>{{ __('Detail season') }} </h1>
+<h1>{{ __('Detail season for services') }} </h1>
 @stop
 
 @section('content')
@@ -11,9 +11,9 @@
 <div class="card-body">
     <div class="content container ">
 
-        <div class="p-3">
+        <!-- <div class="p-3">
             <a href="{{ route('seasons.create')}}" class="btn btn-success rounded-pill"><i class="fas fa-plus-square"></i> {{ __('Add season') }}</a>
-        </div>
+        </div> -->
 
         <div class="col-sm-12">
             <div class="card px-3">
@@ -24,7 +24,7 @@
                                 <th class="text-center">{{ __('TITTLE') }}</th>
                                 <th class="text-center">{{ __('DESCRIPTION') }}</th>
                                 <th class="text-center">{{ __('INITIAL DATE') }}</th>
-                                <th class="text-center">{{ __('FINAL TIME') }}</th>
+                                <th class="text-center">{{ __('FINAL DATE') }}</th>
                                 <th class="text-center">{{ __('PRICE') }}</th>
                                 <th class="text-center"></th>
                                 <th class="text-center"></th>

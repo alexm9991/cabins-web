@@ -14,7 +14,12 @@
         @method('PUT')
         <div class="mb-3">
             <label class="form-label">{{ __('TITTLE') }}</label>
-            <input type="text" name="tittle" maxlength="20" value="{{$season->tittle}}" class="form-control" placeholder="Titlle" readonly="readonly">
+            <input type="text" name="tittle" maxlength="50" value="{{$season->tittle}}" class="form-control" placeholder="Titlle" readonly="readonly">
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">{{ __('SERVICE') }}</label>
+            <input type="text" name="tittle" maxlength="50" value="" class="form-control" placeholder="Titlle" readonly="readonly">
         </div>
 
         <div class="mb-3">
@@ -23,15 +28,15 @@
         </div>
         <div class="mb-3">
             <label class="form-label">{{ __('INITIAL DATE') }}</label>
-            <input type="number" name="max_individuals" min=0 max=100 value="{{$season->initial_date}}" class="form-control" placeholder="Max_individuals" readonly="readonly">
+            <input type="text" name="initial_date" value="{{date('d/m/Y', strtotime($season->initial_date)) }}" class="form-control" placeholder="Initial Date" readonly="readonly">
         </div>
         <div class="mb-3">
             <label class="form-label">{{ __('FINAL DATE') }}</label>
-            <input type="text" name="rules" value="{{$season->final_date}}" class="form-control" placeholder="Rules" readonly="readonly">
+            <input type="text" name="final_date" value="{{date('d/m/Y', strtotime($season->final_date))}}" class="form-control" placeholder="Final Date" readonly="readonly">
         </div>
         <div class="mb-3">
             <label class="form-label">{{ __('PRICE') }}</label>
-            <input type="text" name="rules" value="{{$season->price}}" class="form-control" placeholder="Rules" readonly="readonly">
+            <input type="number" name="price" min=0 max=100 value="{{$season->price}}" class="form-control" placeholder="Rules" readonly="readonly">
         </div>
 
 
