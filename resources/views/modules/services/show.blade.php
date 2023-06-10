@@ -29,10 +29,6 @@
             <label class="form-label">{{ __('RULES') }}</label>
             <input type="text" name="rules" value="{{$services->rules}}" class="form-control" placeholder="Rules" readonly="readonly">
         </div>
-        <div class="mb-3">
-            <label class="form-label">{{ __('PRICE') }}</label>
-            <input type="number" min=0 max=99999999999 name="price" class="form-control" value="{{$services->price}}" placeholder="Price" readonly="readonly">
-        </div>
 
         <div style="text-align: center; ">
             <a style="margin: 10px;" href="{{ Route('services.index') }}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>

@@ -29,10 +29,6 @@
             <label class="form-label">{{ __('RULES') }}</label>
             <input type="text" name="rules"  value="{{$services->rules}}"  class="form-control" placeholder="Rules">
         </div>
-        <div class="mb-3">
-            <label class="form-label">{{ __('PRICE') }}</label>
-            <input type="number" min=0 max=99999999999 name="price"  class="form-control" value="{{$services->price}}" placeholder="Price" >
-        </div>
 
 
         <button type="submit"  class="btn btn-success rounded-pill"><i class="fas fa-edit"></i> {{__('Update')}}</button>
