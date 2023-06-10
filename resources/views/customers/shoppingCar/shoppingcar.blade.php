@@ -20,7 +20,8 @@
         <h1 class="h1titulo">Carrito de compras</h1>
     </div>
     <main>
-        <div class=" tabla">
+
+    <div class=" tabla">
             <table style="margin-left: 2%;" class="bottom-border">
                 <thead>
                     <tr>
@@ -31,7 +32,8 @@
                 </thead>
                 <tbody>
 
-                    <?php $total = 0; ?>
+                    <?php $totalP = 0;
+                    $totalS = 100; ?>
                     @foreach ($products as $index => $product)
 
                     @if (gettype($product) == 'object')
@@ -42,7 +44,7 @@
                     <tr>
                         <div style="margin-top: 25%; margin-bottom: 25%;">
                             <td style=" text-align: center;">
-                                <img class="image" height="100px" src="{{ asset('storage/imgProducts').'/'.$product->imagen }}"/>
+                                <img class="image" height="100px" src="{{ asset('storage/imgProducts').'/'.$product->imagen }}" />
                             </td>
 
                         </div>
@@ -70,14 +72,14 @@
                         </form>
                         <td>
                             <div style="margin-bottom: 20%;">{{$format }}</div>
-                            <a class="a-quitar" href="{{Route('shoppingCar.clearProduct', $index )}}"> <i class="fas fa-trash"></i></a>
-                            {{-- <a class="a-quitar" href="{{Route('shoppingCar.clearProduct', $product->id )}}"> <i class="fas fa-trash"></i></a> --}}
+                            <a class="a-quitar" href="{{Route('shopingCar.clearProduct', $index )}}"> <i class="fas fa-trash"></i></a>
+                            {{-- <a class="a-quitar" href="{{Route('shopingCar.clearProduct', $product->id )}}"> <i class="fas fa-trash"></i></a> --}}
                         </td>
 
                     </tr>
 
 
-                    <?php $total = $total + $subtotal   ?>
+                    <?php $totalP = $totalP + $subtotal   ?>
                     @endif
                     @endforeach
 
@@ -93,13 +95,13 @@
                     <div style="margin-bottom: 4%;">
                         <tr>
                             <td colspan="2">Total Productos:</td>
-                            <td><?php $formattotal = number_format($total) ?>${{$formattotal}}</td>
+                            <td><?php $formattotalP = number_format($totalP) ?>${{$formattotalP}}</td>
                         </tr>
                     </div>
                     <div>
                         <tr>
                             <td colspan="2">Total Servicios:</td>
-                            <td><?php $formattotal = number_format($total) ?>${{$formattotal}}</td>
+                            <td><?php $formattotalS = number_format($totalS) ?>${{$formattotalS}}</td>
                         </tr>
 
                         <div style="border-bottom: 2px solid black; color: #333;"></div>
@@ -107,15 +109,33 @@
                     <div style="margin-top: 4%;">
                         <tr>
                             <td colspan="2">Total:</td>
-                            <td><?php $formattotal = number_format($total) ?>${{$formattotal}}</td>
+                            <td><?php $formattotal = $totalP + $totalS;
+                                $formattotalF = number_format($formattotal) ?>${{$formattotalF}}</td>
                         </tr>
 
-                        <button class="realizar-compra button-content">Realizar compra</button>
+                        <?php
+                        $totalenviar = $formattotal * 100;
+                        ?>
+
+                        <div>
+                            <div>
+                                <form action="https://checkout.wompi.co/p/" method="GET">
+                                    <!-- OBLIGATORIOS -->
+                                    <input type="hidden" name="public-key" value="pub_test_dz1eHfGhkYNzdzgff6YqngESzgqLRYvV" />
+                                    <input type="hidden" name="currency" value="COP" />
+                                    <input type="hidden" name="amount-in-cents" value="{{$totalenviar}}" />
+                                    <input type="hidden" name="reference" />
+                                    <input type="hidden" name="redirect-url" value="{{ Route('products.productsviews') }}" />
+
+                                    <button class="a-content" onclick="generarReferenciaPago()">Pagar</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="buttons-options">
+                <div style="margin-top: 50%;  margin-right: 20%; display: flex; flex-direction: column;">
                     <a id="addbuy" class="a-content" href="{{ Route('products.productsviews') }}">Seguir comprando</a>
-                    <a class="a-content" href="{{Route('shoppingCar.delete')}}">Vaciar carrito</a>
+                    <a class="a-content" href="{{Route('shopingCar.delete')}}">Vaciar carrito</a>
                 </div>
 
             </div>
@@ -128,6 +148,24 @@
 </html>
 
 <script>
+    function generarReferenciaPago() {
+        var longitud = 16; // Longitud de la referencia de pago
+        var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+        var referencia = '';
+
+        for (var i = 0; i < longitud; i++) {
+            var indice = Math.floor(Math.random() * caracteres.length);
+            referencia += caracteres.charAt(indice);
+        }
+
+        return referencia;
+    }
+
+    // Obtén el elemento input por su nombre y asigna la referencia generada
+    var inputReference = document.getElementsByName("reference")[0];
+    inputReference.value = generarReferenciaPago();
+
+    //Otro metodo
 
     $(document).on('click', '.btnSuma', function() {
         let idproducto = $(this).attr('data-idproducto');
@@ -153,8 +191,8 @@
 
     const actualizar = (id, cantidad) => {
         $.ajax({
-            url: '/shoppingCar/' + id + '/edit/' + cantidad, // la URL para la petición
-            // url: '/shoppingCar/' + id + '/update/' + cantidad, // la URL para la petición
+            url: '/shopingCar/' + id + '/edit/' + cantidad, // la URL para la petición
+            // url: '/shopingCar/' + id + '/update/' + cantidad, // la URL para la petición
             type: 'GET', // especifica si será una petición POST o GET
             dataType: 'json', // el tipo de información que se espera de respuesta
             success: function(json) { // código a ejecutar si la petición es satisfactoria; la respuesta es pasada como argumento a la función
@@ -166,6 +204,4 @@
             },
         });
     }
-
-
 </script>
