@@ -2,7 +2,7 @@
 
 <nav>
     <div class="nav-logo">
-        <img src="{{ asset('imagenes/WhatsApp Image 2023-04-25 at 19.14.27.jpeg') }}" alt="Logo">
+        <img src="{{ asset('imagenes/logo.jpeg') }}" alt="Logo">
     </div>
 
     @if (auth()->user())
@@ -10,7 +10,7 @@
                     src="{{ asset('imagenes/carrito-de-compras.png') }}" alt="Cesta"></button>
             @endif
 
-    <button id="burger-btn"><img src="imagenes/menu.png" alt="Menú"></button>
+    <button id="burger-btn"><img src="{{ asset('imagenes/menu.png') }}" alt="Menú"></button>
     <div class="nav-cont">
         <div class="nav-links">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -69,7 +69,7 @@ if (window.innerWidth < 992) {
     });
 
     function handleWindowSize() {
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < 993) {
         $('#log-out-btn').show();
         $('#profile-btn').mouseenter(function() {
             clearTimeout(timeout);
@@ -109,5 +109,3 @@ if (window.innerWidth < 992) {
 
 
 </script>
-
-
