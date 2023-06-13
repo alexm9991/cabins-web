@@ -27,7 +27,7 @@
                     tranquilidad en nuestra finca, no esperes mas ,!Te sorprenderas¡</p>
             </div>
             <div class="imagen">
-                <img src="{{ asset('imagenes/2021-06-24.jpg') }}" alt="">
+                <img src="{{ asset('imagenes/fincalaarboleda1.jpg') }}" alt="">
             </div>
         </div>
 
@@ -49,102 +49,113 @@
 
             <div class="subtitle">
                 <h2 style="margin-top: 0;">Como trabajamos</h2>
-                <p>A high-performing web-based car rental system for any rent- <br> a-car company and website</p>
+                <p>Hospédate en nuestras cabañas y despiértate con el cantar de los pájaros</p>
             </div>
             <div class="about__main">
                 <article class="about__icons three-section1">
                     <img src="imagenes/localizacion.png" class="about__icon">
-                    <h3 class="about__title"><strong>Choose Location</strong></h3>
-                    <p class="about__paragrah">Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas
-                        ultrices, orci vitae convallis mattis</p>
+                    <h3 class="about__title"><strong>Alejate del estres </strong></h3>
+                    <p class="about__paragrah">Nuestra ubicación fuera de la zona urbana es el lugar perfecto para ser uno con las naturaleza.</p>
                 </article>
 
                 <article class="about__icons three-section2">
                     <img src="imagenes/portafolio.png" class="about__icon">
-                    <h3 class="about__title"><strong>Pick-up Date</strong></h3>
-                    <p class="about__paragraph">Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas
-                        ultrices, orci vitae convallis mattis.</p>
+                    <h3 class="about__title"><strong>Destino del placer </strong></h3>
+                    <p class="about__paragraph">Aquí no tendrás que preocuparte por tu trabajo ni nada más que de disfrutar.</p>
                 </article>
 
 
                 <article class="about__icons three-section3">
                     <img src="imagenes/automovil.png" class="about__icon">
-                    <h3 class="about__title"><strong>Book your car</strong></h3>
-                    <p class="about__paragrah">Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas
-                        ultrices, orci vitae convallis mattis</p>
+                    <h3 class="about__title"><strong>Así de fácil es llegar</strong></h3>
+                    <p class="about__paragrah">Ya sea desde Armenia o tomando la ruta por Calarcá.
+                        Son solo 20 minutos los que te separan del placer.</p>
                 </article>
             </div>
         </section>
         <div class="contenido-con" style="text-align:center;">
             <div class="container-con">
-                <h1> Conoce este maravilloso lugar</h1>
+                <h2> Conoce este maravilloso lugar</h2>
                 <p>Accede a diferentes planes según loque desees con diversos <br> productos, agéndate ya!!</p>
                 <div class="square">
                     <div class="acordeon">
-                        <div style="background-image: url('imagenes/Finca.jpg');"></div>
-                        <div style="background-image: url('imagenes/finca\ \(1\).jpg');"></div>
-                        <div style="background-image: url('imagenes/finca\ \(2\).jpg');"></div>
-                        <div style="background-image: url('imagenes/finca\ \(3\).jpg');"></div>
-                        <div style="background-image: url('imagenes/finca\ \(4\).jpg');"></div>
+                        <div style="background-image: url('imagenes/fincalaarboleda2.jpg');"></div>
+                        <div style="background-image: url('imagenes/fincalaarboleda11.jpg');"></div>
+                        <div style="background-image: url('imagenes/fincalaarboleda8.jpg');"></div>
+                        <div style="background-image: url('imagenes/fincalaarboleda7.jpg');"></div>
+                        <div style="background-image: url('imagenes/fincalaarboleda6.jpg');"></div>
                     </div>
-                    <div class="carousel">
-                        <div class="slides">
-                          <div class="slide">
-                            <img src="imagenes/Finca.jpg">
-                          </div>
-                          <div class="slide">
-                            <img src="imagenes/finca (1).jpg">
-                          </div>
-                          <div class="slide">
-                            <img src="imagenes/finca (2).jpg">
-                          </div>
-                          <div class="slide">
-                            <img src="imagenes/finca (3).jpg">
-                          </div>
-                          <div class="slide">
-                            <img src="imagenes/finca (4).jpg">
-                          </div>
+                    <div class="carrousel">
+                        <div class="slideshow-container">
+
+                            <div class="mySlides fade">
+                                <img src="imagenes/fincalaarboleda2.jpg" alt="Imagen 1">
+                            </div>
+
+                            <div class="mySlides fade">
+                                <img src="imagenes/fincalaarboleda11.jpg" alt="Imagen 2">
+                            </div>
+
+                            <div class="mySlides fade">
+                                <img src="imagenes/fincalaarboleda8.jpg" alt="Imagen 3">
+                            </div>
+
+                            <div class="mySlides fade">
+                                <img src="imagenes/fincalaarboleda7.jpg" alt="Imagen 4">
+                            </div>
+
+                            <div class="mySlides fade">
+                                <img src="imagenes/fincalaarboleda6.jpg" alt="Imagen 5">
+                            </div>
+
+                            <a class="prev" onclick="plusSlides(-1)">❮</a>
+                            <a class="next" onclick="plusSlides(1)">❯</a>
+
                         </div>
-                        <button class="prev">Anterior</button>
-                        <button class="next">Siguiente</button>
+
+                        <div class="dots">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="container-qn">
                 <div class="titulo-quien">
-                    <h1>Quienes Somos?</h1>
-                    <p>A high-performing web-based car rental system for any rent- <br> a-car company and website</p>
+                    <h2>¿Quienes Somos?</h2>
+                    <p>Expertos en brindar buenas experiencias y magnificos recuerdos <br> Ven y recárgate de la buena vibra en la Finca La Arboleda.</p>
                 </div>
                 <div class="izquierdo-div">
                     <div class="izquierdo-div-inner">
-                        <img src="imagenes/finca (5).jpg" alt="Imagen 4">
+                        <img src="imagenes/fincalaarboleda5.jpg" alt="Imagen 4">
                     </div>
                 </div>
                 <div class="derecho-divs">
                     <div class="derecho-div">
-                        <img src="imagenes/imagen1.png" alt="Imagen 1">
+                        <img src="imagenes/logo.jpeg" alt="Imagen 1">
                         <div class="derecho-h1-p">
                             <div class="container-h2">
-                                <h2> <strong>Customer Support</strong> </h2>
-                                <p>Aliquam erat volutpat. Integer malesuada turpis id fringilla <br> suscipit. Maecenas ultrices.</p>
+                                <h3> <strong>¡Descubre un paraíso en nuestra finca turística <br> y reserva tu escape perfecto hoy mismo!</strong> </h3>
                             </div>
                         </div>
                     </div>
                     <div class="derecho-div">
-                        <img src="imagenes/imagen1.png" alt="Imagen 2">
+                        <img src="imagenes/fincalaarboleda12.jpg" alt="Imagen 2">
                         <div class="derecho-h1-p">
                             <div class="container-h2">
-                                <h2> <strong>Best Price Assured.</strong> </h2>
-                                <p>Aliquam erat volutpat. Integer malesuada turpis id fringilla <br> suscipit. Maecenas ultrices.</p>
+                                <h3> <strong>¿Que esperas?, relajate y diviertete en nuestra <br> finca turística y crea recuerdos inolvidables.</strong> </h3>
                             </div>
                         </div>
                     </div>
                     <div class="derecho-div">
-                        <img src="imagenes/imagen1.png" alt="Imagen 3">
+                        <img src="imagenes/fincalaarboleda13.jpg" alt="Imagen 3">
                         <div class="derecho-h1-p">
                             <div class="container-h2">
-                                <h2> <strong>Many Location</strong> </h2>
-                                <p>Aliquam erat volutpat. Integer malesuada turpis id fringilla <br> suscipit. Maecenas ultrices.s</p>
+                                <h3> <strong>Reserva ya y disfruta, donde cada detalle está <br> pensado para ofrecerte una experiencia única.</strong> </h3>
                             </div>
                         </div>
                     </div>
@@ -155,125 +166,44 @@
                     <h2>Experiencias!</h2>
                 </div>
                 <div class="dos">
-                    <img src="imagenes/finca (6).jpg" alt="">
+                    <img src="imagenes/fincalaarboleda10.jpg" alt="">
                 </div>
                 <div class="tres">
-                    <img src="imagenes/finca (7).jpg" alt="">
+                    <img src="imagenes/fincalaarboleda3.jpg" alt="">
                 </div>
             </div>
         </div>
 
-        <a class="whatsapp-float" target="_blank" onclick="confirmarEnvio();"><i class="fa fa-whatsapp my-float"></i></a>
         @include('layouts.footer')
 </body>
 
 </html>
 
 <script>
-    const carousel = document.querySelector('.carousel');
-    const slides = carousel.querySelector('.slides');
-    const prevButton = carousel.querySelector('.prev');
-    const nextButton = carousel.querySelector('.next');
-    const slideWidth = carousel.clientWidth;
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-    let slideIndex = 0;
-
-    function showSlide(index) {
-    slides.style.transform = `translateX(-${index * slideWidth}px)`;
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
     }
 
-    showSlide(slideIndex);
-
-    function nextSlide() {
-    slideIndex++;
-    if (slideIndex >= slides.children.length) {
-        slideIndex = 0;
-    }
-    showSlide(slideIndex);
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
     }
 
-    function prevSlide() {
-    slideIndex--;
-    if (slideIndex < 0) {
-        slideIndex = slides.children.length - 1;
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
     }
-    showSlide(slideIndex);
-    }
-
-    nextButton.addEventListener('click', nextSlide);
-    prevButton.addEventListener('click', prevSlide);
-
 </script>
-
-<script>
-    function confirmarEnvio() {
-        // Mostrar la confirmación de SweetAlert2
-        Swal.fire({
-            title: '¿Estás seguro de que quieres ir al chat de WhatsApp?',
-            text: 'Serás redirigido a WhatsApp Web.',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Sí',
-            cancelButtonText: 'No',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.open('https://web.whatsapp.com/send?phone=+573147723048&text=Hola, quiero pedir información sobre su finca turística 😊', '_blank');
-            }
-        });
-    }
-
-
-    if (window.innerWidth < 992) {
-        $('.nav-cont').hide();
-    }
-    $('#burger-btn').click(function() {
-        $('.nav-cont').slideToggle();
-    });
-    $(window).resize(function() {
-        if (window.innerWidth >= 992) {
-        $('.nav-cont').show();
-        } else {
-        $('.nav-cont').hide();
-        }
-    });
-
-    function handleWindowSize() {
-    if (window.innerWidth < 992) {
-        $('#log-out-btn').show();
-        $('#profile-btn').mouseenter(function() {
-            clearTimeout(timeout);
-        });
-    } else {
-        $('#log-out-btn').hide();
-        var timeout;
-        $('#profile-btn').mouseenter(function() {
-            $('#log-out-btn').fadeIn();
-        });
-        $('#profile-btn').mouseleave(function() {
-            timeout = setTimeout(function() {
-                $('#log-out-btn').fadeOut();
-            }, 500);
-        });
-        $('#log-out-btn').mouseenter(function() {
-            clearTimeout(timeout);
-        });
-        $('#log-out-btn').mouseleave(function() {
-            $('#log-out-btn').fadeOut();
-        });
-    }
-}
-
-    // Handle initial window size
-    handleWindowSize();
-
-    // Handle window resize
-    $(window).resize(function() {
-        handleWindowSize();
-    });
-
-    $('.subM-arrow').click(function(event) {
-        event.stopPropagation();
-        $('#log-out-btn').fadeIn();
-    });
-</script>
-
