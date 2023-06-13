@@ -24,7 +24,7 @@
                                 <th class="text-center">{{ __('TITTLE') }}</th>
                                 <th class="text-center">{{ __('DESCRIPTION') }}</th>
                                 <th class="text-center">{{ __('INITIAL DATE') }}</th>
-                                <th class="text-center">{{ __('FINAL TIME') }}</th>
+                                <th class="text-center">{{ __('FINAL DATE') }}</th>
                                 <th class="text-center">{{ __('PRICE') }}</th>
                                 <th class="text-center"></th>
                                 <th class="text-center"></th>

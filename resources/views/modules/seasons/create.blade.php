@@ -29,7 +29,6 @@
             @foreach($servi as $service)            
             <option value="{{$service->id}}">{{$service->tittle}} </option>
             @endforeach 
-            
             </select>
         
         </div>
@@ -95,4 +94,30 @@
         })
     })
     </script>
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: '{{ $errors->first('message') }}'
+            });
+        </script>
+    @endif
+
+
+    <script>
+        // Mostrar mensaje de éxito si existe
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: '{{ session("success") }}',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    </script>
+
+
+
 @stop

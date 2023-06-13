@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeasonRequest;
 use Illuminate\Http\Request;
 use App\Models\Season;
 use App\Models\Service;
+use Illuminate\Support\Facades\Validator;
+
 
 class SeasonsController extends Controller
 {
@@ -19,7 +22,7 @@ class SeasonsController extends Controller
     {
         $servi = Service::all();
         $season = Season::all();
-        return view('modules.seasons.index', compact('season'));
+        return view('modules.seasons.index', compact('season','servi'));
     }
 
     public function create()
@@ -29,9 +32,11 @@ class SeasonsController extends Controller
         return view('modules.seasons.create', compact('season','servi'));
     }
 
-    public function store(Request $request)
+    public function store(SeasonRequest $request )
     {
-
+        if ($request->input('error')) {
+            return redirect()->back()-> withErrors(['message'=> $request->input('mensaje')]);
+        }
         $seasons = new Season();
 
         $seasons -> tittle = $request -> tittle;
@@ -45,22 +50,22 @@ class SeasonsController extends Controller
         $seasons->services()->attach($servId);
 
         return redirect(route('seasons.index'))->with('ok','ok');
+
     }
 
     public function show($id)
     {
         $season = Season::findOrFail($id);
-
-        // $service = Service::find($id);
-        // $servi = $service->seasons;
-        return view('modules.seasons.show', compact('season'));
+        $service = $season->services->first();
+        return view('modules.seasons.show', compact('season','service'));
 
     }
 
     public function edit($id)
     {
         $season = Season::findOrFail($id);
-        return view('modules.seasons.edit',compact('season'));
+        $service = $season->services->first();
+        return view('modules.seasons.edit',compact('season','service'));
     }
 
     public function update(Request $request, $id)
@@ -125,4 +130,20 @@ class SeasonsController extends Controller
         return view('modules.seasons.showDetail', compact('season','service'));
 
     }
+
+    public function date(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'fecha_reserva' => 'required|date|after_or_equal:today',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Resto del código para guardar la reserva
+
+        return redirect()->back()->withSuccess('Reserva creada exitosamente');
+    }
+
 }

@@ -21,10 +21,10 @@
             <option value="Temporada alta" {{$season->tittle === "Temporada alta" ? 'selected':''}}>Temporada Alta</option>
             </select>
         </div>
-        
+
         <div class="mb-3">
             <label class="form-label">{{ __('SERVICE') }}</label>
-            <input type="text" name="tittle" maxlength="20" value="" class="form-control" placeholder="Titlle" readonly="readonly">
+            <input type="text" name="service" maxlength="20" value="{{$service->tittle}}" class="form-control" placeholder="Titlle" readonly="readonly">
         </div>
 
         <div class="mb-3">
@@ -35,7 +35,7 @@
         <div class="mb-3">
             <label class="form-label">{{ __('INITIAL DATE') }}</label>
             <input type="text"  name="initial_date" maxlength="255"  class="form-control" value="{{ $season->initial_date }}" required>
-       
+
         </div>
 
         <div class="mb-3">
@@ -58,7 +58,7 @@
         <br>
 
         <a href="{{Route('seasons.index')}}" type="submit" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }} </a>
-        
+
         <button type="submit"  class="btn btn-success rounded-pill"><i class="fas fa-edit"></i> {{__('Update')}}</button>
 
 
@@ -75,7 +75,7 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 
-    
+
     <script>
        $('.confirmar').submit(function(e) {
         e.preventDefault();

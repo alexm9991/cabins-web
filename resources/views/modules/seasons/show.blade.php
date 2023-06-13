@@ -16,10 +16,10 @@
             <label class="form-label">{{ __('TITTLE') }}</label>
             <input type="text" name="tittle" maxlength="50" value="{{$season->tittle}}" class="form-control" placeholder="Titlle" readonly="readonly">
         </div>
-        
+
         <div class="mb-3">
             <label class="form-label">{{ __('SERVICE') }}</label>
-            <input type="text" name="tittle" maxlength="50" value="" class="form-control" placeholder="Titlle" readonly="readonly">
+            <input type="text" name="service" maxlength="50" value="{{$service->tittle}}" class="form-control" placeholder="Titlle" readonly="readonly">
         </div>
 
         <div class="mb-3">
@@ -49,6 +49,7 @@
 
 </div>
 
+
 @stop
 
 @section('css')
@@ -56,5 +57,6 @@
 @stop
 
 @section('js')
+
 
 @stop
