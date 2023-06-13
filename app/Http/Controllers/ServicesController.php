@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Detail_service;
 use App\Models\Service;
+use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Resource;
@@ -341,6 +342,10 @@ class ServicesController extends Controller
         $details = Detail_service::with('resource')->where('SERVICES_id','=',$id)->where('state_record', 'ACTIVAR')
         ->get();
 
-      return view('customers.services.servicesdetails', compact('details','services'));
+        $seasons = DB::select('SELECT seasons.tittle, seasons.price, seasons.initial_date, seasons.final_date FROM seasons
+                            INNER JOIN services_for_season ON services_for_season.SEASONS_id = seasons.id
+                            INNER JOIN services ON services_for_season.services_id = services.id WHERE services.id = :id and seasons.state_record ="ACTIVAR" ',['id' => $id]);
+
+      return view('customers.services.servicesdetails', compact('details','services','seasons'));
 }
 }
