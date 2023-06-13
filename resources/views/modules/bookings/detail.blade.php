@@ -29,7 +29,7 @@
                         <span>{{ $booking->amount_child }}</span><br>
 
                         <label>{{ __('Total Bookings') }}:</label>
-                        <span>{{ $total_booking }}</span><br>
+                        <span>${{ $total_booking }}</span><br>
 
                         <label>{{ __('Initial Date') }}:</label>
                         <span>{{ $booking->initial_date }}</span><br>
@@ -47,10 +47,11 @@
                         <span>{{ $booking->tittle }}</span><br>
 
                         <label>{{ __('Total Services') }}:</label>
-                        <span>{{ $booking->total }}</span><br>
+                        <span>${{ $booking->total }}</span><br>
 
                     </div>
                     <hr>
+                    @if (count($booking_product) > 0)
                     <div class="text-center">
                         <h5>{{ __('PRODUCTS') }}</h5>
                     </div><br>
@@ -69,8 +70,8 @@
                                 <tr>
                                     <td>{{ $boop->name_product }}</td>
                                     <td>${{ $boop->price }}</td>
-                                    <td>{{ $boop->amount_products }}</td>
-                                    <td>{{ $boop->total }}</td>
+                                    <td>{{ $boop->amount_product }}</td>
+                                    <td>${{ $boop->total }}</td>
                                 </tr>
 
                             </tbody>
@@ -78,10 +79,11 @@
 
                         </table><br>
                         <label>{{ __('Total Products') }}:</label>
-                        <span>{{ $suma_product }}</span><br>
+                        <span>${{ $suma_product }}</span><br>
 
                     </div>
                     <hr>
+                    @endif
                     <div class="text-center">
                         <h5>{{ __('APPLICANT') }}</h5>
                     </div>
@@ -99,6 +101,7 @@
                         <span>{{ $booking->email }}</span>
                     </div>
                     <hr>
+                    @if (count($booking_members) > 0)
                     <div class="text-center">
                         <h5>{{ __('MEMBERS') }}</h5>
                     </div>
@@ -115,6 +118,7 @@
                     </div>
                     @endforeach
                     <hr>
+                    @endif
                     <div class="form-group">
                         <label>{{ __('Create Time') }}:</label>
                         <span>{{ $booking->create_time }}</span><br>

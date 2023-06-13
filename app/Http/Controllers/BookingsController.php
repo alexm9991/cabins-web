@@ -23,13 +23,12 @@ class BookingsController extends Controller
     public function index()
     {
 
-        $bookings = Bookings::select('bookings.id', 'services.tittle', 'bookings.create_time', 'bookings.initial_date', 'payment_methods.title_payment', 'users.name')
+        $bookings = Bookings::select('bookings.id', 'detail_service_bills.tittle', 'bookings.create_time', 'bookings.initial_date', 'payment_methods.title_payment', 'users.name')
             ->join('users', 'bookings.users_id', '=', 'users.id')
             ->join('payment_methods', 'bookings.payment_methods_id', '=', 'payment_methods.id')
             ->join('detail_booking', 'bookings.id', '=', 'detail_booking.booking_id')
             ->join('service_bills', 'detail_booking.service_bills_id', '=', 'service_bills.id')
-            ->join('detail_services', 'service_bills.detail_services_id', '=', 'detail_services.id')
-            ->join('services', 'detail_services.services_id', '=', 'services.id')
+            ->join('detail_service_bills', 'service_bills.id', '=', 'detail_service_bills.service_bills_id')
             ->distinct()->get();
         return view('modules.bookings.index', ['bookings' => $bookings]);
     }
@@ -41,6 +40,7 @@ class BookingsController extends Controller
      */
     public function create()
     {
+
     }
 
     /**
@@ -49,9 +49,20 @@ class BookingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function newEvent(Request $request)
     {
-        //
+        $booking = new Bookings;
+
+        $booking->final_date = 2023-05-20;
+        $booking->initial_date = 2023-05-21;
+        $booking->total = 300000;
+        $booking->booking_code = 'MNO123';
+        $booking->payment_reference = json_encode($request);
+        $booking->PAYMENT_METHODS_id = 1;
+        $booking->USERS_id = 1;
+        $booking->save();
+
+        echo("holaa");
     }
 
     /**
@@ -67,28 +78,27 @@ class BookingsController extends Controller
             'bookings.id',
             'bookings.final_date',
             'bookings.initial_date',
-            'bookings.total',
             'bookings.booking_code',
             'bookings.create_time',
             'bookings.update_time',
             'bookings.state_record',
             'payment_methods.title_payment',
-            'services.tittle',
+            'detail_service_bills.tittle',
             'users.name',
             'users.last_name',
             'users.phone_number',
             'users.email',
             'users.identification_number',
-            'service_bills.amount_adults',
-            'service_bills.amount_child',
+            'detail_service_bills.amount_adults',
+            'detail_service_bills.amount_child',
             'service_bills.total',
         )
             ->join('users', 'bookings.users_id', '=', 'users.id')
             ->join('payment_methods', 'bookings.payment_methods_id', '=', 'payment_methods.id')
             ->join('detail_booking', 'bookings.id', '=', 'detail_booking.booking_id')
             ->join('service_bills', 'detail_booking.service_bills_id', '=', 'service_bills.id')
+            ->join('detail_service_bills', 'service_bills.id', '=', 'detail_service_bills.service_bills_id')
             ->join('detail_services', 'service_bills.detail_services_id', '=', 'detail_services.id')
-            ->join('services', 'detail_services.services_id', '=', 'services.id')
             ->where('bookings.id', '=', $book->id)
             ->first();
 
@@ -98,18 +108,18 @@ class BookingsController extends Controller
             'booking_members.age_member',
             'booking_members.document_member'
         )
-
             ->join('bookings', 'booking_members.booking_id', '=', 'bookings.id')
             ->where('booking_members.booking_id', '=', $book->id)
             ->get();
 
         $booking_product = Product::select(
-            'products.name_product',
-            'products.price',
-            'product_bills.amount_products',
+            'detail_product_bills.name_product',
+            'detail_product_bills.price',
+            'detail_product_bills.amount_product',
             'product_bills.total',
         )
             ->join('product_bills', 'products.id', '=', 'product_bills.products_id')
+            ->join('detail_product_bills', 'product_bills.id', '=', 'detail_product_bills.product_bills_id')
             ->join('detail_booking', 'product_bills.id', '=', 'detail_booking.product_bills_id')
             ->where('detail_booking.booking_id', '=', $book->id)
             ->get();
