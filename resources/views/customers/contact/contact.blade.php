@@ -26,24 +26,21 @@
                     <div class="dos">
                         <i class=""></i>
                         <div class="d-flex flex-column">
-                            <p class="font-weight-bold"> Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                                amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat
-                                sunt nostrud amet. </p>
+                            <p class="font-weight-bold"> Contáctanos y permítenos brindarte toda la información que necesitas para hacer realidad tu próxima escapada a nuestra finca turística. </p>
                         </div>
                     </div>
                     <div class="uno">
                         <i class="bi bi-envelope"></i>
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column correo">
                             <h5 class="font-weight-bold">Correo Administrativo:</h5>
-                            <p class="m-0"> <a class="correo"
-                                    href="laarboledafincacalarca@gmail.com">laarboledafincacalarca@gmail.com</a></p>
+                            <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=laarboledafincacalarca@gmail.com" target="_blank"><p class="m-0">laarboledafincacalarca@gmail.com</p></a>
                         </div>
                     </div>
                     <div class="uno">
                         <i class="bi bi-telephone"></i>
                         <div class="d-flex flex-column">
                             <h5 class="font-weight-bold">Teléfono:</h5>
-                            <p class="m-0"><a class="telefono" href="tel:305-s8605546">305-8605546</a></p>
+                            <p class="m-0"><a class="telefono">305-8605546</a></p>
                         </div>
                     </div>
                     <div class="">
@@ -56,18 +53,13 @@
                             <div class="ubic">
                                 <p class="m-0"> <strong> UBICACION FINCA:</strong> </p>
                                 <div class="mapa">
-                                    <iframe class="map_frame"
+                                        <iframe class="map_frame"
                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.6910492765855!2d-75.68431522610845!3d4.468406543629789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e38f727bf3fda87%3A0xab83da2b03563d2a!2sFinca%20tur%C3%ADstica%20la%20Arboleda!5e0!3m2!1ses!2sco!4v1681500080233!5m2!1ses!2sco"
                                         style="border: 0;" allowfullscreen="" loading="lazy"
                                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="contact-form">
-                        <div id="success"></div>
                     </div>
                 </div>
             </div>
