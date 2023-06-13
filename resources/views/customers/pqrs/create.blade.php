@@ -58,10 +58,14 @@
               <label for="mensaje">{{ __('Message') }}:</label>
               <textarea required type="textarea" id="description" name="description" placeholder="Escriba su petición, queja, reclamo o sugerencia" id="description" required></textarea>
             </div>
+
+            <!-- inicio -->
             <div class="form-group">
               <label>{{ __('Evidence') }}:</label>
-              <input style="border-radius:10px" , type="file" name="evidence" accept="application/pdf" multiple="false" class="form-control" readonly>
+              <input style="border-radius:10px" type="file" name="evidence" id="evidence" accept=".pdf" class="form-control" readonly>
+              <span id="error-message" style="color: red; display: none;">El archivo seleccionado no es un PDF válido.</span>
             </div>
+<!-- fin -->
 
             <button type="submit" class="btn btn-success" style="display: block;margin: 0 auto;"><i class="fas fa-save "></i> {{ __('Send request') }}</button>
           </form>
@@ -75,6 +79,81 @@
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- inicio -->
+<script>
+  document.getElementById('evidence').addEventListener('change', function() {
+    var fileInput = this;
+    var errorMessage = document.getElementById('error-message');
+
+    if (fileInput.files && fileInput.files.length > 0) {
+      var file = fileInput.files[0];
+      var extension = file.name.split('.').pop().toLowerCase();
+
+      if (extension !== 'pdf') {
+        errorMessage.style.display = 'block';
+        fileInput.value = '';
+      } else {
+        errorMessage.style.display = 'none';
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('.formulario-send_request');
+    var formFields = form.querySelectorAll('input, select, textarea');
+
+    if (localStorage.getItem('formCache')) {
+      var formCache = JSON.parse(localStorage.getItem('formCache'));
+
+      for (var i = 0; i < formFields.length; i++) {
+        var fieldName = formFields[i].name;
+        if (formCache[fieldName]) {
+          formFields[i].value = formCache[fieldName];
+        }
+      }
+    }
+
+    form.addEventListener('submit', function() {
+      var formCache = {};
+
+      for (var i = 0; i < formFields.length; i++) {
+        var fieldName = formFields[i].name;
+        var fieldValue = formFields[i].value;
+        formCache[fieldName] = fieldValue;
+      }
+
+      localStorage.setItem('formCache', JSON.stringify(formCache));
+    });
+  });
+
+  window.addEventListener('load', function() {
+    localStorage.removeItem('formCache');
+  });
+</script>
+
+@if(session('save')){
+<script>
+  var codigo = "{{ session('save') }}";
+  Swal.fire({
+    icon: 'success',
+    title: 'PQRS creada!',
+    text: 'Tú número de radicado es: ' + codigo,
+    codigo,
+    footer: 'Gracias por darnos tu opinión!'
+  }).then(function() {
+    document.querySelector('.formulario-send_request').reset();
+    localStorage.removeItem('formCache');
+  });
+</script>
+}
+@endif
+<!-- fin -->
+
+
+
 
 @if(session('save')) {
 <script>
