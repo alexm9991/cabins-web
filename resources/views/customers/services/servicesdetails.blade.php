@@ -42,7 +42,6 @@
 
                         <label for="btn-modal"
                             onclick="openModal('{{ $detail->tittle }}','{{ $detail->id }}')">RESERVAR AHORA </label>
-
                     </div>
                 </div>
 
@@ -121,18 +120,22 @@
                     var inicio = $datepicker1.datepicker("getDate");
                     var final = $datepicker2.datepicker("getDate");
 
-                    if (inicio === null || final === null) {
-                        alert("Por favor seleccione una fecha de inicio y una fecha final");
+                    if (vadultos == '' || vninos == '') {
+                        alert("Por favor ingrese una cantidad de Adultos y niños");
                     } else {
-                        var msPerDay = 24 * 60 * 60 * 1000;
-                        var daysDiff = Math.round((final - inicio) / msPerDay);
-
-                        if (daysDiff > 30) {
-                            alert("El rango de fechas seleccionado excede los 30 días permitidos");
+                        if (inicio === null || final === null) {
+                            alert("Por favor seleccione una fecha de inicio y una fecha final");
                         } else {
-                            var inicio_resolve = $.datepicker.formatDate("dd-mm-yy", inicio);
-                            var final_resolve = $.datepicker.formatDate("dd-mm-yy", final);
-                            enviarcarrito(id_service, vninos, vadultos, inicio_resolve, final_resolve);
+                            var msPerDay = 24 * 60 * 60 * 1000;
+                            var daysDiff = Math.round((final - inicio) / msPerDay);
+
+                            if (daysDiff > 30) {
+                                alert("El rango de fechas seleccionado excede los 30 días permitidos");
+                            } else {
+                                var inicio_resolve = $.datepicker.formatDate("dd-mm-yy", inicio);
+                                var final_resolve = $.datepicker.formatDate("dd-mm-yy", final);
+                                enviarcarrito(id_service, vninos, vadultos, inicio_resolve, final_resolve);
+                            }
                         }
                     }
                 });
@@ -161,26 +164,30 @@
 
                         <div class="adultos">
                             <label for="adultos">Adultos:</label>
-                            <input type="number" id="adultos" min="1" max="30" required>
+                            <input type="number" id="adultos" min="1" max="30"  class="input_personas">
                         </div>
 
                         <div class="ninos">
                             <label for="niños">Niños:</label>
-                            <input type="number" id="niños" min="0" max="30">
+                            <input type="number" id="niños" min="0" max="30" style="text-align: center;" class="input_personas">
                         </div>
                     </div>
                     <div class="fecha">
                         <div class="fecha-inicio" id="fecha-container1">
                             <form>
                                 <label for="datepicker">Fecha Inicio:</label>
-                                <input type="text" id="datepicker" name="fecha" readonly>
+                                <input type="text" id="datepicker" name="fecha" readonly class="input_fecha">
                             </form>
                         </div>
 
                         <div class="fecha-fin" id="fecha-container2">
                             <form>
                                 <label for="datepicker2">Fecha Fin:</label>
-                                <input type="text" id="datepicker2" name="fecha" readonly class="oculto">
+                                <input type="text" id="datepicker2" name="fecha" readonly class="oculto"
+                                    style=" padding: 8px;
+                                width: 100px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;">
                             </form>
                         </div>
                     </div>
@@ -193,11 +200,17 @@
 
                         <tr>
                             <th>Temporada</th>
+                            <th>Fechas</th>
                             <th>Precio</th>
                         </tr>
                         @foreach ($seasons as $season)
+                            @php
+                                $fecha_convertida_inicio = date('d/m/y', strtotime($season->initial_date));
+                                $fecha_convertida_final = date('d/m/y', strtotime($season->final_date));
+                            @endphp
                             <tr>
                                 <td>{{ $season->tittle }}</td>
+                                <td>{{ $fecha_convertida_inicio }} hasta {{ $fecha_convertida_final }}</td>
                                 <td>{{ $season->price }}</td>
                             </tr>
                         @endforeach
@@ -242,12 +255,11 @@
         var fecha_inicio;
         var fecha_final;
 
-        var openModal = function(tittle, id, seasons) {
+        var openModal = function(tittle, id) {
             containerModal = document.querySelector(".container-modal");
             containerModal.style.display = "block";
             containerModal.style.display = "flex";
             id_service = id;
-            console.log(seasons)
             TittleModal(tittle);
         };
 
@@ -282,6 +294,10 @@
             }
         }
 
+        function validarEntero() {
+            this.value = Math.floor(this.value); // Redondear hacia abajo al número entero más cercano
+        }
+
         document.getElementById("adultos").addEventListener("input", function() {
             var input = parseInt(this.value); // Obtener el valor como número entero
 
@@ -294,6 +310,7 @@
         });
 
         document.getElementById("niños").addEventListener("input", function() {
+
             var input = parseInt(this.value); // Obtener el valor como número entero
 
             // Verificar si el valor supera el máximo o es menor que el mínimo
@@ -343,6 +360,7 @@
                 const nextButton = carouselContainer.querySelector('.next-button');
 
                 let slideIndex = 0;
+                let intervalId;
 
                 function showSlide(index) {
                     carousel.style.transform = `translateX(-${index * 100}%)`;
@@ -366,18 +384,39 @@
                     showSlide(slideIndex);
                 }
 
-                nextButton.addEventListener('click', nextSlide);
-                prevButton.addEventListener('click', prevSlide);
+                function startAutoSlide() {
+                    intervalId = setInterval(nextSlide,
+                    3000); // Cambia el slide cada 3 segundos (3000 milisegundos)
+                }
+
+                function stopAutoSlide() {
+                    clearInterval(intervalId);
+                }
+
+                nextButton.addEventListener('click', function() {
+                    stopAutoSlide();
+                    nextSlide();
+                    startAutoSlide();
+                });
+
+                prevButton.addEventListener('click', function() {
+                    stopAutoSlide();
+                    prevSlide();
+                    startAutoSlide();
+                });
+
+                startAutoSlide();
             });
         });
 
-        @if(session('error')) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Error al agregar al carrito',
-            footer: '(Temporadas) Contacte al administrador para mas informacion'
-        })
-    }
-    @endif
+        @if (session('error'))
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error al agregar al carrito',
+                    footer: '(Temporadas) Contacte al administrador para mas informacion'
+                })
+            }
+        @endif
     </script>

@@ -13,8 +13,12 @@ use DateTime;
 class ServicesController extends Controller
 {
 
+    public static $Global = [];
+
     public function __construct()
     {
+
+
         $this->middleware('auth');
 
     }
@@ -271,7 +275,12 @@ class ServicesController extends Controller
 
         $resources = new Resource;
         $images_old = session('images_old');
+        $images_erase = session('$Global', []);
 
+        foreach($images_erase as $image){
+            unlink($image);
+        }
+        session()->forget('$Global');
        $array = $images_old->toArray();
 
        $Array_old = array_map(function ($url, $id) use ($id_detail) {
@@ -310,7 +319,7 @@ class ServicesController extends Controller
 
             if (in_array($validation, $Types)) {
                 if (file_exists($rutaArchivo)) {
-                    // unlink($rutaArchivo);
+                    session()->push('$Global',public_path('storage/imgServices/') . '/' .$picture);
                 }
                 move_uploaded_file($imagen_temporal, "storage/imgServices/" . $picture);
 
@@ -331,20 +340,28 @@ class ServicesController extends Controller
         }
     }
     public function servicesviews(){
-        $services = Service::with('detail_service', 'services_resource')
-    ->where('state_record', 'ACTIVAR')
-    ->get();
+        $services = Service::with(['detail_service', 'services_resource' => function ($query) {
+            $query->where('resources.state_record', 'ACTIVAR')->inRandomOrder()->limit(5);
+        }])
+        ->where('state_record', 'ACTIVAR')
+        ->get();
 
       return view('customers.services.servicesviews', compact('services'));
     }
+
     public function detailservices($id){
+
         $services = Service::findOrFail($id);
-        $details = Detail_service::with('resource')->where('SERVICES_id','=',$id)->where('state_record', 'ACTIVAR')
-        ->get();
+        $details = Detail_service::with(['resource' => function ($query) {
+            $query->where('state_record', 'ACTIVAR');
+            }])
+                ->where('SERVICES_id', $id)
+                ->where('state_record', 'ACTIVAR')
+                ->get();
 
         $seasons = DB::select('SELECT seasons.tittle, seasons.price, seasons.initial_date, seasons.final_date FROM seasons
                             INNER JOIN services_for_season ON services_for_season.SEASONS_id = seasons.id
-                            INNER JOIN services ON services_for_season.services_id = services.id WHERE services.id = :id and seasons.state_record ="ACTIVAR" ',['id' => $id]);
+                            INNER JOIN services ON services_for_season.services_id = services.id WHERE services.id = :id and seasons.state_record ="ACTIVAR"',['id' => $id]);
 
       return view('customers.services.servicesdetails', compact('details','services','seasons'));
 }
