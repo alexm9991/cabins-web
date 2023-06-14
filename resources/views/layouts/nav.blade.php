@@ -1,4 +1,6 @@
+
 <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+
 
 <nav>
     <div class="nav-logo">
