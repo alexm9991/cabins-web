@@ -86,6 +86,7 @@
 /*Texto ubicado a la derecha*/
 
 .texto-right {
+  margin-left: 10px;
   float: right;
   width: 45%;
   margin-top: 3%;
@@ -208,6 +209,7 @@
 
 
 #imagen-temporadas img{ 
+  margin-left: 10%;
   width:auto;
   height: auto;
   flex:1;
