@@ -81,6 +81,13 @@ Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsControlle
 
 });
 
+Route::get('/bookings/success', [App\Http\Controllers\BookingsController::class, 'create'])->name('bookings.create');
+Route::post('/bookings/success', [App\Http\Controllers\BookingsController::class, 'event']);
+
+// Route::post('/bookings/success', [App\Http\Controllers\BookingsController::class, 'newEvent'])->name('bookings.newEvent');
+
+
+
 //RUTAS REGISTER
 Route::get('register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', '\App\Http\Controllers\Auth\RegisterController@register');
@@ -92,9 +99,4 @@ include 'shoppingCar.php';
 //RUTAS TEMPORADAS
 
 include 'season.php';
-
-// Route::get('seasons/{id}/disable', [App\Http\Controllers\SeasonsController::class, 'disableSeasons'])->name('seasons.disableSeasons');
-// Route::get('seasons/{id}/active', [App\Http\Controllers\SeasonsController::class, 'activeSeasons'])->name('seasons.activeSeasons');
-// Route::get('services/{services}/seasonDetails',[App\Http\Controllers\ServicesController::class,'seasonDetails']) ->name("services.seasonDetails");
-// Route::resource('season', SeasonsController::class)->names('seasons');
 
