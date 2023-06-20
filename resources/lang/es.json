@@ -139,6 +139,15 @@
     "Create season":"Crear Temporada",
     "Update seasons":"Actualizar Temporada",
     "Detail season ":"Detalle temporada ",
-    "Detail season for services":"Detalles temporada por servicio"
+    "Detail season for services":"Detalles temporada por servicio",
+    "Shopping Car":"Carrito de Compras",
+    "Reservation Summary":"Resumen Reserva",
+    "Reserve now":"Reservar Ahora",
+    "You must add a service to finish the process":" Debes agregar un servicio para finalizar el proceso",
+    "Keep buying":"Seguir Comprando",
+    "Empty Cart":"Vaciar Carrito",
+    "Quantity Adults":"Cantidad Adultos",
+    "Quantity Children":"Cantidad Niños",
+    "Stay":"Estadia"
 
 }
