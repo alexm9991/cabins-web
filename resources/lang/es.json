@@ -43,6 +43,9 @@
     "FEEDING":"ALIMENTACIÓN",
     "NOISE":"RUIDO",
     "BOOKING":"RESERVA",
+    "EARRING":"PENDIENTE",
+    "PAY":"PAGO",
+    "PAY STATUS":"ESTADO DE PAGO",
 
     "Users management": "Gestión de Usuarios",
     "Product management": "Gestión de Productos",
