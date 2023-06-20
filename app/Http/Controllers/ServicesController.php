@@ -90,7 +90,7 @@ class ServicesController extends Controller
         $services -> rules = $request -> rules;
         $services -> save();
 
-        return redirect(route('services',$id))->with('update','ok');
+        return redirect(route('services.index',$id))->with('update','ok');
     }
 
     public function detailUpdate(Request $request, $id1,$id2)
