@@ -10,7 +10,7 @@
 }
 
 .h1titulo {
-    font-size: 40px;
+    font-size: 60px;
     margin: 0 auto;
     text-align: center;
     margin-bottom: 5%;
@@ -45,7 +45,8 @@ span.estilovsta {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 95%;
+    margin-bottom: 5%;
 }
 
 th {
@@ -72,6 +73,24 @@ td {
     transition: background-color 0.3s ease-in-out;
     border-radius: 10px;
 }
+
+.inputCantidad {
+    border: none;
+    background-color: transparent;
+    font-size: 140%; /* Ajusta el tamaño de la letra según tus preferencias */
+    width: 10%;
+    appearance: textfield;/* Ajusta el ancho según tus preferencias */
+}
+
+
+
+  .inputCantidad::-webkit-outer-spin-button,
+  .inputCantidad::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Elimina las flechas en Chrome y Safari */
+    margin: 0; /* Asegura que no haya espacio reservado para las flechas */
+    display: none; /* Oculta las flechas */
+  }
+
 
 .a-quitar {
     background-color: #333;
@@ -124,7 +143,6 @@ td {
 
 .cuadro p {
     font-size: 1.2rem;
-    padding: 0;
 }
 
 .tabla {
@@ -161,6 +179,21 @@ td {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+
+.alerta {
+    font-size: 16px; /* Tamaño de fuente reducido */
+    background-color: #f8d7da; /* Fondo rosa claro */
+    margin: 8px; /* Espacio interno */
+    border: 1px solid #dc3545; /* Borde de color rojo */
+    border-radius: 3px; /* Bordes redondeados */
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    color: #721c24; /* Color de texto rojo oscuro */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Alineación centrada */
+  }
+
+
 
 @media screen and (max-width: 600px) {
     .image {
@@ -255,6 +288,13 @@ td {
         flex-direction: column;
         align-items: center;
         margin-top: 40px;
+    }
+    .inputCantidad {
+        border: none;
+        background-color: transparent;
+        font-size: 140%; /* Ajusta el tamaño de la letra según tus preferencias */
+        width: 30%;
+        appearance: textfield;/* Ajusta el ancho según tus preferencias */
     }
 
     .botones {
