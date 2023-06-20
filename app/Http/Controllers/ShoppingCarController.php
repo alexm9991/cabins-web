@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Detail_service;
 use App\Models\Resource;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
+use DateTime;
 use Illuminate\Support\Facades\Cache;
 
 class shoppingCarController extends Controller
@@ -28,12 +32,12 @@ class shoppingCarController extends Controller
         $detail = Detail_service::findOrFail($id);
         //Consulta a las temporadas
         $seasons = DB::select(
-            'SELECT seasons.tittle, seasons.price, seasons.initial_date, seasons.final_date FROM seasons
+            'SELECT seasons.tittle, seasons.price, seasons.initial_date, seasons.final_date FROM seasons 
                             INNER JOIN services_for_season ON services_for_season.SEASONS_id = seasons.id
-                            INNER JOIN services ON services_for_season.services_id = services.id WHERE services.id = :id and seasons.state_record ="ACTIVAR"',
+                            INNER JOIN services ON services_for_season.services_id = services.id WHERE services.id = :id',
             ['id' => $detail->SERVICES_id]
         );
-        //reacomodacion del formato fecha de las temporadas DD-MM-YYYY
+        //reacomodacion del formato fecha de las temporadas DD-MM-YYYY                    
         foreach ($seasons as $season) {
             $fechaReformateada = [
                 "tittle" => $season->tittle,
@@ -43,7 +47,7 @@ class shoppingCarController extends Controller
             ];
             $fechasReformateadas[] = $fechaReformateada;
         }
-        //Validacion de los dias seleccionados con las temporadas
+        //Validacion de los dias seleccionados con las temporadas 
         $arraytempVal = [];
         $daysfortemp = [];
         foreach ($fechasReformateadas as $rango) {
@@ -123,11 +127,7 @@ class shoppingCarController extends Controller
                 $prices = $record;
             }
         }
-        try {
-            $multi = $prices["price"] * $totalDays;
-        } catch (\ErrorException $e) {
-            return redirect()->back()->with('error', 'ok');
-        }
+        $multi = $prices["price"] * $totalDays;
         $this->storeServices($id, $ninos, $adultos, $fecha_inicial, $fecha_final, $multi, $totalDays);
         return redirect(route('shoppingCar.index')); # redirecciona a la vista del carrito
     }
@@ -204,11 +204,11 @@ class shoppingCarController extends Controller
     public function updateServicesA($id, $cantidad) # función para actualizar los datos en la cache
     {
 
-        $validacion =  DB::selectOne('SELECT services.max_individuals FROM services INNER JOIN detail_services
-        on detail_services.SERVICES_id = services.id WHERE services.id = :id', ['id' => $id]);
-
-
         $registro = Cache::get($id);
+        $id_service = intval($registro->id);
+        $detail = Detail_service::findOrFail($id_service);
+        $service = Service::findOrFail($detail->SERVICES_id);
+
         $datosServices['id'] = $registro->id ?? '';
         $datosServices['nombre'] = $registro->nombre ?? '';
         $datosServices['cantidad_adultos'] = $cantidad ?? 1;
@@ -219,8 +219,10 @@ class shoppingCarController extends Controller
         $datosServices['imgServicios'] = $registro->imgServicios ?? '';
         $datosServices['dias'] = $registro->dias ?? 1;
 
+        $datos = $datosServices['cantidad_ninos'] + $datosServices['cantidad_adultos'];
 
-        if ($datosServices['cantidad_ninos'] + $datosServices['cantidad_adultos'] <= $validacion) {
+
+        if ($datos <= $service->max_individuals) {
             $datos = json_decode(json_encode($datosServices));
             Cache::forever($id, $datos);
         } else {
@@ -230,10 +232,11 @@ class shoppingCarController extends Controller
 
     public function updateServicesN($id, $cantidad) # función para actualizar los datos en la cache
     {
-        $validacion =  DB::selectOne('SELECT services.max_individuals FROM services INNER JOIN detail_services
-        on detail_services.SERVICES_id = services.id WHERE services.id = :id', ['id' => $id]);
 
         $registro = Cache::get($id);
+        $id_service = intval($registro->id);
+        $detail = Detail_service::findOrFail($id_service);
+        $service = Service::findOrFail($detail->SERVICES_id);
         $datosServices['id'] = $registro->id ?? '';
         $datosServices['nombre'] = $registro->nombre ?? '';
         $datosServices['cantidad_adultos'] = $registro->cantidad_adultos ?? 1;
@@ -244,7 +247,10 @@ class shoppingCarController extends Controller
         $datosServices['imgServicios'] = $registro->imgServicios ?? '';
         $datosServices['dias'] = $registro->dias ?? 1;
 
-        if ($datosServices['cantidad_ninos'] + $datosServices['cantidad_adultos'] <= $validacion) {
+        $datos = $datosServices['cantidad_ninos'] + $datosServices['cantidad_adultos'];
+
+        if ($datos <= $service->max_individuals) {
+
             $datos = json_decode(json_encode($datosServices));
             Cache::forever($id, $datos);
         } else {
@@ -268,6 +274,8 @@ class shoppingCarController extends Controller
         Cache::forever($type . $user?->id . $product?->id, $datos);
     }
 
+
+
     public function storeServices($id, $ninos, $adultos, $fecha_inicial, $fecha_final, $precio, $totalDays, $type = 'detail_service') # función para guardar los datos en la cache
     {
         $user = auth()->user();
@@ -287,6 +295,8 @@ class shoppingCarController extends Controller
         $datosServices['imgServicios'] = $resource->url ?? '';
         $datosServices['dias'] = $totalDays ?? 1;
 
+
+
         # Se modifica el arreglo como un string en forma de json y despues se pasa el string a un json
         $datosServices = json_decode(json_encode($datosServices));
         Cache::forever($type . $user?->id . $detailService?->id, $datosServices);
@@ -294,6 +304,8 @@ class shoppingCarController extends Controller
 
     public function index(Request $request) # función para mostrar la vsta del carrito
     {
+
+        // Cache::flush();
         $user = auth()->user();
         $keys = Product::all()->pluck('id')->toArray(); # se consultan todos los productos y los convertimos a arreglo
         $cont = 0;
@@ -312,13 +324,24 @@ class shoppingCarController extends Controller
         # consultamos todos los productos en la cache con los id de los productos (llaves)
         $products = Cache::many($keys);
         $detailServices = Cache::many($keyDetails);
-        // dd($products);
+
+
+
         return view('customers.shoppingCar.shoppingcar', compact('products', 'detailServices'));
     }
 
     public function delete()
     {
-
+        // $products = [
+        //     "id" => "",
+        //     "name_product" => "",
+        //     "decripcion" => "",
+        //     "price" => 0,
+        //     "picture" => "",
+        //     "create_time" => "",
+        //     "update_time" => "",
+        //     "state_record" => ""
+        // ];
         $user = auth()->user();
         $userId = $user->id;
         $keys = Product::all()->pluck('id')->toArray(); # se consultan todos los productos y los convertimos a arreglo
@@ -345,6 +368,27 @@ class shoppingCarController extends Controller
         $key = $id; // Construir la llave de caché para el producto a eliminar
         Cache::forget($key); // Eliminar el elemento de la caché con la llave especificada
 
+
+        // Obtener los productos restantes en la caché
+        // $products = [
+        //     "id" => "",
+        //     "name_product" => "",
+        //     "decripcion" => "",
+        //     "price" => 0,
+        //     "picture" => "",
+        //     "create_time" => "",
+        //     "update_time" => "",
+        //     "state_record" => ""
+        // ];
+        // $user = auth()->user();
+        // $keys = Product::all()->pluck('id')->toArray(); # se consultan todos los productos y los convertimos a arreglo
+        // foreach ($keys as $index => $key) {
+        //     $keys[$index] = 'product'.$user?->id . $key;
+        // }
+        // # consultamos todos los productos en la cache con los id de los productos (llaves)
+        // $products = Cache::many($keys);
+
+        // return view('customers.shoppingCar.shoppingcar', compact('products'));
         return redirect(route('shoppingCar.index')); # redirecciona a la vista del carrito
     }
 }
