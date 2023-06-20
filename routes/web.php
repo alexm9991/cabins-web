@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PqrsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ServicesController;
+use Illuminate\Http\Request;
+use App\Models\Bookings;
 
 Route::get('/', function () {
     return view('/customers/home/home');
@@ -30,19 +32,16 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
 
 //RUTAS USUARIOS - CAMBIO DE CONTRASEÑA
 
-
 //RUTAS PRODUCTOS
 Route::get('products/{id}/desactivar', [ProductsController::class, 'disableProducts'])->name('products.disableProducts');
 Route::get('products/{id}/activar', [ProductsController::class, 'activeProducts'])->name('products.activeProducts');
 Route::post('/products/{products}', [ProductsController::class, 'update'])->name('products.update');
 Route::resource('/products', ProductsController::class)->names('products');
 
-// //RUTAS CONTACTANOS
-Route::view('/contact', '/customers/contact/contact');
-
 //RUTAS PQRS
-Route::put('/pqrs/{id}/disableProducts', [PqrsController::class, 'disableProducts'])->name('pqrs.disableProducts');
-Route::resource('/pqrs', PqrsController::class)->names('pqrs');
+
+Route::get('/pqrs', [App\Http\Controllers\PqrsController::class, 'index'])->name('pqrs.index');
+Route::get('/pqrs/{pqr}/update', [PqrsController::class, 'show'])->name('pqrs.update');
 
 // RUTAS SERVICIOS
 
@@ -50,8 +49,8 @@ Route::resource('/pqrs', PqrsController::class)->names('pqrs');
 Route::get('services/{id}/disable', [App\Http\Controllers\ServicesController::class, 'disableServices'])->name('services.disableServices');
 Route::get('services/{id}/active', [App\Http\Controllers\ServicesController::class, 'activeServices'])->name('services.activeServices');
 Route::resource('/services', ServicesController::class)->names('services');
-Route::get('services/servicesviews',[App\Http\Controllers\ServicesController::class,'servicesviews']) ->name("services.servicesviews");
-Route::get('services/{service}/servicesdetails',[App\Http\Controllers\ServicesController::class,'detailservices']) ->name("services.detailservices");
+// Route::get('services/servicesviews',[App\Http\Controllers\ServicesController::class,'servicesviews']) ->name("services.servicesviews");
+// Route::get('services/{service}/servicesdetails',[App\Http\Controllers\ServicesController::class,'detailservices']) ->name("services.detailservices");
 
 
 //Rutas de la tabla detalles servicios
@@ -75,15 +74,35 @@ Route::get('services/{id}/activeimg', [App\Http\Controllers\ServicesController::
 Route::get('services/{id}/disableimg', [App\Http\Controllers\ServicesController::class, 'disableImg'])->name('services.disableImg');
 
 //RUTAS RESERVAS
-Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'])->name('bookings.index');
+
 Route::get('/bookings/{book}', [App\Http\Controllers\BookingsController::class, 'show'])->name('bookings.show');
 Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsController::class, 'destroy'])->name('bookings.delete');
-Route::get('/bookings/create/{id}', [App\Http\Controllers\BookingsController::class, 'create'])->name('bookings.create');
+
+Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'])->name('bookings.index');
 Route::put('/bookings/{booking}/update', [App\Http\Controllers\BookingsController::class, 'update'])->name('bookings.update');
 
 
-
 });
+
+Route::get('/bookings/create/{id}', [App\Http\Controllers\BookingsController::class, 'create'])->name('bookings.create');
+
+//RUTAS CONTACTANOS
+Route::view('/contact', '/customers/contact/contact');
+
+
+//RUTAS PQRS
+
+Route::put('/pqrs/{id}/delete', [PqrsController::class, 'delete'])->name('pqrs.delete');
+Route::put('/pqrs/{id}/update', [PqrsController::class, 'update'])->name('pqrs.update');
+Route::put('/pqrs/{id}/disableProducts', [PqrsController::class, 'disableProducts'])->name('pqrs.disableProducts');
+
+Route::post('/pqrs/store', [App\Http\Controllers\PqrsController::class, 'store'])->name('pqrs.store');
+Route::get('/pqrs/create', [PqrsController::class, 'create'])->name('pqrs.create');
+
+//Route::post('/bookings/success', [App\Http\Controllers\BookingsController::class, 'newEvent'])->name('bookings.newEvent');
+
+Route::get('services/servicesviews',[App\Http\Controllers\ServicesController::class,'servicesviews']) ->name("services.servicesviews");
+Route::get('services/{service}/servicesdetails',[App\Http\Controllers\ServicesController::class,'detailservices']) ->name("services.detailservices");
 
 
 //RUTAS REGISTER
@@ -97,4 +116,3 @@ include 'shoppingCar.php';
 //RUTAS TEMPORADAS
 
 include 'season.php';
-
