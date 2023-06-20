@@ -10,8 +10,24 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Bookings extends Model
 {
+    use HasFactory;
+    public $timestamps = False;
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
+
+    protected $table = 'Bookings'; // Nombre de la tabla en la base de datos
+
+    protected $fillable = [
+        'final_date',
+        'initial_date',
+        'total',
+        'booking_code',
+        'pay_status',
+        'state_record',
+        'PAYMENT_METHODS_id',
+        'USERS_id'
+        
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -44,8 +60,6 @@ class Bookings extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    const CREATED_AT = 'create_time';
-    const UPDATED_AT = 'update_time';
 }
 
 ?>
