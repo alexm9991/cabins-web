@@ -78,14 +78,12 @@ Route::get('services/{id}/disableimg', [App\Http\Controllers\ServicesController:
 Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'index'])->name('bookings.index');
 Route::get('/bookings/{book}', [App\Http\Controllers\BookingsController::class, 'show'])->name('bookings.show');
 Route::get('/bookings/{booking}/delete', [App\Http\Controllers\BookingsController::class, 'destroy'])->name('bookings.delete');
+Route::get('/bookings/create/{id}', [App\Http\Controllers\BookingsController::class, 'create'])->name('bookings.create');
+Route::put('/bookings/{booking}/update', [App\Http\Controllers\BookingsController::class, 'update'])->name('bookings.update');
+
+
 
 });
-
-Route::get('/bookings/success', [App\Http\Controllers\BookingsController::class, 'create'])->name('bookings.create');
-Route::post('/bookings/success', [App\Http\Controllers\BookingsController::class, 'event']);
-
-// Route::post('/bookings/success', [App\Http\Controllers\BookingsController::class, 'newEvent'])->name('bookings.newEvent');
-
 
 
 //RUTAS REGISTER
