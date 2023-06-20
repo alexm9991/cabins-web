@@ -56,7 +56,7 @@
                         <h5>{{ __('PRODUCTS') }}</h5>
                     </div><br>
                     <div class="form-group">
-                        <table border="2" style="margin:auto">
+                        <table class="table table-bordered mx-auto">
                             <thead>
                                 <tr>
                                     <th>Producto</th>
@@ -71,7 +71,7 @@
                                     <td>{{ $boop->name_product }}</td>
                                     <td>${{ $boop->price }}</td>
                                     <td>{{ $boop->amount_product }}</td>
-                                    <td>${{ $boop->total }}</td>
+                                    <td>${{ $boop->amount_product * $boop->price  }}</td>
                                 </tr>
 
                             </tbody>
@@ -129,14 +129,26 @@
                         <label>{{ __('State Record') }}:</label>
                         <span>{{ $booking->state_record }}</span>
                     </div>
-                    <div class="row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="row mb-4">
+                    <div class="col mb">
+                        <form class="formulario-state" action="{{ route('bookings.update', $booking->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <select class="form-select form-select-lg mb-6" aria-label="Default select example" name="pay_status">
+                                <option value="{{ __('EARRING') }}" {{$booking->pay_status == 'PENDIENTE' ? 'selected' : '' }}>{{ __('EARRING') }}</option>
+                                <option value="{{ __('PAY') }}" {{$booking->pay_status == 'PAGO' ? 'selected' : '' }}>{{ __('PAY') }}</option>
+                            </select><br><br><br>
+                    </div>
+                    <div class="row mb-12">
+                            <div class="row mb-8 mx-auto" >
+                                <button type="submit" class="btn btn-success rounded-pill mr-1"><i class="fas fa-edit"></i>
+                                    {{ __('Update') }}
+                                </button>
+                                </form>
                                 <?php
                                 if ($booking->state_record == 'ACTIVAR') {
                                 ?>
                                     <form class="formulario-disable" action="{{ route('bookings.delete', $booking->id) }}" method="GET">
-                                        <button class="btn btn-danger rounded-pill"><i class="fas fa-lock"></i> {{ __('Disable') }}</button>
+                                        <button class="btn btn-danger rounded-pill mr-1"><i class="fas fa-lock"> </i> {{ __('Disable') }}</button>
                                     </form>
                                 <?php
                                 }
@@ -145,14 +157,14 @@
                                 if ($booking->state_record == 'DESACTIVAR') {
                                 ?>
                                     <form class="formulario-activate" action="{{ route('bookings.delete', $booking->id) }}" method="GET">
-                                        <button class="btn btn-warning text-white rounded-pill"><i class="fas fa-lock-open"></i> {{ __('Activate') }}</button>
+                                        <button class="btn btn-warning text-white rounded-pill mr-1"> <i class="fas fa-lock-open"></i> {{ __('Activate') }}</button>
                                     </form>
                                 <?php
                                 }
                                 ?>
                                 <a href="{{ route('bookings.index') }}" class="btn btn-primary rounded-pill"><i class="fas fa-undo-alt"></i> {{ __('Return') }}</a>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -195,6 +207,23 @@
                 this.submit();
             } else if (result.isDenied) {
                 Swal.fire('No se activo la reserva!!', '', 'info')
+            }
+        })
+    })
+
+    $('.formulario-state').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Esta seguro de actualizar la reserva?',
+            showDenyButton: true,
+            confirmButtonText: 'Actualizar',
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            } else if (result.isDenied) {
+                Swal.fire('No se actualizó la reserva!!', '', 'info')
             }
         })
     })

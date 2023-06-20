@@ -24,6 +24,7 @@
                             <th class="text-center">{{ __('START DATE') }}</th>
                             <th class="text-center">{{ __('PAYMENT METHOD') }}</th>
                             <th class="text-center">{{ __('CUSTOMER NAME') }}</th>
+                            <th class="text-center">{{ __('PAY STATUS') }}</th>
                             <th class="text-center">{{ __('DETAILS') }}</th>
 
                         </tr>
@@ -37,6 +38,7 @@
                             <td class="text-center">{{ date('d/m/Y', strtotime($book->initial_date)) }}</td>
                             <td class="text-center">{{ $book->title_payment}}</td>
                             <td class="text-center">{{ $book->name}}</td>
+                            <td class="text-center">{{ $book->pay_status}}</td>
                             <td class="text-center">
                                 <a class="btn btn-info btn-sm rounded-pill" href="{{ route('bookings.show', $book->id) }}"><i class="fas fa-eye"></i> {{ __('See More') }} </a>
                             </td>
@@ -65,7 +67,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{asset('js/datatables.js')}}"></script>
 
-    @if(session('destroy')) {
+    @if(session('destroy') || session('update')) {
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -86,6 +88,5 @@
     </script>
     }
     @endif
-
 
     @stop
