@@ -24,7 +24,7 @@
         <main id="profile" class="profile">
 
             <hgroup class="section-title">
-                <h2 style=" color: #FF6000;">{{ $products->name_product }}</h2>
+                <h2 style=" color: #ffa559;">{{ $products->name_product }}</h2>
                 <br>
                 <h3 class="h3-style"><i class="fas fa-dollar-sign"></i> {{ $format }}</h3>
                 <br>
