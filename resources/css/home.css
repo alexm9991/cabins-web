@@ -5,19 +5,19 @@
 body {
     overflow-x: hidden;
   }
-  
+
   section {
     padding: 0px;
   }
-  
+
   section h2 {
     margin-top: 0;
   }
-  
+
   article {
     margin-bottom: 0px;
   }
-    
+
   .container-body{
     position: absolute;
     width: 100%;
@@ -29,8 +29,8 @@ body {
 
   .container-img {
     width: 100%;
-    height: 700px; 
-    padding-bottom: 100px; 
+    height: 700px;
+    padding-bottom: 100px;
     display: flex;
     align-items: center;
     background-image: linear-gradient(-170deg, #fff1df, #ffffff);
@@ -75,20 +75,20 @@ body {
   margin-top: 200px;
   border-top-left-radius: 60px;
   background-color: rgb(173, 171, 171);
-  text-align: center; 
-  position: relative; 
+  text-align: center;
+  position: relative;
   overflow: hidden;
 }
 
   .imagen img {
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
 }
-  
+
   .ancho-div {
     position:absolute;
     float: center;
@@ -104,13 +104,13 @@ body {
     z-index: 2;
     border-radius: 10px
   }
-  
+
   .ancho-div p{
     margin-left: 40px;
     font-size: 1.5em;
   }
-  
-  
+
+
   .link-map button{
     float: right;
     border-radius: 5px;
@@ -121,19 +121,19 @@ body {
 
     border: 1px solid white;
   }
-  
+
   .link-map a{
       text-decoration: none;
-      color: rgb(0, 0, 0); 
+      color: rgb(0, 0, 0);
   }
 .separ{
-  top: 100%; 
+  top: 100%;
   left: 0;
-  width: 100%; 
-  height: 180px; 
+  width: 100%;
+  height: 180px;
   z-index: -1;
   background-color:#ffffff;
- 
+
 }
 .container-about{
   background-color: #ffffff;
@@ -141,7 +141,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-  
+
 .subtitle h2 {
   padding-top: 40px;
   font-size: 3em;
@@ -159,7 +159,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: -40px;  
+  margin-top: -40px;
 }
 .about__main img{
   max-width: 15%;
@@ -172,7 +172,7 @@ body {
   margin-bottom: 30px;
   padding: 50px;
   box-sizing: border-box;
-  
+
 }
 
 .three-section1{
@@ -261,7 +261,7 @@ body {
   left: 0;
   width: 100%;
   height: 100px;
-  z-index: 1; 
+  z-index: 1;
 }
 .titulo-quien p{
   color: #666;
@@ -324,7 +324,7 @@ body {
   padding-left: 10px;
   margin-left: 80px;
   margin-top: 200px;
-  
+
 }
 
 .izquierdo-div-inner {
@@ -448,7 +448,7 @@ body {
   .col-lg-2{width: 16.66666666%;}
   .col-lg-1{width: 8.33333333%;}
   }
-  
+
   @media(min-width:992px) and (max-width:1199px){
   .col-md-12{width: 100%;}
   .col-md-11{width: 91.66666666%;}
@@ -462,7 +462,7 @@ body {
   .col-md-3{width: 25%;}
   .col-md-2{width: 16.66666666%;}
   .col-md-1{width: 8.33333333%;}
-  
+
   @media(min-width:576px) and (max-width:991px){
     .container-img {
       padding-top: 500px;
@@ -477,17 +477,17 @@ body {
     .ancho-div {
       background-size: cover;
     }
-  
+
     .container-img {
       width: 100%;
-      height: auto; 
-      padding-bottom: 0px; 
+      height: auto;
+      padding-bottom: 0px;
       display: grid;
       align-items: center;
       background-color: #cfcece;
       position: relative;
   }
-  
+
   .texto {
     float: left;
     width: 100%;
@@ -501,7 +501,7 @@ body {
     text-align: center;
     letter-spacing: -1px;
   }
-  
+
   .texto p {
     font-size: 1em;
     font-weight: bold;
@@ -512,7 +512,7 @@ body {
     margin-right: auto;
     text-align: center;
   }
-  
+
   .imagen {
     bottom: 0;
     width: 100%;
@@ -520,15 +520,15 @@ body {
     margin-top: 0;
     border-top-left-radius: 60px;
     background-color: rgb(173, 171, 171);
-    text-align: center; 
-    position: relative; 
+    text-align: center;
+    position: relative;
   }
-  
+
     .imagen img {
-      position: absolute; 
-      top: 50%; 
-      left: 50%; 
-      transform: translate(-50%, -50%);  
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
 
   .ancho-div{
@@ -537,7 +537,7 @@ body {
 
   .contenedor-exp {
     justify-content: space-around;
-  }  
+  }
 
   .square {
     width: 100%;
@@ -562,7 +562,7 @@ body {
   .col-sm-2{width: 16.66666666%;}
   .col-sm-1{width: 8.33333333%;}
   }
-  
+
   @media(max-width:575px){
     .container-body{
       position: absolute;
@@ -575,18 +575,18 @@ body {
     .ancho-div {
       background-size: cover;
     }
-  
+
     .container-img {
       width: 100%;
-      height: 800px; 
+      height: 800px;
       padding-top: 0;
-      padding-bottom: 0; 
+      padding-bottom: 0;
       display: grid;
       align-items: center;
       background-color: #cfcece;
       position: relative;
   }
-  
+
   .texto {
     float: left;
     width: 100%;
@@ -601,7 +601,7 @@ body {
     margin-top: 30px;
     letter-spacing: -1px;
   }
-  
+
   .texto p {
     font-size: 1em;
     font-weight: bold;
@@ -612,7 +612,7 @@ body {
     margin-right: auto;
     text-align: center;
   }
-  
+
   .imagen {
     bottom: 0;
     width: 100%;
@@ -620,15 +620,15 @@ body {
     margin-top: 0;
     border-top-left-radius: 60px;
     background-color: rgb(173, 171, 171);
-    text-align: center; 
-    position: relative; 
+    text-align: center;
+    position: relative;
   }
-  
+
     .imagen img {
-      position: absolute; 
-      top: 50%; 
-      left: 50%; 
-      transform: translate(-50%, -50%); 
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
   }
 
   .square {
@@ -646,13 +646,13 @@ body {
   }
 
   .container-about{
-    height: auto; 
+    height: auto;
     margin-bottom: -100px;
   }
 
   .contenedor-exp {
     justify-content: space-around;
-  }  
+  }
     .ancho-div {
       background-size: cover;
     }
@@ -661,13 +661,13 @@ body {
       width:100%;
       height: 200px;
     }
-    
+
     .three-section2{
       text-align: center;
       width:100%;
       height: 200px;
     }
-    
+
     .three-section3{
       text-align: center;
         width:100%;
@@ -696,9 +696,9 @@ body {
       padding-left: 0;
       margin-left: 0;
       margin-top: 50px;
-      
+
     }
-    
+
     .izquierdo-div-inner {
       width: 90%;
       height: 90%;
@@ -706,7 +706,7 @@ body {
       justify-content: center;
       align-items: center;
     }
-    
+
     .izquierdo-div img {
       max-width: 80%;
       max-height: 80%;
