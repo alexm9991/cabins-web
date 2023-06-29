@@ -159,28 +159,17 @@ class BookingsController extends Controller
             $idRegistro = 'detail_service' . $userId . $keyDetail;
             Cache::flush($idRegistro);
         }
+
+        $book = $Booking -> id ;
         // Cache::flush(); # Se elimina todo lo que coincida con las llaves
         // return view('customers.shoppingCar.shoppingcar', compact('products'));
-        return redirect(route('shoppingCar.index')) ->with('ok', 'ok'); # redirecciona a la vista del carrito
+        // return redirect(route('shoppingCar.index')) ->with('ok', 'ok'); # redirecciona a la vista del carrito
+        return redirect()->route('bills.billsGetDates', ['idBook' => $book]); //return que me enviará el parametro al billscontroller
         // Lógica adicional para procesar los valores y realizar acciones
 
         // Redirigir a otra página, devolver una respuesta, etc.
     }
 
-    public function newEvent(Request $request)
-    {
-        $booking = new Bookings;
-
-        $booking->final_date = 2023 - 05 - 20;
-        $booking->initial_date = 2023 - 05 - 21;
-        $booking->total = 300000;
-        $booking->booking_code = 'MNO123';
-        $booking->payment_reference = json_encode($request);
-        $booking->PAYMENT_METHODS_id = 1;
-        $booking->USERS_id = 1;
-        $booking->save();
-
-    }
     public function show(Bookings $book)
     {
 
@@ -269,4 +258,85 @@ class BookingsController extends Controller
         $booking->save();
         return redirect()->route('bookings.index')->with('destroy', 'ok');;
     }
+
+    public function billsviews(){
+
+        return view('customers.bills.billsviews');
+      }
+
+
+      public function billsGetDates( $idBook )
+      {
+
+          $id = $idBook;
+
+            $booking = Bookings::select(
+                'bookings.id',
+                'bookings.final_date',
+                'bookings.initial_date',
+                'bookings.booking_code',
+                'bookings.pay_status',
+                'bookings.create_time',
+                'bookings.update_time',
+                'bookings.state_record',
+                'payment_methods.title_payment',
+                'detail_service_bills.tittle',
+                'users.name',
+                'users.last_name',
+                'users.phone_number',
+                'users.email',
+                'users.identification_number',
+                'detail_service_bills.amount_adults',
+                'detail_service_bills.amount_child',
+                'service_bills.total'
+            )
+                ->join('users', 'bookings.users_id', '=', 'users.id')
+                ->join('payment_methods', 'bookings.payment_methods_id', '=', 'payment_methods.id')
+                ->join('detail_booking', 'bookings.id', '=', 'detail_booking.booking_id')
+                ->join('service_bills', 'detail_booking.service_bills_id', '=', 'service_bills.id')
+                ->join('detail_service_bills', 'service_bills.id', '=', 'detail_service_bills.service_bills_id')
+                //->join('detail_services', 'service_bills.detail_services_id', '=', 'detail_services.id')
+                ->where('bookings.id', '=', $id)
+                ->first();
+
+            $booking_members = Booking_members::select(
+                'booking_members.first_name_member',
+                'booking_members.last_name_member',
+                'booking_members.age_member',
+                'booking_members.document_member'
+            )
+                ->join('bookings', 'booking_members.booking_id', '=', 'bookings.id')
+                ->where('booking_members.booking_id', '=', $id)
+                ->get();
+
+            $booking_product = Product::select(
+                'detail_product_bills.name_product',
+                'detail_product_bills.price',
+                'detail_product_bills.amount_product',
+            )
+
+                ->join('detail_product_bills', 'products.id', '=', 'detail_product_bills.products_id')
+                ->join('product_bills', 'detail_product_bills.product_bills_id', '=', 'product_bills.id')
+                //->join('detail_product_bills', 'product_bills.id', '=', 'detail_product_bills.product_bills_id')
+                ->join('detail_booking', 'product_bills.id', '=', 'detail_booking.product_bills_id')
+                ->where('detail_booking.booking_id', '=', $id)
+                ->get();
+
+            $suma_product = DB::table('product_bills')
+                ->join('detail_booking', 'product_bills.id', '=', 'detail_booking.product_bills_id')
+                ->where('detail_booking.booking_id', '=', $id)
+                ->sum('product_bills.total');
+
+            $total_booking = Bookings::select('total')
+                ->where('id', '=', $id)
+                ->get();
+            $total_booking = $total_booking[0]->total;
+
+
+
+          return view('customers.bills.billsviews', compact('booking', 'booking_product', 'booking_members', 'suma_product', 'total_booking'));
+
+      }
+
+
 }

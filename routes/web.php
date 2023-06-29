@@ -116,3 +116,6 @@ include 'shoppingCar.php';
 //RUTAS TEMPORADAS
 
 include 'season.php';
+
+//RUTA FACTURA
+Route::get('bills/{idBook}', [App\Http\Controllers\BookingsController::class, 'billsGetDates'])->name('bills.billsGetDates');
