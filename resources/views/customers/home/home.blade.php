@@ -136,7 +136,7 @@
                 </div>
                 <div class="derecho-divs">
                     <div class="derecho-div">
-                        <img src="imagenes/logo.jpeg" alt="Imagen 1">
+                        <img src="imagenes/logo123.jpeg" alt="Imagen 1">
                         <div class="derecho-h1-p">
                             <div class="container-h2">
                                 <h3> <strong>¡Descubre un paraíso en nuestra finca turística <br> y reserva tu escape perfecto hoy mismo!</strong> </h3>

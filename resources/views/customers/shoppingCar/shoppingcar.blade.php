@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/shoppingcar/shoppingcar.css') }}">
 </head>
 
-<body style=" background-color:  #FFE6C7;" class="cuerpo">
+<body class="cuerpo">
     <header>
 
         @include('layouts.nav')
@@ -32,7 +32,7 @@
         <table style="margin-left: 2%;" class="bottom-border">
             <thead>
                 <tr>
-                    <th style=" text-align: center; color: white;"> {{ __('SERVICE') }}</th>
+                    <th style=" text-align: center;"> {{ __('SERVICE') }}</th>
 
                     <th> {{ __('Quantity Adults') }} </th>
                     <th>{{ __('Quantity Children') }} </th>
@@ -123,7 +123,7 @@
             <table style="margin-left: 2%;" class="bottom-border">
                 <thead>
                     <tr>
-                        <th style=" text-align: center; color: white;">{{ __('PRODUCTS') }}</th>
+                        <th style=" text-align: center;">{{ __('PRODUCTS') }}</th>
                         <th></th>
                         <th> </th>
                     </tr>
@@ -132,7 +132,7 @@
                     @foreach ($products as $index => $product)
                         @if (gettype($product) == 'object')
                             <?php $subtotal = $product->cantidad * $product->precio;
-                            
+
                             $format = number_format($subtotal); ?>
                             <tr>
                                 <div style="margin-top: 25%; margin-bottom: 25%;">
@@ -208,7 +208,7 @@
                         <tr>
                             <td colspan="2">{{ __('Total Bookings') }} </td>
                             <td><?php $formattotal = $totalP + $totalS;
-                            
+
                             $formattotalF = number_format($formattotal); ?>${{ $formattotalF }}</td>
                         </tr>
 
@@ -221,22 +221,22 @@
                                         $letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
                                         $numeros = '0123456789';
                                         $referencia = '';
-                                    
+
                                         // Generar tres letras aleatorias
                                         for ($i = 0; $i < 3; $i++) {
                                             $indice = rand(0, strlen($letras) - 1);
                                             $referencia .= $letras[$indice];
                                         }
-                                    
+
                                         // Generar tres números aleatorios
                                         for ($i = 0; $i < 3; $i++) {
                                             $indice = rand(0, strlen($numeros) - 1);
                                             $referencia .= $numeros[$indice];
                                         }
-                                    
+
                                         return $referencia;
                                     }
-                                    
+
                                 @endphp
                                 <div>
                                     <div>
