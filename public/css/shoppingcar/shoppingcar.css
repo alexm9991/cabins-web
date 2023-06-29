@@ -1,7 +1,7 @@
 .cuerpo {
     font-family: Arial, sans-serif;
     padding: 0;
-    background-color: #fff;
+    background-image: linear-gradient(to bottom, #fff1df 0%, #ffffff 50%);
 }
 
 .cabecera {
@@ -11,7 +11,7 @@
 
 .h1titulo {
     font-size: 60px;
-    margin: 0 auto;
+    margin: 10% auto;
     text-align: center;
     margin-bottom: 5%;
     color: #ffa559;
@@ -29,11 +29,12 @@ a.estilobtn {
     background-color: #ddd;
     border: none;
     cursor: pointer;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
 a.estilobtn:hover {
-    background-color: #ff6000;
+    background-color: #05535d;
     color: white;
 }
 
@@ -50,7 +51,7 @@ table {
 }
 
 th {
-    background-color: #ffa559;
+    background-color: #e4e3b6;
     text-align: left;
     height: 50px;
 }
@@ -79,6 +80,7 @@ td {
     background-color: transparent;
     font-size: 140%; /* Ajusta el tamaño de la letra según tus preferencias */
     width: 10%;
+    text-align: center;
     appearance: textfield;/* Ajusta el ancho según tus preferencias */
 }
 
@@ -256,7 +258,6 @@ td {
 
         .estilobtn {
             background-color: #333;
-            color: white;
             border: none;
             padding: 5px 10px;
             cursor: pointer;

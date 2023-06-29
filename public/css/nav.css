@@ -16,7 +16,7 @@
     left: 0;
     top: 0;
     border-bottom: 0.1px solid #ffb689;
-    z-index: 998;
+    z-index: 999;
 
 
   }
@@ -42,6 +42,8 @@
 
   .nav-cont{
     display: block;
+    background-color: #fff1df;
+    border: 0.1px solid #ffdac3;
   }
 
   .nav-links {
@@ -91,16 +93,15 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-    background: #FF6000;
-    box-shadow: 1px 1px 6px #c1bab2, -1px -1px 6px #c1bab2;
-    transition: .4s;
+    background: linear-gradient(0deg, #59a1aa 0%, #05535d 100%);
+    box-shadow: 1px 1px 6px #e2c9ac, -1px -1px 6px #e2c9ac;
+    transition: .3s;
   }
 
 
   #login-btn:hover{
-    box-shadow: 1px 1px 6px #FF6000, -1px -1px 6px #FF6000;
-    background: #ffd8b7;
-    color: #000;
+    box-shadow: 0px 0px 10px 1px #213E60;
+    background: linear-gradient(0deg, #89c7cf 0%, #1e7681 100%);
   }
 
   #profile-btn {
@@ -115,20 +116,17 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-    background: #FF6000;
-    box-shadow: 1px 1px 6px #c1bab2, -1px -1px 6px #c1bab2;
-    transition: .4s;
+    background: linear-gradient(0deg, #59a1aa 0%, #05535d 100%);
+    box-shadow: 1px 1px 6px #e2c9ac, -1px -1px 6px #e2c9ac;
+    transition: .3s;
   }
 
   #profile-btn:hover{
-    box-shadow: 1px 1px 6px #FF6000, -1px -1px 6px #FF6000;
-    background: #ffd8b7;
-    color: #000;
+    box-shadow: 0px 0px 10px 1px #213E60;
+    background: linear-gradient(0deg, #89c7cf 0%, #1e7681 100%);
   }
 
-  #profile-btn:hover > .subM-arrow{
-    filter: invert(0);
-  }
+
 
   .subM-arrow{
     position: absolute;
@@ -142,7 +140,8 @@
 
   #log-out-btn{
     display: none;
-    background: #ffd8b7;
+    background: linear-gradient(0deg, #05535d 0%, #59a1aa 100%);
+    color: #fff;
     position: absolute;
     width: 165px;
     height: 50px;
@@ -152,11 +151,16 @@
     font-size: 0.9em;
     right: 0;
     margin: 80px 5% auto 20px;
-    transition: .4s;
+    transition: .3s;
+  }
+
+  .logout-icon{
+    filter: invert(100);
   }
 
   #log-out-btn:hover{
-    box-shadow: 1px 1px 6px #FF6000, -1px -1px 6px #FF6000;
+    box-shadow: 0px 0px 10px 1px #213E60;
+    background: linear-gradient(0deg, #1e7681 0%, #89c7cf 100%);
   }
 
   .logout-icon{
@@ -289,6 +293,7 @@
 
     .nav-cont{
       display: block;
+      border: none;
     }
 
     #register-btn {
@@ -404,9 +409,7 @@
 
     .nav-cont {
       display: none;
-      background-color: #fff1df;
       border-bottom-left-radius: 35px;
-      border: #e4cbab 1px solid;
       border-top: none;
       z-index: 998;
       margin-top: 100px;
@@ -466,7 +469,7 @@
 
     .col-sm-12 {
       width: 100%;
-      /margin-top: ;/
+      /*margin-top: ;*/
     }
 
     .col-sm-11 {
@@ -536,9 +539,7 @@
 
     .nav-cont {
       display: none;
-      background-color: #fff1df;
       border-bottom-left-radius: 35px;
-      border: #e4cbab 1px solid;
       border-top: none;
       z-index: 998;
       margin-top: 100px;
